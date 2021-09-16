@@ -3,7 +3,7 @@ if (interactive()) options(mc.cores = parallel::detectCores())
 ITER <- 200
 CHAINS <- 1
 SEED <- 1234
-TOL <- 0.001 # %
+TOL <- 0.1 # %
 
 # ------------------------------------------------------
 # a basic fit
