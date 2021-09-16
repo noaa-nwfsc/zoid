@@ -16,7 +16,7 @@ test_that("basic fit", {
 
   y = matrix(c(3.77,6.63,2.60,0.9,1.44,0.66,2.10,3.57,1.33),
              nrow=3, byrow = TRUE)
-  fit <- trinomix(data_matrix = y, chains = CHAINS)
+  fit <- fit_trinomix(data_matrix = y, chains = CHAINS)
   pars = rstan::extract(fit)
   expect_equal(apply(pars$mu,c(2,3),mean)[1,1], 0.3052632)
   expect_equal(apply(pars$mu,c(2,3),mean)[1,2], 0.4357927)
