@@ -23,7 +23,7 @@ Authors@R:
            family = "Satterthwaite",
            role = c("aut"),
            email = "will.satterthwaite@noaa.gov"))
-Description: 
+Description: This package fits trinomial mixture models to observed data, with option of including covariates.
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true

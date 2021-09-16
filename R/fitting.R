@@ -42,7 +42,7 @@ fit_trinomix = function(formula=NULL,
                     ...) {
 
   # if a single observation
-  if(class(data_matrix) != "matrix") {
+  if(class(data_matrix)[1] != "matrix") {
     data_matrix = matrix(data_matrix, nrow=1)
   }
 

@@ -3,8 +3,7 @@ if (interactive()) options(mc.cores = parallel::detectCores())
 ITER <- 200
 CHAINS <- 1
 SEED <- 1234
-TOL <- 0.2 # %
-TOL_df <- .25 # %
+TOL <- 0.001 # %
 
 # ------------------------------------------------------
 # a basic fit
@@ -18,7 +17,7 @@ test_that("basic fit", {
              nrow=3, byrow = TRUE)
   fit <- fit_trinomix(data_matrix = y, chains = CHAINS)
   pars = rstan::extract(fit)
-  expect_equal(apply(pars$mu,c(2,3),mean)[1,1], 0.3052632)
-  expect_equal(apply(pars$mu,c(2,3),mean)[1,2], 0.4357927)
-  expect_equal(apply(pars$mu,c(2,3),mean)[1,3], 0.2589441)
+  expect_equal(apply(pars$mu,c(2,3),mean)[1,1], 0.3052632, tolerance = TOL)
+  expect_equal(apply(pars$mu,c(2,3),mean)[1,2], 0.4357927, tolerance = TOL)
+  expect_equal(apply(pars$mu,c(2,3),mean)[1,3], 0.2589441, tolerance = TOL)
 })
