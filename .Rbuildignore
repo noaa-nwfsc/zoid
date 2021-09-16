@@ -1,3 +1,13 @@
 ^trinomix\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
+^CRAN-RELEASE$
+^cran-comments\.md$
+cleanup*
+^.*\.Rproj$
+^\.Rproj\.user$
+^README-*
+^README\.Rmd
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

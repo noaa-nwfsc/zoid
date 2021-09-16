@@ -57,26 +57,16 @@ transformed data {
     }
 
 }
-parameters { // single parameter estimates for now
-  //real<lower=0, upper=1> p_zero;
-  //real<lower=0, upper=1> p_one;
-  //vector[n_est] logit_mu; // estimated means in logit space
-  // simplex for the 3-component mixture
-  //matrix[N_samples, N_stocks] logit_mu;
-  //real<lower=0> sigma_mu; // common sd for pooling
-  //real<lower=0> int_mu; // common intercept for pooling
-  //simplex[N_stocks] mu;//simplex[N_stocks] mu[N_samples];
-  vector[overdisp] raw_theta; // estimated means in logit space
+parameters {
+  vector[overdisp] raw_theta; // overdispersion
   matrix[N_stocks-1,N_covar] beta_raw;
 }
 transformed parameters {
-  //vector[n_est] mu; // transformed proportions, normal space
   real theta;
-  //matrix[N_samples, N_stocks] mu;
-  matrix[N_samples, N_stocks] p_zero;
-  matrix[N_samples, N_stocks] p_one;
+  matrix[N_samples, N_stocks] p_zero; // probability of 0 for each cell
+  matrix[N_samples, N_stocks] p_one; // probability of 1 for each cell
   matrix[N_stocks,N_covar] beta; // coefficients
-  matrix[N_samples,N_stocks] mu; // coefficients
+  matrix[N_samples,N_stocks] mu; // estimates, in normal space
   // theta is dynamic
   theta = 1;
   if(overdisp==1) {theta = raw_theta[1];}
@@ -110,9 +100,9 @@ transformed parameters {
   }
 
 }
-model { //model x=0, 0<x<N, and x=N components separately
-  real alpha_temp;
-  real beta_temp;
+model {
+  real alpha_temp; // temp for extended beta
+  real beta_temp; // temp for extended beta
 
   // fixed effects for covariate factors
   for(i in 1:N_covar) {
@@ -123,10 +113,8 @@ model { //model x=0, 0<x<N, and x=N components separately
 
   for(i in 1:N_samples) {
     for(j in 1:N_stocks) {
-      // logit_mu[i,j] ~ normal(int_mu,sigma_mu);
-      //is_zero[i,j] ~ bernoulli(p_zero);
+      // marginals of the trinomial are independent binomials
       target += bernoulli_lpmf(is_zero[i,j]| p_zero[i,j]);
-      //is_one[i,j] ~ bernoulli(p_one);
       target += bernoulli_lpmf(is_one[i,j]| p_one[i,j]);
 
       if(is_proportion[i,j]==1) {
