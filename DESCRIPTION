@@ -1,0 +1,48 @@
+Package: trinomix
+Title: Multivariate Trinomial Mixture Models With Stan
+Version: 0.0.1
+Authors@R: 
+    c(person(given = "Eric",
+           family = "Ward",
+           role = c("aut", "cre"),
+           email = "eric.ward@noaa.gov",
+           comment = c(ORCID = "0000-0002-4359-0296")),
+      person(given = "Alex",
+           family = "Jensen",
+           role = c("aut"),
+           email = "jensena1@uw.edu"),
+      person(given = "Ryan",
+           family = "Kelly",
+           role = c("aut"),
+           email = "rpkelly@uw.edu"),
+      person(given = "Ole",
+           family = "Shelton",
+           role = c("aut"),
+           email = "ole.shelton@noaa.gov"),
+      person(given = "Will",
+           family = "Satterthwaite",
+           role = c("aut"),
+           email = "will.satterthwaite@noaa.gov"))
+Description: 
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Biarch: true
+Depends: 
+    R (>= 3.4.0)
+Imports: 
+    methods,
+    Rcpp (>= 0.12.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    rstantools (>= 2.1.1)
+LinkingTo: 
+    BH (>= 1.66.0),
+    Rcpp (>= 0.12.0),
+    RcppEigen (>= 0.3.3.3.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    StanHeaders (>= 2.18.0)
+SystemRequirements: GNU make
