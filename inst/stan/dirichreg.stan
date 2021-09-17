@@ -63,10 +63,10 @@ parameters {
 }
 transformed parameters {
   real theta;
-  matrix[N_samples, N_stocks] p_zero; // probability of 0 for each cell
-  matrix[N_samples, N_stocks] p_one; // probability of 1 for each cell
+  matrix<lower=0,upper=1>[N_samples, N_stocks] p_zero; // probability of 0 for each cell
+  matrix<lower=0,upper=1>[N_samples, N_stocks] p_one; // probability of 1 for each cell
   matrix[N_stocks,N_covar] beta; // coefficients
-  matrix[N_samples,N_stocks] mu; // estimates, in normal space
+  matrix<lower=0,upper=1>[N_samples,N_stocks] mu; // estimates, in normal space
   // theta is dynamic
   theta = 1;
   if(overdisp==1) {theta = raw_theta[1];}

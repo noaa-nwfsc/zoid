@@ -51,7 +51,10 @@ fit_trinomix = function(formula=NULL,
   model_matrix <- model.matrix(formula, model_frame)
   } else {
     model_matrix = matrix(1, nrow = nrow(data_matrix))
+    colnames(model_matrix) = "(Intercept)"
   }
+
+  par_names = colnames(model_matrix)
 
   stan_data = list(N_stocks = ncol(data_matrix),
                    N_samples = nrow(data_matrix),
@@ -61,7 +64,7 @@ fit_trinomix = function(formula=NULL,
                    overdisp = ifelse(overdispersion==TRUE,1,0),
                    postpred = ifelse(posterior_predict==TRUE,1,0))
 
-  pars = c("beta_raw","log_lik","mu")
+  pars = c("beta","log_lik","mu")
   if(overdispersion==TRUE) pars = c(pars,"theta")
   if(posterior_predict==TRUE) pars = c(pars,"ynew")
 
@@ -75,4 +78,9 @@ fit_trinomix = function(formula=NULL,
   )
   fit <- do.call(sampling, sampling_args)
 
+  return(list(model = fit, par_names = par_names,
+              design_matrix = model_matrix,
+              data_matrix = data_matrix,
+              overdispersion = overdispersion,
+              posterior_predict = posterior_predict))
 }

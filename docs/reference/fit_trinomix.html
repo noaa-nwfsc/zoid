@@ -90,6 +90,18 @@ effects of factor or continuous variables on proportions." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/fitting.html">Fitting models with trinomix</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -185,8 +197,8 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 4.6e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.46 seconds.
+#&gt; Chain 1: Gradient evaluation took 5.1e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.51 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -203,9 +215,9 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.083409 seconds (Warm-up)
-#&gt; Chain 1:                0.082607 seconds (Sampling)
-#&gt; Chain 1:                0.166016 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.080235 seconds (Warm-up)
+#&gt; Chain 1:                0.079079 seconds (Sampling)
+#&gt; Chain 1:                0.159314 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 2).
@@ -228,15 +240,15 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.082597 seconds (Warm-up)
-#&gt; Chain 2:                0.088972 seconds (Sampling)
-#&gt; Chain 2:                0.171569 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.078175 seconds (Warm-up)
+#&gt; Chain 2:                0.082712 seconds (Sampling)
+#&gt; Chain 2:                0.160887 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 2.2e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.22 seconds.
+#&gt; Chain 3: Gradient evaluation took 2.1e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -253,9 +265,9 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.093778 seconds (Warm-up)
-#&gt; Chain 3:                0.085126 seconds (Sampling)
-#&gt; Chain 3:                0.178904 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.082058 seconds (Warm-up)
+#&gt; Chain 3:                0.08122 seconds (Sampling)
+#&gt; Chain 3:                0.163278 seconds (Total)
 #&gt; Chain 3: </div><div class='input'>
 <span class='co'># fit a model with 1 factor</span>
 <span class='va'>design</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='st'>"y"</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span>,<span class='st'>"fac"</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"spring"</span>,<span class='st'>"spring"</span>,<span class='st'>"fall"</span><span class='op'>)</span><span class='op'>)</span>
@@ -263,8 +275,8 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 2.4e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.24 seconds.
+#&gt; Chain 1: Gradient evaluation took 3.2e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.32 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -281,15 +293,15 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.157251 seconds (Warm-up)
-#&gt; Chain 1:                0.176773 seconds (Sampling)
-#&gt; Chain 1:                0.334024 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.151204 seconds (Warm-up)
+#&gt; Chain 1:                0.164024 seconds (Sampling)
+#&gt; Chain 1:                0.315228 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 1.9e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+#&gt; Chain 2: Gradient evaluation took 2.1e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -306,15 +318,15 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.164936 seconds (Warm-up)
-#&gt; Chain 2:                0.170948 seconds (Sampling)
-#&gt; Chain 2:                0.335884 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.152247 seconds (Warm-up)
+#&gt; Chain 2:                0.165182 seconds (Sampling)
+#&gt; Chain 2:                0.317429 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 2e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
+#&gt; Chain 3: Gradient evaluation took 2.1e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -331,9 +343,9 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.150586 seconds (Warm-up)
-#&gt; Chain 3:                0.16726 seconds (Sampling)
-#&gt; Chain 3:                0.317846 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.146378 seconds (Warm-up)
+#&gt; Chain 3:                0.157113 seconds (Sampling)
+#&gt; Chain 3:                0.303491 seconds (Total)
 #&gt; Chain 3: </div><div class='input'><span class='co'># }</span>
 
 </div></pre>

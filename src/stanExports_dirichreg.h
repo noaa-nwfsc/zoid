@@ -486,6 +486,8 @@ public:
                     }
                 }
             }
+            check_greater_or_equal(function__, "p_zero", p_zero, 0);
+            check_less_or_equal(function__, "p_zero", p_zero, 1);
             current_statement_begin__ = 67;
             size_t p_one_j_1_max__ = N_samples;
             size_t p_one_j_2_max__ = N_stocks;
@@ -498,6 +500,8 @@ public:
                     }
                 }
             }
+            check_greater_or_equal(function__, "p_one", p_one, 0);
+            check_less_or_equal(function__, "p_one", p_one, 1);
             current_statement_begin__ = 68;
             size_t beta_j_1_max__ = N_stocks;
             size_t beta_j_2_max__ = N_covar;
@@ -522,6 +526,8 @@ public:
                     }
                 }
             }
+            check_greater_or_equal(function__, "mu", mu, 0);
+            check_less_or_equal(function__, "mu", mu, 1);
             // model body
             {
             current_statement_begin__ = 104;
@@ -787,6 +793,15 @@ public:
             // validate transformed parameters
             const char* function__ = "validate transformed params";
             (void) function__;  // dummy to suppress unused var warning
+            current_statement_begin__ = 66;
+            check_greater_or_equal(function__, "p_zero", p_zero, 0);
+            check_less_or_equal(function__, "p_zero", p_zero, 1);
+            current_statement_begin__ = 67;
+            check_greater_or_equal(function__, "p_one", p_one, 0);
+            check_less_or_equal(function__, "p_one", p_one, 1);
+            current_statement_begin__ = 69;
+            check_greater_or_equal(function__, "mu", mu, 0);
+            check_less_or_equal(function__, "mu", mu, 1);
             // write transformed parameters
             if (include_tparams__) {
                 vars__.push_back(theta);
