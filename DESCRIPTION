@@ -36,12 +36,15 @@ Depends:
     R (>= 3.4.0)
 Imports: 
     methods,
+    gtools,
     Rcpp (>= 0.12.0),
     RcppParallel (>= 5.0.1),
     rstan (>= 2.18.1),
     rstantools (>= 2.1.1)
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 LinkingTo: 
     BH (>= 1.66.0),
     Rcpp (>= 0.12.0),
@@ -50,3 +53,4 @@ LinkingTo:
     rstan (>= 2.18.1),
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
+VignetteBuilder: knitr

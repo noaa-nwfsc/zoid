@@ -57,6 +57,9 @@
 <li>
       <a href="../articles/fitting.html">Fitting models with trinomix</a>
     </li>
+    <li>
+      <a href="../articles/simulating.html">Simulating data</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -81,9 +84,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting models with trinomix</h1>
-                        <h4 class="author">Eric J. Ward</h4>
             
-            <h4 class="date">2021-09-16</h4>
+            <h4 class="date">2021-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/trinomix/blob/master/vignettes/fitting.Rmd"><code>vignettes/fitting.Rmd</code></a></small>
       <div class="hidden name"><code>fitting.Rmd</code></div>
@@ -163,13 +165,9 @@
                       overdispersion <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 1).
-## Chain 1: Rejecting initial value:
-## Chain 1:   Error evaluating the log probability at the initial value.
-## Chain 1: Exception: validate transformed params: p_zero[1] is inf, but must be less than or equal to 1  (in 'model_dirichreg' at line 66)
-## 
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.000452 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.52 seconds.
+## Chain 1: Gradient evaluation took 0.000446 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.46 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -186,31 +184,31 @@
 ## Chain 1: Iteration: 450 / 500 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 500 / 500 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 35.6677 seconds (Warm-up)
-## Chain 1:                8.48355 seconds (Sampling)
-## Chain 1:                44.1513 seconds (Total)
+## Chain 1:  Elapsed Time: 32.8633 seconds (Warm-up)
+## Chain 1:                7.36778 seconds (Sampling)
+## Chain 1:                40.2311 seconds (Total)
 ## Chain 1:</code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code>##   obs group      mean     median         lo         hi
-## 1   1     1 0.0201379 0.01970247 0.01077936 0.03204521
-## 2   2     1 0.0201379 0.01970247 0.01077936 0.03204521
-## 3   3     1 0.0201379 0.01970247 0.01077936 0.03204521
-## 4   4     1 0.0201379 0.01970247 0.01077936 0.03204521
-## 5   5     1 0.0201379 0.01970247 0.01077936 0.03204521
-## 6   6     1 0.0201379 0.01970247 0.01077936 0.03204521</code></pre>
+<pre><code>##   obs group       mean     median         lo         hi
+## 1   1     1 0.01966594 0.01921798 0.01174816 0.03013389
+## 2   2     1 0.01966594 0.01921798 0.01174816 0.03013389
+## 3   3     1 0.01966594 0.01921798 0.01174816 0.03013389
+## 4   4     1 0.01966594 0.01921798 0.01174816 0.03013389
+## 5   5     1 0.01966594 0.01921798 0.01174816 0.03013389
+## 6   6     1 0.01966594 0.01921798 0.01174816 0.03013389</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and theta, the overdispersion term)</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
-<pre><code>##   group cov         par       mean    median        lo         hi
-## 1     1   1 (Intercept) -1.0075216 -1.002758 -1.567037 -0.4424480
-## 2     2   1 (Intercept) -1.0320721 -1.012814 -1.585283 -0.5237584
-## 3     3   1 (Intercept) -1.0610188 -1.016996 -1.888822 -0.4911196
-## 4     4   1 (Intercept) -1.2229597 -1.218529 -1.884897 -0.5879951
-## 5     5   1 (Intercept) -1.3927539 -1.407770 -2.059366 -0.7255260
-## 6     6   1 (Intercept) -0.8773785 -0.876527 -1.371053 -0.3876807</code></pre>
+<pre><code>##   group cov         par      mean     median        lo         hi
+## 1     1   1 (Intercept) -1.024551 -1.0073658 -1.651420 -0.5440382
+## 2     2   1 (Intercept) -1.064248 -1.0518387 -1.512273 -0.6465668
+## 3     3   1 (Intercept) -1.047651 -1.0629161 -1.621053 -0.5455056
+## 4     4   1 (Intercept) -1.245679 -1.2609375 -1.828303 -0.6968497
+## 5     5   1 (Intercept) -1.393652 -1.3695215 -2.010130 -0.7799584
+## 6     6   1 (Intercept) -0.898801 -0.9005769 -1.375875 -0.4686275</code></pre>
 </div>
 </div>
   </div>

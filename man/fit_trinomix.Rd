@@ -42,14 +42,15 @@ effects of factor or continuous variables on proportions.
 }
 \examples{
 \donttest{
-y = matrix(c(3.77,6.63,2.60,0.9,1.44,0.66,2.10,3.57,1.33),
-nrow=3, byrow = TRUE)
+y <- matrix(c(3.77, 6.63, 2.60, 0.9, 1.44, 0.66, 2.10, 3.57, 1.33),
+  nrow = 3, byrow = TRUE
+)
 # fit a model with no covariates
 fit <- fit_trinomix(data_matrix = y)
 
 # fit a model with 1 factor
-design = data.frame("y"=c(1,1,1),"fac"=c("spring","spring","fall"))
-fit <- fit_trinomix(formula = ~ fac, design_matrix = design, data_matrix = y)
+design <- data.frame("y" = c(1, 1, 1), "fac" = c("spring", "spring", "fall"))
+fit <- fit_trinomix(formula = ~fac, design_matrix = design, data_matrix = y)
 }
 
 }

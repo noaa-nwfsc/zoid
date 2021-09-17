@@ -1,12 +1,12 @@
 ---
 title: "Fitting models with trinomix"
-author: "Eric J. Ward"
+author: ""
 date: "`r Sys.Date()`"
-output:
-  pdf_document: default
-  rmarkdown::html_vignette: default
-vignette: |
-  %\VignetteIndexEntry{Fitting models with trinomix} %\VignetteEngine{knitr::rmarkdown} \usepackage[utf8]{inputenc}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fitting models with trinomix}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r set-knitr-options, cache=FALSE, echo=FALSE}
@@ -93,7 +93,7 @@ For our example, the LOOIC from the model with Season and Year is lowest (2584.9
 
 We include several helper functions for processing output into more manageable data frames. First, we can extract the predicted point estimates (and uncertainty intervals) around proportions,
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 fit_1 <- fit_trinomix(data_matrix = as.matrix(data_matrix), 
                       chains=1,
                       iter=500,

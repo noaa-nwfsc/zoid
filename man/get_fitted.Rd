@@ -17,11 +17,12 @@ Extract point estimates of compositions from fitted model.
 }
 \examples{
 \donttest{
-y = matrix(c(3.77,6.63,2.60,0.9,1.44,0.66,2.10,3.57,1.33),
-nrow=3, byrow = TRUE)
+y <- matrix(c(3.77, 6.63, 2.60, 0.9, 1.44, 0.66, 2.10, 3.57, 1.33),
+  nrow = 3, byrow = TRUE
+)
 # fit a model with no covariates
 fit <- fit_trinomix(data_matrix = y)
-p_hat = get_fitted(fit)
+p_hat <- get_fitted(fit)
 }
 
 }

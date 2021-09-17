@@ -99,6 +99,9 @@
     <li>
       <a href="../articles/fitting.html">Fitting models with trinomix</a>
     </li>
+    <li>
+      <a href="../articles/simulating.html">Simulating data</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -150,15 +153,16 @@ for 95% intervals</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='va'>y</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3.77</span>,<span class='fl'>6.63</span>,<span class='fl'>2.60</span>,<span class='fl'>0.9</span>,<span class='fl'>1.44</span>,<span class='fl'>0.66</span>,<span class='fl'>2.10</span>,<span class='fl'>3.57</span>,<span class='fl'>1.33</span><span class='op'>)</span>,
-nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3.77</span>, <span class='fl'>6.63</span>, <span class='fl'>2.60</span>, <span class='fl'>0.9</span>, <span class='fl'>1.44</span>, <span class='fl'>0.66</span>, <span class='fl'>2.10</span>, <span class='fl'>3.57</span>, <span class='fl'>1.33</span><span class='op'>)</span>,
+  nrow <span class='op'>=</span> <span class='fl'>3</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 <span class='co'># fit a model with no covariates</span>
 <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fit_trinomix.html'>fit_trinomix</a></span><span class='op'>(</span>data_matrix <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 2.4e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.24 seconds.
+#&gt; Chain 1: Gradient evaluation took 2.3e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.23 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -175,15 +179,15 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.077487 seconds (Warm-up)
-#&gt; Chain 1:                0.075258 seconds (Sampling)
-#&gt; Chain 1:                0.152745 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.080458 seconds (Warm-up)
+#&gt; Chain 1:                0.079625 seconds (Sampling)
+#&gt; Chain 1:                0.160083 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 2.1e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
+#&gt; Chain 2: Gradient evaluation took 1.8e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -200,15 +204,15 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.078964 seconds (Warm-up)
-#&gt; Chain 2:                0.076231 seconds (Sampling)
-#&gt; Chain 2:                0.155195 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.083743 seconds (Warm-up)
+#&gt; Chain 2:                0.07933 seconds (Sampling)
+#&gt; Chain 2:                0.163073 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 1.9e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+#&gt; Chain 3: Gradient evaluation took 2.1e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -225,10 +229,10 @@ nrow<span class='op'>=</span><span class='fl'>3</span>, byrow <span class='op'>=
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.074668 seconds (Warm-up)
-#&gt; Chain 3:                0.07827 seconds (Sampling)
-#&gt; Chain 3:                0.152938 seconds (Total)
-#&gt; Chain 3: </div><div class='input'><span class='va'>p_hat</span> <span class='op'>=</span> <span class='fu'>get_pars</span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
+#&gt; Chain 3:  Elapsed Time: 0.076828 seconds (Warm-up)
+#&gt; Chain 3:                0.07913 seconds (Sampling)
+#&gt; Chain 3:                0.155958 seconds (Total)
+#&gt; Chain 3: </div><div class='input'><span class='va'>p_hat</span> <span class='op'>&lt;-</span> <span class='fu'>get_pars</span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 <span class='co'># }</span>
 
 </div></pre>
