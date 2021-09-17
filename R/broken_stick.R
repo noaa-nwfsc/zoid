@@ -24,7 +24,7 @@
 #'   p = c(0.1, 0.2, 0.3, 0.2, 0.2)
 #' )
 #' }
-broken_stick <- function(n_obs = 10,
+broken_stick <- function(n_obs = 1000,
                          n_groups = 10,
                          ess_fraction = 1,
                          tot_n = 100,
@@ -77,12 +77,27 @@ broken_stick <- function(n_obs = 10,
   # Calculate the quantile of each of the q_vals from their respective marginal Betas
   X_cdf <- pbeta(q_vals, X_alpha, X_beta)
 
+  # Define the replicates where all of the observations are in one category
+  X_cdf_N <- X_cdf * 0
+  X_cdf_N[X_cdf > (1-p_one)] <- 1
+  ROWS = apply(X_cdf_N,1,max) %>% unlist()
+  THESE.rows <- which(ROWS == 1)
+
   # stretch out the middle section so that the proportion between p(x=zero) and p(x=tot_n)
   # is on the interval 0,1
   X_cdf_mod <- (X_cdf - p_zero) / (1 - p_zero - p_one)
 
-  X_obs <- qbeta(X_cdf_mod, X_alpha, X_beta) * tot_n
-  X_obs[is.nan(X_obs) == T] <- 0
+  # Deal with extreme underflow for p(x==0) is very large and X==N cases
+  X_cdf_mod[p_zero == 1] = -99
+  X_cdf_mod[THESE.rows,] <- X_cdf_N[THESE.rows,]
+  X_cdf_mod[X_cdf_mod < 0] <- 0
+
+  # Simulate
+  THESE <- which(X_cdf_mod > 0 & X_cdf_mod < 1)
+  X_obs <- X_cdf * 0
+  X_obs[THESE] <-  qbeta(X_cdf_mod[THESE], X_alpha[THESE], X_beta[THESE]) * tot_n
+  X_obs[THESE.rows,] = X_cdf_mod[THESE.rows,] * tot_n
 
   return(list(X_obs = X_obs, p = p))
 }
+
