@@ -5,7 +5,7 @@
 \title{Random generation of datasets using the dirichlet broken stick method}
 \usage{
 broken_stick(
-  n_obs = 10,
+  n_obs = 1000,
   n_groups = 10,
   ess_fraction = 1,
   tot_n = 100,

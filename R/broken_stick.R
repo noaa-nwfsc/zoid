@@ -80,7 +80,7 @@ broken_stick <- function(n_obs = 1000,
   # Define the replicates where all of the observations are in one category
   X_cdf_N <- X_cdf * 0
   X_cdf_N[X_cdf > (1-p_one)] <- 1
-  ROWS = apply(X_cdf_N,1,max) %>% unlist()
+  ROWS = apply(X_cdf_N,1,max)
   THESE.rows <- which(ROWS == 1)
 
   # stretch out the middle section so that the proportion between p(x=zero) and p(x=tot_n)
