@@ -937,9 +937,9 @@ public:
                         current_statement_begin__ = 157;
                         if (as_bool(logical_eq(newy_is_proportion, 0))) {
                             current_statement_begin__ = 158;
-                            stan::math::assign(alpha_temp, get_base1(mu, i, j, "mu", 1));
+                            stan::math::assign(alpha_temp, (get_base1(mu, i, j, "mu", 1) * get_base1(ESS, i, "ESS", 1)));
                             current_statement_begin__ = 159;
-                            stan::math::assign(beta_temp, (1 - get_base1(mu, i, j, "mu", 1)));
+                            stan::math::assign(beta_temp, ((1 - get_base1(mu, i, j, "mu", 1)) * get_base1(ESS, i, "ESS", 1)));
                             current_statement_begin__ = 160;
                             stan::model::assign(ynew, 
                                         stan::model::cons_list(stan::model::index_uni(i), stan::model::cons_list(stan::model::index_uni(j), stan::model::nil_index_list())), 

@@ -155,8 +155,8 @@ generated quantities {
         if(newy_is_one[i,j]==1) ynew[i,j] = 1.0;
         newy_is_proportion = newy_is_zero[i,j] + newy_is_one[i,j];
         if(newy_is_proportion==0) {
-          alpha_temp = mu[i,j];
-          beta_temp = (1-mu[i,j]);
+          alpha_temp = mu[i,j]*ESS[i];
+          beta_temp = (1-mu[i,j])*ESS[i];
           ynew[i,j] = beta_rng(alpha_temp, beta_temp);
           ynew[i,j] = ynew[i,j]*ESS[i]; // stretch to N
         }
