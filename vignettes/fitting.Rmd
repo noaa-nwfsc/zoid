@@ -57,25 +57,29 @@ design_matrix$y = 1 # dummy variable
 set.seed(123)
 fit_1 <- fit_trinomix(data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
-                      chains=1)
+                      chains=4,
+                      iter=4000)
 
 fit_2 <- fit_trinomix(formula = y ~ Season, 
                       design_matrix = design_matrix, 
                       data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
-                      chains=1)
+                      chains=4,
+                      iter=4000)
 
 fit_3 <- fit_trinomix(formula = y ~ Year, 
                       design_matrix = design_matrix, 
                       data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
-                      chains=1)
+                      chains=4,
+                      iter=4000)
 
 fit_4 <- fit_trinomix(formula = y ~ Year + Season, 
                       design_matrix = design_matrix, 
                       data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
-                      chains=1)
+                      chains=4,
+                      iter=4000)
 ```
 
 To compare models, we could use criteria like LOOIC in the loo package -- this is accessible by calling  

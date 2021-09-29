@@ -13,6 +13,7 @@ fit_trinomix(
   warmup = floor(iter/2),
   overdispersion = FALSE,
   posterior_predict = FALSE,
+  moment_match = FALSE,
   ...
 )
 }
@@ -33,6 +34,9 @@ the design matrix is ignored and all rows are treated as replicates}
 \item{overdispersion}{Whether or not to include overdispersion parameter, defaults to FALSE}
 
 \item{posterior_predict}{Whether or not to return draws from posterior predictive distribution (requires more memory)}
+
+\item{moment_match}{Whether to do moment matching via \code{\link[loo:loo_moment_match]{loo::loo_moment_match()}}. This increases memory by adding all temporary
+parmaeters to be saved and returned}
 
 \item{...}{Any other arguments to pass to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }

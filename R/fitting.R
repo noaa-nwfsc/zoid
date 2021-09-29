@@ -12,6 +12,8 @@
 #' @param warmup Number iterations for mcmc warmup, defaults to 1/2 of the iterations
 #' @param overdispersion Whether or not to include overdispersion parameter, defaults to FALSE
 #' @param posterior_predict Whether or not to return draws from posterior predictive distribution (requires more memory)
+#' @param moment_match Whether to do moment matching via [loo::loo_moment_match()]. This increases memory by adding all temporary
+#' parmaeters to be saved and returned
 #' @param ... Any other arguments to pass to [rstan::sampling()].
 #'
 #' @export
@@ -40,6 +42,7 @@ fit_trinomix <- function(formula = NULL,
                          warmup = floor(iter / 2),
                          overdispersion = FALSE,
                          posterior_predict = FALSE,
+                         moment_match = FALSE,
                          ...) {
 
   # if a single observation
@@ -70,7 +73,7 @@ fit_trinomix <- function(formula = NULL,
   pars <- c("beta", "log_lik", "mu")
   if (overdispersion == TRUE) pars <- c(pars, "theta")
   if (posterior_predict == TRUE) pars <- c(pars, "ynew")
-
+  if (moment_match == TRUE) pars <- c(pars, "raw_theta", "raw_beta","p_zero","p_one")
   sampling_args <- list(
     object = stanmodels$dirichreg,
     chains = chains,

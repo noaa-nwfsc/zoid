@@ -135,7 +135,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>broken_stick</span><span class='op'>(</span>
-  n_obs <span class='op'>=</span> <span class='fl'>10</span>,
+  n_obs <span class='op'>=</span> <span class='fl'>1000</span>,
   n_groups <span class='op'>=</span> <span class='fl'>10</span>,
   ess_fraction <span class='op'>=</span> <span class='fl'>1</span>,
   tot_n <span class='op'>=</span> <span class='fl'>100</span>,
@@ -173,7 +173,7 @@ random draws from the dirichlet are used</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>broken_stick</span><span class='op'>(</span>n_obs <span class='op'>=</span> <span class='fl'>3</span>, n_groups <span class='op'>=</span> <span class='fl'>5</span>, tot_n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produced</span></div><div class='input'>
+
 <span class='co'># add custom proportions</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>broken_stick</span><span class='op'>(</span>
   n_obs <span class='op'>=</span> <span class='fl'>3</span>, n_groups <span class='op'>=</span> <span class='fl'>5</span>, tot_n <span class='op'>=</span> <span class='fl'>100</span>,
