@@ -173,24 +173,24 @@
 
 <span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code>##   obs group       mean     median         lo        hi
-## 1   1     1 0.01991868 0.01947219 0.01093717 0.0315996
-## 2   2     1 0.01991868 0.01947219 0.01093717 0.0315996
-## 3   3     1 0.01991868 0.01947219 0.01093717 0.0315996
-## 4   4     1 0.01991868 0.01947219 0.01093717 0.0315996
-## 5   5     1 0.01991868 0.01947219 0.01093717 0.0315996
-## 6   6     1 0.01991868 0.01947219 0.01093717 0.0315996</code></pre>
+<pre><code>##   obs group     mean     median         lo         hi
+## 1   1     1 0.019708 0.01929626 0.01126197 0.03020313
+## 2   2     1 0.019708 0.01929626 0.01126197 0.03020313
+## 3   3     1 0.019708 0.01929626 0.01126197 0.03020313
+## 4   4     1 0.019708 0.01929626 0.01126197 0.03020313
+## 5   5     1 0.019708 0.01929626 0.01126197 0.03020313
+## 6   6     1 0.019708 0.01929626 0.01126197 0.03020313</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and <span class="math inline">\(\phi\)</span>, the overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
 <pre><code>##   group cov         par       mean     median        lo         hi
-## 1     1   1 (Intercept) -0.9837785 -0.9745394 -1.628000 -0.4080508
-## 2     2   1 (Intercept) -1.0262844 -1.0106353 -1.599945 -0.5049971
-## 3     3   1 (Intercept) -1.0141845 -1.0130067 -1.620699 -0.4410002
-## 4     4   1 (Intercept) -1.1877454 -1.1790249 -1.891756 -0.5504474
-## 5     5   1 (Intercept) -1.3640796 -1.3618889 -2.128430 -0.6611391
-## 6     6   1 (Intercept) -0.8602863 -0.8540596 -1.382799 -0.3857549</code></pre>
+## 1     1   1 (Intercept) -1.0058864 -0.9965667 -1.622454 -0.4714053
+## 2     2   1 (Intercept) -1.0422030 -1.0358749 -1.569157 -0.5089044
+## 3     3   1 (Intercept) -1.0330725 -1.0288106 -1.639566 -0.4738073
+## 4     4   1 (Intercept) -1.2073331 -1.1887691 -1.914633 -0.5804617
+## 5     5   1 (Intercept) -1.3766076 -1.3642540 -2.142258 -0.6918221
+## 6     6   1 (Intercept) -0.8752744 -0.8756650 -1.385416 -0.3919049</code></pre>
 </div>
 </div>
   </div>
