@@ -32,71 +32,84 @@ broken_stick <- function(n_obs = 1000,
   if (is.null(p)) {
     p <- gtools::rdirichlet(1, rep(1, n_groups))
   }
-  ESS <- tot_n * ess_fraction
-  # This is the mean and variable of the beta component 0 < X < N
-  X_mean <- matrix(p, n_obs, n_groups, byrow = T) * tot_n
-  X_var <- matrix((p * (1 - p) * tot_n^2) / (ESS + 1),
-    n_obs, n_groups,
-    byrow = T
-  )
+
+  ess <- tot_n * ess_fraction
+  # first, determine the presence of zeros using the stick breaking algorithm
+  # second, for instances where zeros and tot_n are not observed, rescale the parameters and
+  #         use the stick breaking algorithm for the Dirichlet process a second time
+
+  X_mean_prob <- matrix(p,n_obs,n_groups,byrow = T)
+  X_var_prob  <- matrix((p * (1 - p)) / (ess + 1),
+                        n_obs,n_groups,byrow=T)
+
+  X_mean <- X_mean_prob * tot_n
+  X_var  <- X_var_prob * tot_n^2
+
+  rand_unif <- matrix(runif(length(X_mean)),n_obs,n_groups)
+  X_obs     <- rand_unif * 0
+  X_indicator <- X_obs
 
   # Scale out the sample size to move to proportion space.
-  X_mean_prob <- X_mean / tot_n
-  X_var_prob <- X_var / tot_n^2
-
   # calculate the probability of 0 and probability of 1 first
-  p_zero <- (1 - X_mean_prob)^ESS
-  p_one <- X_mean_prob^ESS
+  p_zero <- (1-X_mean_prob)^ess
+  p_one  <- X_mean_prob^ess
 
   # Unconditional mean calculation
-  UNCOND.MEAN <- p_one[1, ] * tot_n + (1 - p_zero[1, ] - p_one[1, ]) * X_mean[1, ]
-  COND.MEAN <- X_mean[1, ]
+  UNCOND.MEAN = p_one[1,]*tot_n + (1-p_zero[1,]-p_one[1,]) * X_mean[1,]
+  COND.MEAN   = X_mean[1,]
 
   # Method of moments to calculated alpha from the dirichlet
-  X_alpha <- (X_mean_prob) * ((X_mean_prob * (1 - X_mean_prob) / X_var_prob) - 1)
-  # Calculate the betas for the marginal Beta distribution for later use
-  X_beta <- (1 - X_mean_prob) * ((X_mean_prob * (1 - X_mean_prob) / X_var_prob) - 1)
+  X_alpha <- (X_mean_prob) * ((X_mean_prob * (1-X_mean_prob)/ X_var_prob) - 1)
+  X_alpha_mod <- X_alpha * 0
+  # Calculate the betas for the marginal Beta distribution for potential later use
+  X_beta  <- (1-X_mean_prob) * ((X_mean_prob * (1-X_mean_prob)/ X_var_prob) - 1)
 
-  # use the stick breaking algorithm for the Dirichlet process
-  # to generate the values that can be broken into the three categories.
+  mu_vals <- X_mean * 0 # These will be independent Beta draws, conditioned on being non-zero.
+  q_vals <- mu_vals     # These will be equivalent to dirichlet draws (mu_vals modified by stick-breaking algorithm)
 
-  mu_vals <- X_alpha * 0 # These will be independent Beta draws.
-  q_vals <- mu_vals # These will be equivalent to dirichlet draws (mu_vals modified by stick-breaking algorithm)
-  for (i in 1:n_obs) {
-    for (j in 1:(n_groups - 1)) {
-      mu_vals[i, j] <- rbeta(1, X_alpha[i, j], sum(X_alpha[i, (j + 1):n_groups]))
-      if (j == 1) {
-        q_vals[i, j] <- mu_vals[i, j]
-      } else if (j > 1) {
-        q_vals[i, j] <- prod(1 - mu_vals[i, (1:j - 1)]) * mu_vals[i, j]
+  for(i in 1:n_obs){
+    BREAK = "FALSE"
+    for(j in 1:(n_groups-1)){ # Loop over stocks for the Multinomial component
+      mu_vals[i,j] <- rbeta(1,X_alpha[i,j],sum(X_alpha[i,(j+1):n_groups]))
+      if(j==1){
+        q_vals[i,j] = mu_vals[i,j]
+      }else if(j > 1){
+        q_vals[i,j] <- prod(1 - mu_vals[i,(1:j-1)]) * mu_vals[i,j]
       }
     }
-    q_vals[i, n_groups] <- 1 - sum(q_vals[i, (1:n_groups - 1)])
+    q_vals[i,n_groups] = 1 - sum(q_vals[i,(1:n_groups-1)])
+    #X_indicator[i,] <- rmultinom(1,tot_n,q_vals[i,])
   }
 
   # Calculate the quantile of each of the q_vals from their respective marginal Betas
-  X_cdf <- pbeta(q_vals, X_alpha, X_beta)
+  X_cdf <- pbeta(q_vals,X_alpha,X_beta)
+  X_indicator <- X_cdf - p_zero
+  X_indicator[X_indicator < 0] <- 0
+  X_indicator[X_indicator > 0] <- 1
+  q_vals  <- q_vals * 0
+  mu_vals <- mu_vals * 0
 
-  # Define the replicates where all of the observations are in one category
-  X_cdf_N <- X_cdf * 0
-  X_cdf_N[X_cdf > (1 - p_one)] <- 1
-  ROWS <- apply(X_cdf_N, 1, max)
-  THESE.rows <- which(ROWS == 1)
-
-  # stretch out the middle section so that the proportion between p(x=zero) and p(x=tot_n)
-  # is on the interval 0,1
-  X_cdf_mod <- (X_cdf - p_zero) / (1 - p_zero - p_one)
-
-  # Deal with extreme underflow for p(x==0) is very large and X==N cases
-  X_cdf_mod[p_zero == 1] <- -99
-  X_cdf_mod[THESE.rows, ] <- X_cdf_N[THESE.rows, ]
-  X_cdf_mod[X_cdf_mod < 0] <- 0
-
-  # Simulate
-  THESE <- which(X_cdf_mod > 0 & X_cdf_mod < 1)
-  X_obs <- X_cdf * 0
-  X_obs[THESE] <- qbeta(X_cdf_mod[THESE], X_alpha[THESE], X_beta[THESE]) * tot_n
-  X_obs[THESE.rows, ] <- X_cdf_mod[THESE.rows, ] * tot_n
-
+  for(i in 1:n_obs){
+    if(BREAK == "FALSE"){
+      X_alpha_mod[i,] <- X_alpha[i,] * X_indicator[i,]
+      for(j in 1:(n_groups-1)){ # Loop over stocks for dirichlet component
+        if(j==1){
+          if(X_alpha_mod[i,j]>0){
+            mu_vals[i,j] <- rbeta(1,X_alpha_mod[i,j],sum(X_alpha_mod[i,(j+1):n_groups]))
+            q_vals[i,j] = mu_vals[i,j]
+          }
+        }else if(j>1 ){
+          if(X_alpha_mod[i,j]>0){
+            mu_vals[i,j] <- rbeta(1,X_alpha_mod[i,j],sum(X_alpha_mod[i,(j+1):n_groups]))
+            q_vals[i,j] <- prod(1 - mu_vals[i,(1:j-1)]) * mu_vals[i,j]
+          }
+        }
+      }
+      if(X_alpha_mod[i,N_stocks]>0){
+        q_vals[i,N_stocks] <- 1 - sum(q_vals[i,(1:N_stocks-1)])
+      }
+      X_obs[i,] <- q_vals[i,] * (tot_n)
+    }
+  }
   return(list(X_obs = X_obs, p = p))
 }
