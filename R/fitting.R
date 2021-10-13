@@ -11,6 +11,7 @@
 #' @param iter Number of mcmc iterations, defaults to 2000
 #' @param warmup Number iterations for mcmc warmup, defaults to 1/2 of the iterations
 #' @param overdispersion Whether or not to include overdispersion parameter, defaults to FALSE
+#' @param overdispersion_sd Prior standard deviation on 1/overdispersion parameter, Defaults to inv-Cauchy(0,5)
 #' @param posterior_predict Whether or not to return draws from posterior predictive distribution (requires more memory)
 #' @param moment_match Whether to do moment matching via [loo::loo_moment_match()]. This increases memory by adding all temporary
 #' parmaeters to be saved and returned
@@ -18,7 +19,7 @@
 #'
 #' @export
 #' @importFrom rstan sampling
-#' @importFrom stats model.frame model.matrix
+#' @importFrom stats model.frame model.matrix rcauchy
 #' @import Rcpp
 #'
 #' @examples
@@ -41,6 +42,7 @@ fit_trinomix <- function(formula = NULL,
                          iter = 2000,
                          warmup = floor(iter / 2),
                          overdispersion = FALSE,
+                         overdispersion_sd = 5,
                          posterior_predict = FALSE,
                          moment_match = FALSE,
                          ...) {
@@ -67,15 +69,16 @@ fit_trinomix <- function(formula = NULL,
     N_covar = ncol(model_matrix),
     design_X = model_matrix,
     overdisp = ifelse(overdispersion == TRUE, 1, 0),
+    overdispersion_sd = overdispersion_sd,
     postpred = ifelse(posterior_predict == TRUE, 1, 0)
   )
 
   pars <- c("beta", "log_lik", "mu")
   if (overdispersion == TRUE) pars <- c(pars, "theta")
   if (posterior_predict == TRUE) pars <- c(pars, "ynew")
-  if (moment_match == TRUE) pars <- c(pars, "raw_theta", "raw_beta","p_zero","p_one")
+  if (moment_match == TRUE) pars <- c(pars, "theta_inv", "raw_beta", "p_zero", "p_one")
   sampling_args <- list(
-    object = stanmodels$dirichreg,
+    object = stanmodels$dirichregmod,
     chains = chains,
     iter = iter,
     warmup = warmup,
@@ -84,11 +87,16 @@ fit_trinomix <- function(formula = NULL,
   )
   fit <- do.call(sampling, sampling_args)
 
+  prior <- NULL
+  if (overdispersion) {
+    prior <- abs(rcauchy(n = chains * (iter - warmup), location = 0, scale = overdispersion_sd))
+  }
   return(list(
     model = fit, par_names = par_names,
     design_matrix = model_matrix,
     data_matrix = data_matrix,
     overdispersion = overdispersion,
+    overdispersion_prior = prior,
     posterior_predict = posterior_predict
   ))
 }

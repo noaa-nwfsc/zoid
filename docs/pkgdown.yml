@@ -3,6 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   fitting: fitting.html
+  priors: priors.html
   simulating: simulating.html
-last_built: 2021-09-29T23:25Z
+last_built: 2021-10-13T19:16Z
 

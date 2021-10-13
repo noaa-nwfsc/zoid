@@ -12,6 +12,7 @@ fit_trinomix(
   iter = 2000,
   warmup = floor(iter/2),
   overdispersion = FALSE,
+  overdispersion_sd = 5,
   posterior_predict = FALSE,
   moment_match = FALSE,
   ...
@@ -32,6 +33,8 @@ the design matrix is ignored and all rows are treated as replicates}
 \item{warmup}{Number iterations for mcmc warmup, defaults to 1/2 of the iterations}
 
 \item{overdispersion}{Whether or not to include overdispersion parameter, defaults to FALSE}
+
+\item{overdispersion_sd}{Prior standard deviation on 1/overdispersion parameter, Defaults to inv-Cauchy(0,5)}
 
 \item{posterior_predict}{Whether or not to return draws from posterior predictive distribution (requires more memory)}
 

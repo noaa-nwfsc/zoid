@@ -1,6 +1,6 @@
 # Random generation of datasets using the dirichlet broken stick method
 #'
-#'Random generation of datasets using the dirichlet broken stick method
+#' Random generation of datasets using the dirichlet broken stick method
 #'
 #' @param n_obs Number of observations (rows of data matrix to simulate). Defaults to 10
 #' @param n_groups Number of categories for each observation (columns of data matrix). Defaults to 10
@@ -79,8 +79,8 @@ broken_stick <- function(n_obs = 1000,
 
   # Define the replicates where all of the observations are in one category
   X_cdf_N <- X_cdf * 0
-  X_cdf_N[X_cdf > (1-p_one)] <- 1
-  ROWS = apply(X_cdf_N,1,max)
+  X_cdf_N[X_cdf > (1 - p_one)] <- 1
+  ROWS <- apply(X_cdf_N, 1, max)
   THESE.rows <- which(ROWS == 1)
 
   # stretch out the middle section so that the proportion between p(x=zero) and p(x=tot_n)
@@ -88,16 +88,15 @@ broken_stick <- function(n_obs = 1000,
   X_cdf_mod <- (X_cdf - p_zero) / (1 - p_zero - p_one)
 
   # Deal with extreme underflow for p(x==0) is very large and X==N cases
-  X_cdf_mod[p_zero == 1] = -99
-  X_cdf_mod[THESE.rows,] <- X_cdf_N[THESE.rows,]
+  X_cdf_mod[p_zero == 1] <- -99
+  X_cdf_mod[THESE.rows, ] <- X_cdf_N[THESE.rows, ]
   X_cdf_mod[X_cdf_mod < 0] <- 0
 
   # Simulate
   THESE <- which(X_cdf_mod > 0 & X_cdf_mod < 1)
   X_obs <- X_cdf * 0
-  X_obs[THESE] <-  qbeta(X_cdf_mod[THESE], X_alpha[THESE], X_beta[THESE]) * tot_n
-  X_obs[THESE.rows,] = X_cdf_mod[THESE.rows,] * tot_n
+  X_obs[THESE] <- qbeta(X_cdf_mod[THESE], X_alpha[THESE], X_beta[THESE]) * tot_n
+  X_obs[THESE.rows, ] <- X_cdf_mod[THESE.rows, ] * tot_n
 
   return(list(X_obs = X_obs, p = p))
 }
-

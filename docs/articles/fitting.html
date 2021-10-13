@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trinomix</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -56,6 +56,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/fitting.html">Fitting models with trinomix</a>
+    </li>
+    <li>
+      <a href="../articles/priors.html">Prior sensitivity for overdispersion</a>
     </li>
     <li>
       <a href="../articles/simulating.html">Simulating data</a>
@@ -85,7 +88,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting models with trinomix</h1>
             
-            <h4 class="date">2021-09-29</h4>
+            <h4 class="date">2021-10-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/trinomix/blob/master/vignettes/fitting.Rmd"><code>vignettes/fitting.Rmd</code></a></small>
       <div class="hidden name"><code>fitting.Rmd</code></div>
@@ -165,65 +168,61 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_trinomix.html">fit_trinomix</a></span><span class="op">(</span>data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>, 
                       chains<span class="op">=</span><span class="fl">1</span>,
-                      iter<span class="op">=</span><span class="fl">500</span>,
+                      iter<span class="op">=</span><span class="fl">5000</span>,
                       overdispersion <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-## SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 1).
-## Chain 1: Rejecting initial value:
-## Chain 1:   Error evaluating the log probability at the initial value.
-## Chain 1: Exception: validate transformed params: p_zero[1] is 2.59481e+08, but must be less than or equal to 1  (in 'model_dirichreg' at line 66)
-## 
-## Chain 1: Rejecting initial value:
-## Chain 1:   Error evaluating the log probability at the initial value.
-## Chain 1: Exception: validate transformed params: p_zero[1] is 7.19515e+48, but must be less than or equal to 1  (in 'model_dirichreg' at line 66)
-## 
+## SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 ## Chain 1: Rejecting initial value:
 ## Chain 1:   Log probability evaluates to log(0), i.e. negative infinity.
 ## Chain 1:   Stan can't start sampling from this initial value.
+## Chain 1: Rejecting initial value:
+## Chain 1:   Error evaluating the log probability at the initial value.
+## Chain 1: Exception: validate transformed params: p_zero[1] is 2.08513e+95, but must be less than or equal to 1  (in 'model_dirichregmod' at line 66)
+## 
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.000342 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 3.42 seconds.
+## Chain 1: Gradient evaluation took 0.00044 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.4 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
-## Chain 1: Iteration:   1 / 500 [  0%]  (Warmup)
-## Chain 1: Iteration:  50 / 500 [ 10%]  (Warmup)
-## Chain 1: Iteration: 100 / 500 [ 20%]  (Warmup)
-## Chain 1: Iteration: 150 / 500 [ 30%]  (Warmup)
-## Chain 1: Iteration: 200 / 500 [ 40%]  (Warmup)
-## Chain 1: Iteration: 250 / 500 [ 50%]  (Warmup)
-## Chain 1: Iteration: 251 / 500 [ 50%]  (Sampling)
-## Chain 1: Iteration: 300 / 500 [ 60%]  (Sampling)
-## Chain 1: Iteration: 350 / 500 [ 70%]  (Sampling)
-## Chain 1: Iteration: 400 / 500 [ 80%]  (Sampling)
-## Chain 1: Iteration: 450 / 500 [ 90%]  (Sampling)
-## Chain 1: Iteration: 500 / 500 [100%]  (Sampling)
+## Chain 1: Iteration:    1 / 5000 [  0%]  (Warmup)
+## Chain 1: Iteration:  500 / 5000 [ 10%]  (Warmup)
+## Chain 1: Iteration: 1000 / 5000 [ 20%]  (Warmup)
+## Chain 1: Iteration: 1500 / 5000 [ 30%]  (Warmup)
+## Chain 1: Iteration: 2000 / 5000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 2500 / 5000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 2501 / 5000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 3000 / 5000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 3500 / 5000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 4000 / 5000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 4500 / 5000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 30.3499 seconds (Warm-up)
-## Chain 1:                8.62226 seconds (Sampling)
-## Chain 1:                38.9722 seconds (Total)
+## Chain 1:  Elapsed Time: 6.90522 seconds (Warm-up)
+## Chain 1:                6.01123 seconds (Sampling)
+## Chain 1:                12.9165 seconds (Total)
 ## Chain 1:</code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
 <pre><code>##   obs group       mean     median         lo        hi
-## 1   1     1 0.01960352 0.01892139 0.01149977 0.0301692
-## 2   2     1 0.01960352 0.01892139 0.01149977 0.0301692
-## 3   3     1 0.01960352 0.01892139 0.01149977 0.0301692
-## 4   4     1 0.01960352 0.01892139 0.01149977 0.0301692
-## 5   5     1 0.01960352 0.01892139 0.01149977 0.0301692
-## 6   6     1 0.01960352 0.01892139 0.01149977 0.0301692</code></pre>
+## 1   1     1 0.01978826 0.01933203 0.01115875 0.0308911
+## 2   2     1 0.01978826 0.01933203 0.01115875 0.0308911
+## 3   3     1 0.01978826 0.01933203 0.01115875 0.0308911
+## 4   4     1 0.01978826 0.01933203 0.01115875 0.0308911
+## 5   5     1 0.01978826 0.01933203 0.01115875 0.0308911
+## 6   6     1 0.01978826 0.01933203 0.01115875 0.0308911</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and theta, the overdispersion term)</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
 <pre><code>##   group cov         par       mean     median        lo         hi
-## 1     1   1 (Intercept) -0.9792601 -0.9459917 -1.539955 -0.4129171
-## 2     2   1 (Intercept) -1.0022522 -1.0204931 -1.569930 -0.3991084
-## 3     3   1 (Intercept) -0.9891486 -0.9932114 -1.514254 -0.4005697
-## 4     4   1 (Intercept) -1.1569788 -1.1241215 -1.892412 -0.5146089
-## 5     5   1 (Intercept) -1.3543934 -1.3563749 -2.130111 -0.6821220
-## 6     6   1 (Intercept) -0.8370462 -0.8483831 -1.263818 -0.3714327</code></pre>
+## 1     1   1 (Intercept) -1.0063720 -0.9999170 -1.594013 -0.4410903
+## 2     2   1 (Intercept) -1.0462204 -1.0468302 -1.598327 -0.5305143
+## 3     3   1 (Intercept) -1.0412319 -1.0278012 -1.635360 -0.4774343
+## 4     4   1 (Intercept) -1.2171372 -1.2095271 -1.855735 -0.6143939
+## 5     5   1 (Intercept) -1.3880529 -1.3749298 -2.169224 -0.7169082
+## 6     6   1 (Intercept) -0.8804761 -0.8744241 -1.381438 -0.4076032</code></pre>
 </div>
 </div>
   </div>
@@ -239,7 +238,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Eric Ward, Alex Jensen, Ryan Kelly, Ole Shelton, Will Satterthwaite.</p>
+  <p>Developed by Eric J. Ward, Alexander J. Jensen, Ryan P. Kelly, Andrew O. Shelton, William H. Satterthwaite.</p>
 </div>
 
 <div class="pkgdown">

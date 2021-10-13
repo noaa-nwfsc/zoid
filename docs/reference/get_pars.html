@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trinomix</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -98,6 +98,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/fitting.html">Fitting models with trinomix</a>
+    </li>
+    <li>
+      <a href="../articles/priors.html">Prior sensitivity for overdispersion</a>
     </li>
     <li>
       <a href="../articles/simulating.html">Simulating data</a>
@@ -159,10 +162,10 @@ for 95% intervals</p></td>
 <span class='co'># fit a model with no covariates</span>
 <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fit_trinomix.html'>fit_trinomix</a></span><span class='op'>(</span>data_matrix <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
-#&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 1).
+#&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 2.4e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.24 seconds.
+#&gt; Chain 1: Gradient evaluation took 2.5e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.25 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -179,15 +182,15 @@ for 95% intervals</p></td>
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.078021 seconds (Warm-up)
-#&gt; Chain 1:                0.075399 seconds (Sampling)
-#&gt; Chain 1:                0.15342 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.078816 seconds (Warm-up)
+#&gt; Chain 1:                0.076402 seconds (Sampling)
+#&gt; Chain 1:                0.155218 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
-#&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 2).
+#&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 2.1e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
+#&gt; Chain 2: Gradient evaluation took 2e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -204,12 +207,12 @@ for 95% intervals</p></td>
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.079319 seconds (Warm-up)
-#&gt; Chain 2:                0.076447 seconds (Sampling)
-#&gt; Chain 2:                0.155766 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.080207 seconds (Warm-up)
+#&gt; Chain 2:                0.077489 seconds (Sampling)
+#&gt; Chain 2:                0.157696 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
-#&gt; SAMPLING FOR MODEL 'dirichreg' NOW (CHAIN 3).
+#&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 3).
 #&gt; Chain 3: 
 #&gt; Chain 3: Gradient evaluation took 2.1e-05 seconds
 #&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
@@ -229,9 +232,9 @@ for 95% intervals</p></td>
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.075217 seconds (Warm-up)
-#&gt; Chain 3:                0.078849 seconds (Sampling)
-#&gt; Chain 3:                0.154066 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.075232 seconds (Warm-up)
+#&gt; Chain 3:                0.07889 seconds (Sampling)
+#&gt; Chain 3:                0.154122 seconds (Total)
 #&gt; Chain 3: </div><div class='input'><span class='va'>p_hat</span> <span class='op'>&lt;-</span> <span class='fu'>get_pars</span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 <span class='co'># }</span>
 
@@ -247,7 +250,7 @@ for 95% intervals</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Eric Ward, Alex Jensen, Ryan Kelly, Ole Shelton, Will Satterthwaite.</p>
+  <p>Developed by Eric J. Ward, Alexander J. Jensen, Ryan P. Kelly, Andrew O. Shelton, William H. Satterthwaite.</p>
 </div>
 
 <div class="pkgdown">
