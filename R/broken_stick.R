@@ -12,7 +12,7 @@
 #'
 #' @export
 #' @importFrom gtools rdirichlet
-#' @importFrom stats median pbeta qbeta quantile rbeta
+#' @importFrom stats median pbeta qbeta quantile rbeta runif
 #'
 #' @examples
 #' \donttest{
@@ -105,8 +105,8 @@ broken_stick <- function(n_obs = 1000,
           }
         }
       }
-      if(X_alpha_mod[i,N_stocks]>0){
-        q_vals[i,N_stocks] <- 1 - sum(q_vals[i,(1:N_stocks-1)])
+      if(X_alpha_mod[i,n_groups]>0){
+        q_vals[i,n_groups] <- 1 - sum(q_vals[i,(1:n_groups-1)])
       }
       X_obs[i,] <- q_vals[i,] * (tot_n)
     }

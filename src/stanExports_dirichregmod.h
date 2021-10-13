@@ -264,7 +264,7 @@ public:
             num_params_r__ = 0U;
             param_ranges_i__.clear();
             current_statement_begin__ = 61;
-            validate_non_negative_index("theta_inv", "overdisp", overdisp);
+            validate_non_negative_index("phi_inv", "overdisp", overdisp);
             num_params_r__ += overdisp;
             current_statement_begin__ = 62;
             validate_non_negative_index("beta_raw", "(N_stocks - 1)", (N_stocks - 1));
@@ -288,21 +288,21 @@ public:
         std::vector<double> vals_r__;
         std::vector<int> vals_i__;
         current_statement_begin__ = 61;
-        if (!(context__.contains_r("theta_inv")))
-            stan::lang::rethrow_located(std::runtime_error(std::string("Variable theta_inv missing")), current_statement_begin__, prog_reader__());
-        vals_r__ = context__.vals_r("theta_inv");
+        if (!(context__.contains_r("phi_inv")))
+            stan::lang::rethrow_located(std::runtime_error(std::string("Variable phi_inv missing")), current_statement_begin__, prog_reader__());
+        vals_r__ = context__.vals_r("phi_inv");
         pos__ = 0U;
-        validate_non_negative_index("theta_inv", "overdisp", overdisp);
-        context__.validate_dims("parameter initialization", "theta_inv", "vector_d", context__.to_vec(overdisp));
-        Eigen::Matrix<double, Eigen::Dynamic, 1> theta_inv(overdisp);
-        size_t theta_inv_j_1_max__ = overdisp;
-        for (size_t j_1__ = 0; j_1__ < theta_inv_j_1_max__; ++j_1__) {
-            theta_inv(j_1__) = vals_r__[pos__++];
+        validate_non_negative_index("phi_inv", "overdisp", overdisp);
+        context__.validate_dims("parameter initialization", "phi_inv", "vector_d", context__.to_vec(overdisp));
+        Eigen::Matrix<double, Eigen::Dynamic, 1> phi_inv(overdisp);
+        size_t phi_inv_j_1_max__ = overdisp;
+        for (size_t j_1__ = 0; j_1__ < phi_inv_j_1_max__; ++j_1__) {
+            phi_inv(j_1__) = vals_r__[pos__++];
         }
         try {
-            writer__.vector_unconstrain(theta_inv);
+            writer__.vector_unconstrain(phi_inv);
         } catch (const std::exception& e) {
-            stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable theta_inv: ") + e.what()), current_statement_begin__, prog_reader__());
+            stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable phi_inv: ") + e.what()), current_statement_begin__, prog_reader__());
         }
         current_statement_begin__ = 62;
         if (!(context__.contains_r("beta_raw")))
@@ -351,12 +351,12 @@ public:
             stan::io::reader<local_scalar_t__> in__(params_r__, params_i__);
             // model parameters
             current_statement_begin__ = 61;
-            Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, 1> theta_inv;
-            (void) theta_inv;  // dummy to suppress unused var warning
+            Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, 1> phi_inv;
+            (void) phi_inv;  // dummy to suppress unused var warning
             if (jacobian__)
-                theta_inv = in__.vector_constrain(overdisp, lp__);
+                phi_inv = in__.vector_constrain(overdisp, lp__);
             else
-                theta_inv = in__.vector_constrain(overdisp);
+                phi_inv = in__.vector_constrain(overdisp);
             current_statement_begin__ = 62;
             Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, Eigen::Dynamic> beta_raw;
             (void) beta_raw;  // dummy to suppress unused var warning
@@ -366,10 +366,10 @@ public:
                 beta_raw = in__.matrix_constrain((N_stocks - 1), N_covar);
             // transformed parameters
             current_statement_begin__ = 65;
-            local_scalar_t__ theta;
-            (void) theta;  // dummy to suppress unused var warning
-            stan::math::initialize(theta, DUMMY_VAR__);
-            stan::math::fill(theta, DUMMY_VAR__);
+            local_scalar_t__ phi;
+            (void) phi;  // dummy to suppress unused var warning
+            stan::math::initialize(phi, DUMMY_VAR__);
+            stan::math::fill(phi, DUMMY_VAR__);
             current_statement_begin__ = 66;
             validate_non_negative_index("p_zero", "N_samples", N_samples);
             validate_non_negative_index("p_zero", "N_stocks", N_stocks);
@@ -396,11 +396,11 @@ public:
             stan::math::fill(mu, DUMMY_VAR__);
             // transformed parameters block statements
             current_statement_begin__ = 71;
-            stan::math::assign(theta, 1);
+            stan::math::assign(phi, 1);
             current_statement_begin__ = 72;
             if (as_bool(logical_eq(overdisp, 1))) {
                 current_statement_begin__ = 72;
-                stan::math::assign(theta, (1 / get_base1(theta_inv, 1, "theta_inv", 1)));
+                stan::math::assign(phi, (1 / get_base1(phi_inv, 1, "phi_inv", 1)));
             }
             current_statement_begin__ = 74;
             for (int l = 1; l <= N_covar; ++l) {
@@ -456,12 +456,12 @@ public:
                     current_statement_begin__ = 97;
                     stan::model::assign(p_zero, 
                                 stan::model::cons_list(stan::model::index_uni(i), stan::model::cons_list(stan::model::index_uni(j), stan::model::nil_index_list())), 
-                                pow((1 - get_base1(mu, i, j, "mu", 1)), (get_base1(ESS, i, "ESS", 1) * theta)), 
+                                pow((1 - get_base1(mu, i, j, "mu", 1)), (get_base1(ESS, i, "ESS", 1) * phi)), 
                                 "assigning variable p_zero");
                     current_statement_begin__ = 98;
                     stan::model::assign(p_one, 
                                 stan::model::cons_list(stan::model::index_uni(i), stan::model::cons_list(stan::model::index_uni(j), stan::model::nil_index_list())), 
-                                pow(get_base1(mu, i, j, "mu", 1), (get_base1(ESS, i, "ESS", 1) * theta)), 
+                                pow(get_base1(mu, i, j, "mu", 1), (get_base1(ESS, i, "ESS", 1) * phi)), 
                                 "assigning variable p_one");
                 }
             }
@@ -469,10 +469,10 @@ public:
             const char* function__ = "validate transformed params";
             (void) function__;  // dummy to suppress unused var warning
             current_statement_begin__ = 65;
-            if (stan::math::is_uninitialized(theta)) {
+            if (stan::math::is_uninitialized(phi)) {
                 std::stringstream msg__;
-                msg__ << "Undefined transformed parameter: theta";
-                stan::lang::rethrow_located(std::runtime_error(std::string("Error initializing variable theta: ") + msg__.str()), current_statement_begin__, prog_reader__());
+                msg__ << "Undefined transformed parameter: phi";
+                stan::lang::rethrow_located(std::runtime_error(std::string("Error initializing variable phi: ") + msg__.str()), current_statement_begin__, prog_reader__());
             }
             current_statement_begin__ = 66;
             size_t p_zero_j_1_max__ = N_samples;
@@ -543,7 +543,7 @@ public:
             current_statement_begin__ = 107;
             if (as_bool(logical_eq(overdisp, 1))) {
                 current_statement_begin__ = 108;
-                lp_accum__.add(cauchy_log<propto__>(theta_inv, 0, 5));
+                lp_accum__.add(cauchy_log<propto__>(phi_inv, 0, 5));
             }
             current_statement_begin__ = 111;
             for (int i = 1; i <= N_covar; ++i) {
@@ -564,9 +564,9 @@ public:
                     current_statement_begin__ = 123;
                     if (as_bool(logical_eq(get_base1(get_base1(is_proportion, i, "is_proportion", 1), j, "is_proportion", 2), 1))) {
                         current_statement_begin__ = 124;
-                        stan::math::assign(alpha_temp, ((get_base1(mu, i, j, "mu", 1) * get_base1(ESS, i, "ESS", 1)) * theta));
+                        stan::math::assign(alpha_temp, ((get_base1(mu, i, j, "mu", 1) * get_base1(ESS, i, "ESS", 1)) * phi));
                         current_statement_begin__ = 125;
-                        stan::math::assign(beta_temp, (((1 - get_base1(mu, i, j, "mu", 1)) * get_base1(ESS, i, "ESS", 1)) * theta));
+                        stan::math::assign(beta_temp, (((1 - get_base1(mu, i, j, "mu", 1)) * get_base1(ESS, i, "ESS", 1)) * phi));
                         current_statement_begin__ = 127;
                         lp_accum__.add(((((stan::math::log(((1 - get_base1(p_zero, i, j, "p_zero", 1)) - get_base1(p_one, i, j, "p_one", 1))) + ((alpha_temp - 1) * get_base1(logX, i, j, "logX", 1))) + ((beta_temp - 1) * get_base1(logNX, i, j, "logNX", 1))) - (((alpha_temp + beta_temp) - 1) * stan::math::log(get_base1(ESS, i, "ESS", 1)))) - lbeta(alpha_temp, beta_temp)));
                     }
@@ -593,9 +593,9 @@ public:
     }
     void get_param_names(std::vector<std::string>& names__) const {
         names__.resize(0);
-        names__.push_back("theta_inv");
+        names__.push_back("phi_inv");
         names__.push_back("beta_raw");
-        names__.push_back("theta");
+        names__.push_back("phi");
         names__.push_back("p_zero");
         names__.push_back("p_one");
         names__.push_back("beta");
@@ -673,10 +673,10 @@ public:
         static const char* function__ = "model_dirichregmod_namespace::write_array";
         (void) function__;  // dummy to suppress unused var warning
         // read-transform, write parameters
-        Eigen::Matrix<double, Eigen::Dynamic, 1> theta_inv = in__.vector_constrain(overdisp);
-        size_t theta_inv_j_1_max__ = overdisp;
-        for (size_t j_1__ = 0; j_1__ < theta_inv_j_1_max__; ++j_1__) {
-            vars__.push_back(theta_inv(j_1__));
+        Eigen::Matrix<double, Eigen::Dynamic, 1> phi_inv = in__.vector_constrain(overdisp);
+        size_t phi_inv_j_1_max__ = overdisp;
+        for (size_t j_1__ = 0; j_1__ < phi_inv_j_1_max__; ++j_1__) {
+            vars__.push_back(phi_inv(j_1__));
         }
         Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> beta_raw = in__.matrix_constrain((N_stocks - 1), N_covar);
         size_t beta_raw_j_2_max__ = N_covar;
@@ -695,10 +695,10 @@ public:
         try {
             // declare and define transformed parameters
             current_statement_begin__ = 65;
-            double theta;
-            (void) theta;  // dummy to suppress unused var warning
-            stan::math::initialize(theta, DUMMY_VAR__);
-            stan::math::fill(theta, DUMMY_VAR__);
+            double phi;
+            (void) phi;  // dummy to suppress unused var warning
+            stan::math::initialize(phi, DUMMY_VAR__);
+            stan::math::fill(phi, DUMMY_VAR__);
             current_statement_begin__ = 66;
             validate_non_negative_index("p_zero", "N_samples", N_samples);
             validate_non_negative_index("p_zero", "N_stocks", N_stocks);
@@ -725,11 +725,11 @@ public:
             stan::math::fill(mu, DUMMY_VAR__);
             // do transformed parameters statements
             current_statement_begin__ = 71;
-            stan::math::assign(theta, 1);
+            stan::math::assign(phi, 1);
             current_statement_begin__ = 72;
             if (as_bool(logical_eq(overdisp, 1))) {
                 current_statement_begin__ = 72;
-                stan::math::assign(theta, (1 / get_base1(theta_inv, 1, "theta_inv", 1)));
+                stan::math::assign(phi, (1 / get_base1(phi_inv, 1, "phi_inv", 1)));
             }
             current_statement_begin__ = 74;
             for (int l = 1; l <= N_covar; ++l) {
@@ -785,12 +785,12 @@ public:
                     current_statement_begin__ = 97;
                     stan::model::assign(p_zero, 
                                 stan::model::cons_list(stan::model::index_uni(i), stan::model::cons_list(stan::model::index_uni(j), stan::model::nil_index_list())), 
-                                pow((1 - get_base1(mu, i, j, "mu", 1)), (get_base1(ESS, i, "ESS", 1) * theta)), 
+                                pow((1 - get_base1(mu, i, j, "mu", 1)), (get_base1(ESS, i, "ESS", 1) * phi)), 
                                 "assigning variable p_zero");
                     current_statement_begin__ = 98;
                     stan::model::assign(p_one, 
                                 stan::model::cons_list(stan::model::index_uni(i), stan::model::cons_list(stan::model::index_uni(j), stan::model::nil_index_list())), 
-                                pow(get_base1(mu, i, j, "mu", 1), (get_base1(ESS, i, "ESS", 1) * theta)), 
+                                pow(get_base1(mu, i, j, "mu", 1), (get_base1(ESS, i, "ESS", 1) * phi)), 
                                 "assigning variable p_one");
                 }
             }
@@ -809,7 +809,7 @@ public:
             check_less_or_equal(function__, "mu", mu, 1);
             // write transformed parameters
             if (include_tparams__) {
-                vars__.push_back(theta);
+                vars__.push_back(phi);
                 size_t p_zero_j_2_max__ = N_stocks;
                 size_t p_zero_j_1_max__ = N_samples;
                 for (size_t j_2__ = 0; j_2__ < p_zero_j_2_max__; ++j_2__) {
@@ -900,9 +900,9 @@ public:
                     current_statement_begin__ = 147;
                     if (as_bool(logical_eq(get_base1(get_base1(is_proportion, i, "is_proportion", 1), j, "is_proportion", 2), 1))) {
                         current_statement_begin__ = 148;
-                        stan::math::assign(alpha_temp, ((get_base1(mu, i, j, "mu", 1) * get_base1(ESS, i, "ESS", 1)) * theta));
+                        stan::math::assign(alpha_temp, ((get_base1(mu, i, j, "mu", 1) * get_base1(ESS, i, "ESS", 1)) * phi));
                         current_statement_begin__ = 149;
-                        stan::math::assign(beta_temp, (((1 - get_base1(mu, i, j, "mu", 1)) * get_base1(ESS, i, "ESS", 1)) * theta));
+                        stan::math::assign(beta_temp, (((1 - get_base1(mu, i, j, "mu", 1)) * get_base1(ESS, i, "ESS", 1)) * phi));
                         current_statement_begin__ = 150;
                         stan::model::assign(log_lik, 
                                     stan::model::cons_list(stan::model::index_uni(i), stan::model::cons_list(stan::model::index_uni(j), stan::model::nil_index_list())), 
@@ -1028,10 +1028,10 @@ public:
                                  bool include_tparams__ = true,
                                  bool include_gqs__ = true) const {
         std::stringstream param_name_stream__;
-        size_t theta_inv_j_1_max__ = overdisp;
-        for (size_t j_1__ = 0; j_1__ < theta_inv_j_1_max__; ++j_1__) {
+        size_t phi_inv_j_1_max__ = overdisp;
+        for (size_t j_1__ = 0; j_1__ < phi_inv_j_1_max__; ++j_1__) {
             param_name_stream__.str(std::string());
-            param_name_stream__ << "theta_inv" << '.' << j_1__ + 1;
+            param_name_stream__ << "phi_inv" << '.' << j_1__ + 1;
             param_names__.push_back(param_name_stream__.str());
         }
         size_t beta_raw_j_2_max__ = N_covar;
@@ -1046,7 +1046,7 @@ public:
         if (!include_gqs__ && !include_tparams__) return;
         if (include_tparams__) {
             param_name_stream__.str(std::string());
-            param_name_stream__ << "theta";
+            param_name_stream__ << "phi";
             param_names__.push_back(param_name_stream__.str());
             size_t p_zero_j_2_max__ = N_stocks;
             size_t p_zero_j_1_max__ = N_samples;
@@ -1136,10 +1136,10 @@ public:
                                    bool include_tparams__ = true,
                                    bool include_gqs__ = true) const {
         std::stringstream param_name_stream__;
-        size_t theta_inv_j_1_max__ = overdisp;
-        for (size_t j_1__ = 0; j_1__ < theta_inv_j_1_max__; ++j_1__) {
+        size_t phi_inv_j_1_max__ = overdisp;
+        for (size_t j_1__ = 0; j_1__ < phi_inv_j_1_max__; ++j_1__) {
             param_name_stream__.str(std::string());
-            param_name_stream__ << "theta_inv" << '.' << j_1__ + 1;
+            param_name_stream__ << "phi_inv" << '.' << j_1__ + 1;
             param_names__.push_back(param_name_stream__.str());
         }
         size_t beta_raw_j_2_max__ = N_covar;
@@ -1154,7 +1154,7 @@ public:
         if (!include_gqs__ && !include_tparams__) return;
         if (include_tparams__) {
             param_name_stream__.str(std::string());
-            param_name_stream__ << "theta";
+            param_name_stream__ << "phi";
             param_names__.push_back(param_name_stream__.str());
             size_t p_zero_j_2_max__ = N_stocks;
             size_t p_zero_j_1_max__ = N_samples;

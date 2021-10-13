@@ -107,7 +107,7 @@ fitted_vals = get_fitted(fit_1)
 head(fitted_vals)
 ```
 
-Second, we can return all parameters (including betas for coefficients and theta, the overdispersion term) 
+Second, we can return all parameters (including betas for coefficients and $\phi$, the overdispersion term) 
 
 ```{r}
 fitted_vals = get_pars(fit_1)

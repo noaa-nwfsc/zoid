@@ -58,18 +58,18 @@ transformed data {
 
 }
 parameters {
-  vector[overdisp] theta_inv; // overdispersion
+  vector[overdisp] phi_inv; // overdispersion
   matrix[N_stocks-1,N_covar] beta_raw;
 }
 transformed parameters {
-  real theta;
+  real phi;
   matrix<lower=0,upper=1>[N_samples, N_stocks] p_zero; // probability of 0 for each cell
   matrix<lower=0,upper=1>[N_samples, N_stocks] p_one; // probability of 1 for each cell
   matrix[N_stocks,N_covar] beta; // coefficients
   matrix<lower=0,upper=1>[N_samples,N_stocks] mu; // estimates, in normal space
-  // theta is dynamic
-  theta = 1;
-  if(overdisp==1) {theta = 1/theta_inv[1];}
+  // phi is dynamic
+  phi = 1;
+  if(overdisp==1) {phi = 1/phi_inv[1];}
 
   for (l in 1:N_covar) {
     beta[N_stocks,l] = 0.0;
@@ -94,8 +94,8 @@ transformed parameters {
 
   for(i in 1:N_samples) {
     for(j in 1:N_stocks) {
-      p_zero[i,j] = (1-mu[i,j])^(ESS[i]*theta);
-      p_one[i,j] = mu[i,j]^(ESS[i]*theta);
+      p_zero[i,j] = (1-mu[i,j])^(ESS[i]*phi);
+      p_one[i,j] = mu[i,j]^(ESS[i]*phi);
     }
   }
 
@@ -105,7 +105,7 @@ model {
   real beta_temp; // temp for extended beta
 
   if(overdisp==1) {
-    theta_inv ~ cauchy(0,5);
+    phi_inv ~ cauchy(0,5);
   }
   // priors for fixed effects for covariate factors
   for(i in 1:N_covar) {
@@ -121,8 +121,8 @@ model {
       target += bernoulli_lpmf(is_one[i,j]| p_one[i,j]);
 
       if(is_proportion[i,j]==1) {
-        alpha_temp = mu[i,j]*ESS[i]*theta;
-        beta_temp = (1-mu[i,j])*ESS[i]*theta;
+        alpha_temp = mu[i,j]*ESS[i]*phi;
+        beta_temp = (1-mu[i,j])*ESS[i]*phi;
         // beta lpmf for 3-parameter model
         target += log(1 - p_zero[i,j] - p_one[i,j]) + (alpha_temp-1)*logX[i,j] + (beta_temp-1)*logNX[i,j] - (alpha_temp+beta_temp-1)*log(ESS[i]) - lbeta(alpha_temp,beta_temp);
       }
@@ -145,8 +145,8 @@ generated quantities {
       log_lik[i,j] += bernoulli_lpmf(is_zero[i,j]| p_zero[i,j]);
       log_lik[i,j] += bernoulli_lpmf(is_one[i,j]| p_one[i,j]);
       if(is_proportion[i,j]==1) {
-        alpha_temp = mu[i,j]*ESS[i]*theta;
-        beta_temp = (1-mu[i,j])*ESS[i]*theta;
+        alpha_temp = mu[i,j]*ESS[i]*phi;
+        beta_temp = (1-mu[i,j])*ESS[i]*phi;
         log_lik[i,j] += log(1 - p_zero[i,j] - p_one[i,j]) + (alpha_temp-1)*logX[i,j] + (beta_temp-1)*logNX[i,j] - (alpha_temp+beta_temp-1)*log(ESS[i]) - lbeta(alpha_temp,beta_temp);
       }
 

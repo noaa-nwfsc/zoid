@@ -49,13 +49,13 @@ get_pars <- function(fitted_model, conf_int = 0.05) {
 
   par_list <- list(p = p, betas = betas)
   if (fitted_model$overdispersion == TRUE) {
-    theta <- data.frame(
-      "mean" = mean(pars$theta),
-      "median" = median(pars$theta),
-      "lo" = quantile(pars$theta, conf_int / 2.0),
-      "hi" = quantile(pars$theta, 1 - conf_int / 2.0)
+    phi <- data.frame(
+      "mean" = mean(pars$phi),
+      "median" = median(pars$phi),
+      "lo" = quantile(pars$phi, conf_int / 2.0),
+      "hi" = quantile(pars$phi, 1 - conf_int / 2.0)
     )
-    par_list$theta <- theta
+    par_list$phi <- phi
   }
 
   return(par_list)
