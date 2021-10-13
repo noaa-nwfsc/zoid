@@ -40,7 +40,7 @@ fit_1 <- fit_trinomix(data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
                       overdispersion_sd = 5,
                       chains=1,
-                      iter=2000)
+                      iter=2000, refresh=0)
 ```
 
 Now we can compare the prior and posterior distributions; because these are skewed, we'll show them in log-space. 
@@ -65,7 +65,7 @@ for(i in 1:nrow(df)) {
                       overdispersion = TRUE,
                       overdispersion_sd = df$sd[i],
                       chains=1,
-                      iter=2000)
+                      iter=2000, refresh=0)
   df$overlap[i] = length(which(fit_1$overdispersion_prior < max(rstan::extract(fit_1$model,"theta")$theta))) / length(fit_1$overdispersion_prior)
 }
 ```

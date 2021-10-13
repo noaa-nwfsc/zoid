@@ -101,7 +101,7 @@ We include several helper functions for processing output into more manageable d
 fit_1 <- fit_trinomix(data_matrix = as.matrix(data_matrix), 
                       chains=1,
                       iter=5000,
-                      overdispersion = TRUE)
+                      overdispersion = TRUE, refresh=0)
 
 fitted_vals = get_fitted(fit_1)
 head(fitted_vals)

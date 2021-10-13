@@ -116,7 +116,7 @@
                       overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,
                       overdispersion_sd <span class="op">=</span> <span class="fl">5</span>,
                       chains<span class="op">=</span><span class="fl">1</span>,
-                      iter<span class="op">=</span><span class="fl">2000</span><span class="op">)</span></code></pre></div>
+                      iter<span class="op">=</span><span class="fl">2000</span>, refresh<span class="op">=</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p>Now we can compare the prior and posterior distributions; because these are skewed, we’ll show them in log-space.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">prior</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"value"</span> <span class="op">=</span> <span class="va">fit_1</span><span class="op">$</span><span class="va">overdispersion_prior</span>,
@@ -135,7 +135,7 @@
                       overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,
                       overdispersion_sd <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">sd</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,
                       chains<span class="op">=</span><span class="fl">1</span>,
-                      iter<span class="op">=</span><span class="fl">2000</span><span class="op">)</span>
+                      iter<span class="op">=</span><span class="fl">2000</span>, refresh<span class="op">=</span><span class="fl">0</span><span class="op">)</span>
   <span class="va">df</span><span class="op">$</span><span class="va">overlap</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">$</span><span class="va">overdispersion_prior</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu">rstan</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/rstan/reference/stanfit-method-extract.html">extract</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">$</span><span class="va">model</span>,<span class="st">"theta"</span><span class="op">)</span><span class="op">$</span><span class="va">theta</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">$</span><span class="va">overdispersion_prior</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
