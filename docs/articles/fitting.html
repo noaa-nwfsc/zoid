@@ -173,15 +173,12 @@
 <pre><code>## 
 ## SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 ## Chain 1: Rejecting initial value:
-## Chain 1:   Log probability evaluates to log(0), i.e. negative infinity.
-## Chain 1:   Stan can't start sampling from this initial value.
-## Chain 1: Rejecting initial value:
 ## Chain 1:   Error evaluating the log probability at the initial value.
-## Chain 1: Exception: validate transformed params: p_zero[1] is 2.08513e+95, but must be less than or equal to 1  (in 'model_dirichregmod' at line 66)
+## Chain 1: Exception: validate transformed params: p_zero[1] is inf, but must be less than or equal to 1  (in 'model_dirichregmod' at line 66)
 ## 
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.00044 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.4 seconds.
+## Chain 1: Gradient evaluation took 0.000478 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.78 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -198,31 +195,31 @@
 ## Chain 1: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 6.90522 seconds (Warm-up)
-## Chain 1:                6.01123 seconds (Sampling)
-## Chain 1:                12.9165 seconds (Total)
+## Chain 1:  Elapsed Time: 7.00296 seconds (Warm-up)
+## Chain 1:                6.17846 seconds (Sampling)
+## Chain 1:                13.1814 seconds (Total)
 ## Chain 1:</code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code>##   obs group       mean     median         lo        hi
-## 1   1     1 0.01978826 0.01933203 0.01115875 0.0308911
-## 2   2     1 0.01978826 0.01933203 0.01115875 0.0308911
-## 3   3     1 0.01978826 0.01933203 0.01115875 0.0308911
-## 4   4     1 0.01978826 0.01933203 0.01115875 0.0308911
-## 5   5     1 0.01978826 0.01933203 0.01115875 0.0308911
-## 6   6     1 0.01978826 0.01933203 0.01115875 0.0308911</code></pre>
+<pre><code>##   obs group       mean     median         lo         hi
+## 1   1     1 0.01986609 0.01943465 0.01114166 0.03114837
+## 2   2     1 0.01986609 0.01943465 0.01114166 0.03114837
+## 3   3     1 0.01986609 0.01943465 0.01114166 0.03114837
+## 4   4     1 0.01986609 0.01943465 0.01114166 0.03114837
+## 5   5     1 0.01986609 0.01943465 0.01114166 0.03114837
+## 6   6     1 0.01986609 0.01943465 0.01114166 0.03114837</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and theta, the overdispersion term)</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
-<pre><code>##   group cov         par       mean     median        lo         hi
-## 1     1   1 (Intercept) -1.0063720 -0.9999170 -1.594013 -0.4410903
-## 2     2   1 (Intercept) -1.0462204 -1.0468302 -1.598327 -0.5305143
-## 3     3   1 (Intercept) -1.0412319 -1.0278012 -1.635360 -0.4774343
-## 4     4   1 (Intercept) -1.2171372 -1.2095271 -1.855735 -0.6143939
-## 5     5   1 (Intercept) -1.3880529 -1.3749298 -2.169224 -0.7169082
-## 6     6   1 (Intercept) -0.8804761 -0.8744241 -1.381438 -0.4076032</code></pre>
+<pre><code>##   group cov         par      mean    median        lo         hi
+## 1     1   1 (Intercept) -1.007982 -1.007858 -1.604638 -0.4528929
+## 2     2   1 (Intercept) -1.057675 -1.054026 -1.624945 -0.5282594
+## 3     3   1 (Intercept) -1.041796 -1.034221 -1.635476 -0.4794131
+## 4     4   1 (Intercept) -1.221000 -1.217134 -1.870791 -0.5953492
+## 5     5   1 (Intercept) -1.402944 -1.385624 -2.166289 -0.7156797
+## 6     6   1 (Intercept) -0.882127 -0.881562 -1.367648 -0.3950061</code></pre>
 </div>
 </div>
   </div>
