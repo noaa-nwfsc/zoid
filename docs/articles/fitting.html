@@ -173,24 +173,24 @@
 
 <span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code>##   obs group       mean     median        lo        hi
-## 1   1     1 0.01991672 0.01943276 0.0112946 0.0317235
-## 2   2     1 0.01991672 0.01943276 0.0112946 0.0317235
-## 3   3     1 0.01991672 0.01943276 0.0112946 0.0317235
-## 4   4     1 0.01991672 0.01943276 0.0112946 0.0317235
-## 5   5     1 0.01991672 0.01943276 0.0112946 0.0317235
-## 6   6     1 0.01991672 0.01943276 0.0112946 0.0317235</code></pre>
+<pre><code>##   obs group       mean     median         lo         hi
+## 1   1     1 0.01982365 0.01941489 0.01103341 0.03064221
+## 2   2     1 0.01982365 0.01941489 0.01103341 0.03064221
+## 3   3     1 0.01982365 0.01941489 0.01103341 0.03064221
+## 4   4     1 0.01982365 0.01941489 0.01103341 0.03064221
+## 5   5     1 0.01982365 0.01941489 0.01103341 0.03064221
+## 6   6     1 0.01982365 0.01941489 0.01103341 0.03064221</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and <span class="math inline">\(\phi\)</span>, the overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
 <pre><code>##   group cov         par       mean     median        lo         hi
-## 1     1   1 (Intercept) -0.9907930 -0.9844096 -1.605682 -0.4275377
-## 2     2   1 (Intercept) -1.0464117 -1.0429889 -1.607195 -0.5344727
-## 3     3   1 (Intercept) -1.0237470 -1.0102378 -1.658935 -0.4640488
-## 4     4   1 (Intercept) -1.1993497 -1.1849414 -1.862905 -0.5686926
-## 5     5   1 (Intercept) -1.3721334 -1.3619695 -2.155117 -0.6779982
-## 6     6   1 (Intercept) -0.8722316 -0.8662075 -1.385224 -0.4034381</code></pre>
+## 1     1   1 (Intercept) -0.9957760 -0.9854234 -1.625254 -0.4441750
+## 2     2   1 (Intercept) -1.0400350 -1.0347968 -1.614079 -0.4806737
+## 3     3   1 (Intercept) -1.0323145 -1.0143884 -1.653965 -0.4711284
+## 4     4   1 (Intercept) -1.1916083 -1.1807586 -1.893638 -0.5834416
+## 5     5   1 (Intercept) -1.3789348 -1.3675143 -2.149107 -0.6969687
+## 6     6   1 (Intercept) -0.8734442 -0.8677645 -1.389662 -0.3934703</code></pre>
 </div>
 </div>
   </div>

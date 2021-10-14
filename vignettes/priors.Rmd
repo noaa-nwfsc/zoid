@@ -101,5 +101,31 @@ for(i in 1:nrow(df)) {
 plot(df$sd,df$overlap, xlab="Prior SD", ylab="% Overlap",main="Data units: kilograms",type="b")
 ```
 
+## Does scale of the data impact precision of the posterior estimates? 
+
+To answer whether rescaling the data has any impact on parameters other than overdispersion, we can compare the model fit in grams to that fit with kg. We find no differences between the point estimates of proportions or uncertainty intervals.
+
+```{r results="hide"}
+data("coddiet")
+data_matrix = coddiet[,names(coddiet)%in%c("Year","Season")==FALSE]
+
+fit_1 <- fit_trinomix(data_matrix = as.matrix(data_matrix),
+                      overdispersion = TRUE,
+                      overdispersion_sd = 5,
+                      chains=1,
+                      iter=2000, refresh=0)
+fit_2 <- fit_trinomix(data_matrix = as.matrix(data_matrix)/1000,
+                      overdispersion = TRUE,
+                      overdispersion_sd = 5,
+                      chains=1,
+                      iter=2000, refresh=0)
+```
+
+```{r}
+pars_g = get_fitted(fit_1)
+pars_kg = get_fitted(fit_2)
+plot(pars_g$hi-pars_g$lo, pars_kg$hi-pars_kg$lo,main="",xlab="95% CI width (g)", ylab="95% CI width (kg)")
+abline(0,1,col="red")
+```
 
 
