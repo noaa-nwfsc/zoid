@@ -1,6 +1,7 @@
 library(MCMCpack)
 library(dplyr)
 library(ggplot2)
+library(tidyr)
 remotes::install_github("nwfsc-cb/trinomix", "priors")
 library(trinomix)
 
@@ -49,3 +50,5 @@ ggplot(dplyr::filter(wide,N==10), aes(beta,imp)) + geom_point() +
   ylab("Estimate using improper prior")
 
 cor(wide$beta,wide$imp)
+
+ggplot(wide, aes(p,beta,col=as.factor(N))) + geom_point(alpha=0.1)
