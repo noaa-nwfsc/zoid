@@ -15,6 +15,7 @@
 #' @param posterior_predict Whether or not to return draws from posterior predictive distribution (requires more memory)
 #' @param moment_match Whether to do moment matching via [loo::loo_moment_match()]. This increases memory by adding all temporary
 #' parmaeters to be saved and returned
+#' @param use_beta_priors Boolean, whether to include logit - normal priors on beta. If false, defaults to improper priors (like [brms::brm()])
 #' @param ... Any other arguments to pass to [rstan::sampling()].
 #'
 #' @export
@@ -45,6 +46,7 @@ fit_trinomix <- function(formula = NULL,
                          overdispersion_sd = 5,
                          posterior_predict = FALSE,
                          moment_match = FALSE,
+                         use_beta_priors = TRUE,
                          ...) {
 
   # if a single observation
@@ -70,7 +72,8 @@ fit_trinomix <- function(formula = NULL,
     design_X = model_matrix,
     overdisp = ifelse(overdispersion == TRUE, 1, 0),
     overdispersion_sd = overdispersion_sd,
-    postpred = ifelse(posterior_predict == TRUE, 1, 0)
+    postpred = ifelse(posterior_predict == TRUE, 1, 0),
+    use_beta_priors = as.numeric(use_beta_priors)
   )
 
   pars <- c("beta", "log_lik", "mu")

@@ -6,6 +6,7 @@ data { // set up to run a single instance (1 stock) of GSI observations
   matrix[N_samples, N_covar] design_X;
   int overdisp; // whether or not to include overdispersion term
   int postpred; // whether or not to include posterior predictive samples
+  int use_beta_priors;
 }
 transformed data {
   int is_zero[N_samples,N_stocks]; // indicator for data being 1
@@ -108,12 +109,13 @@ model {
     phi_inv ~ cauchy(0,5);
   }
   // priors for fixed effects for covariate factors
+  if(use_beta_priors==1) {
   for(i in 1:N_covar) {
     for(j in 1:(N_stocks-1)) {
       beta_raw[j,i] ~ normal(0,1);
     }
   }
-
+  }
   for(i in 1:N_samples) {
     for(j in 1:N_stocks) {
       // marginals of the trinomial are independent binomials
