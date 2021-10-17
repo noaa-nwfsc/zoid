@@ -7,7 +7,7 @@ library(trinomix)
 df <- expand.grid(
   n_bins = 10,
   seed = 1:100,
-  N = c(50, 200)
+  N = c(10,30,50)
 )
 
 for (i in 1:nrow(df)) {
@@ -44,11 +44,8 @@ for (i in 1:nrow(df)) {
 
 # is there consistent bias with either prior
 wide <- tidyr::pivot_wider(out, names_from = prior, values_from = est)
-ggplot(wide, aes(beta,imp)) + geom_point() +
+ggplot(dplyr::filter(wide,N==10), aes(beta,imp)) + geom_point() +
   xlab("Estimate using beta prior") +
   ylab("Estimate using improper prior")
 
-dplyr::mutate(out, bias = est - true_p) %>%
-  ggplot(aes(true_p, bias)) +
-  geom_point() +
-  facet_wrap(~prior)
+cor(wide$beta,wide$imp)
