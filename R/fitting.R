@@ -15,6 +15,8 @@
 #' @param posterior_predict Whether or not to return draws from posterior predictive distribution (requires more memory)
 #' @param moment_match Whether to do moment matching via [loo::loo_moment_match()]. This increases memory by adding all temporary
 #' parmaeters to be saved and returned
+#' @param prior_sd Parameter to be passed in to use as standard deviation of the normal distribution in transformed space. If
+#' covariates are included this defaults to 1, but for models with single replicate, defaults to 1/n_bins.
 #' @param ... Any other arguments to pass to [rstan::sampling()].
 #'
 #' @export
@@ -45,6 +47,7 @@ fit_trinomix <- function(formula = NULL,
                          overdispersion_sd = 5,
                          posterior_predict = FALSE,
                          moment_match = FALSE,
+                         prior_sd = NA,
                          ...) {
 
   # if a single observation
@@ -60,17 +63,22 @@ fit_trinomix <- function(formula = NULL,
     colnames(model_matrix) <- "(Intercept)"
   }
 
+  sd_prior <- 1 / ncol(data_matrix) # default if no covariates
+  if (ncol(model_matrix) > 1) sd_prior <- 1
+  if (!is.na(prior_sd)) sd_prior <- prior_sd
+
   par_names <- colnames(model_matrix)
 
   stan_data <- list(
-    N_stocks = ncol(data_matrix),
+    N_bins = ncol(data_matrix),
     N_samples = nrow(data_matrix),
     X = data_matrix,
     N_covar = ncol(model_matrix),
     design_X = model_matrix,
     overdisp = ifelse(overdispersion == TRUE, 1, 0),
     overdispersion_sd = overdispersion_sd,
-    postpred = ifelse(posterior_predict == TRUE, 1, 0)
+    postpred = ifelse(posterior_predict == TRUE, 1, 0),
+    prior_sd = sd_prior
   )
 
   pars <- c("beta", "log_lik", "mu")

@@ -15,6 +15,7 @@ fit_trinomix(
   overdispersion_sd = 5,
   posterior_predict = FALSE,
   moment_match = FALSE,
+  prior_sd = NA,
   ...
 )
 }
@@ -40,6 +41,9 @@ the design matrix is ignored and all rows are treated as replicates}
 
 \item{moment_match}{Whether to do moment matching via \code{\link[loo:loo_moment_match]{loo::loo_moment_match()}}. This increases memory by adding all temporary
 parmaeters to be saved and returned}
+
+\item{prior_sd}{Parameter to be passed in to use as standard deviation of the normal distribution in transformed space. If
+covariates are included this defaults to 1, but for models with single replicate, defaults to 1/n_bins.}
 
 \item{...}{Any other arguments to pass to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }

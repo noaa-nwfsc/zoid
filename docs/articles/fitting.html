@@ -55,6 +55,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/beta_priors.html">Priors for compositions</a>
+    </li>
+    <li>
       <a href="../articles/fitting.html">Fitting models with trinomix</a>
     </li>
     <li>
@@ -83,12 +86,13 @@
 
       
 
-      </header><script src="fitting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fitting_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting models with trinomix</h1>
+                        <h4 class="author"></h4>
             
-            <h4 class="date">2021-10-13</h4>
+            <h4 class="date">2021-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/trinomix/blob/master/vignettes/fitting.Rmd"><code>vignettes/fitting.Rmd</code></a></small>
       <div class="hidden name"><code>fitting.Rmd</code></div>
@@ -173,24 +177,24 @@
 
 <span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code>##   obs group       mean     median         lo         hi
-## 1   1     1 0.01982365 0.01941489 0.01103341 0.03064221
-## 2   2     1 0.01982365 0.01941489 0.01103341 0.03064221
-## 3   3     1 0.01982365 0.01941489 0.01103341 0.03064221
-## 4   4     1 0.01982365 0.01941489 0.01103341 0.03064221
-## 5   5     1 0.01982365 0.01941489 0.01103341 0.03064221
-## 6   6     1 0.01982365 0.01941489 0.01103341 0.03064221</code></pre>
+<pre><code>##   obs group      mean    median         lo         hi
+## 1   1     1 0.0330878 0.0330678 0.03106242 0.03516792
+## 2   2     1 0.0330878 0.0330678 0.03106242 0.03516792
+## 3   3     1 0.0330878 0.0330678 0.03106242 0.03516792
+## 4   4     1 0.0330878 0.0330678 0.03106242 0.03516792
+## 5   5     1 0.0330878 0.0330678 0.03106242 0.03516792
+## 6   6     1 0.0330878 0.0330678 0.03106242 0.03516792</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and <span class="math inline">\(\phi\)</span>, the overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
-<pre><code>##   group cov         par       mean     median        lo         hi
-## 1     1   1 (Intercept) -0.9957760 -0.9854234 -1.625254 -0.4441750
-## 2     2   1 (Intercept) -1.0400350 -1.0347968 -1.614079 -0.4806737
-## 3     3   1 (Intercept) -1.0323145 -1.0143884 -1.653965 -0.4711284
-## 4     4   1 (Intercept) -1.1916083 -1.1807586 -1.893638 -0.5834416
-## 5     5   1 (Intercept) -1.3789348 -1.3675143 -2.149107 -0.6969687
-## 6     6   1 (Intercept) -0.8734442 -0.8677645 -1.389662 -0.3934703</code></pre>
+<pre><code>##   group cov         par         mean       median          lo         hi
+## 1     1   1 (Intercept) -0.008210383 -0.008564450 -0.07180285 0.05489523
+## 2     2   1 (Intercept) -0.011207472 -0.011478940 -0.07655690 0.05484319
+## 3     3   1 (Intercept) -0.009184315 -0.008881954 -0.07233308 0.05694701
+## 4     4   1 (Intercept) -0.010593910 -0.010970650 -0.07534786 0.05858277
+## 5     5   1 (Intercept) -0.011603936 -0.011565566 -0.07825574 0.05636181
+## 6     6   1 (Intercept) -0.008804454 -0.008791164 -0.07293398 0.05468013</code></pre>
 </div>
 </div>
   </div>
