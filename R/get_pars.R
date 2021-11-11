@@ -2,7 +2,7 @@
 #'
 #' Extract estimated parameters from fitted model.
 #'
-#' @param fitted_model The fitted model returned as an rstan object from the call to trinomix
+#' @param fitted_model The fitted model returned as an rstan object from the call to zoid
 #' @param conf_int Parameter controlling confidence intervals calculated, defaults to 0.05
 #' for 95% intervals
 #' @export
@@ -14,7 +14,7 @@
 #'   nrow = 3, byrow = TRUE
 #' )
 #' # fit a model with no covariates
-#' fit <- fit_trinomix(data_matrix = y)
+#' fit <- fit_zoid(data_matrix = y)
 #' p_hat <- get_pars(fit)
 #' }
 #'

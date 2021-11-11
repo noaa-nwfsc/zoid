@@ -7,7 +7,7 @@
 get_fitted(fitted_model, conf_int = 0.05)
 }
 \arguments{
-\item{fitted_model}{The fitted model returned as an rstan object from the call to trinomix}
+\item{fitted_model}{The fitted model returned as an rstan object from the call to zoid}
 
 \item{conf_int}{Parameter controlling confidence intervals calculated, defaults to 0.05
 for 95\% intervals}
@@ -21,7 +21,7 @@ y <- matrix(c(3.77, 6.63, 2.60, 0.9, 1.44, 0.66, 2.10, 3.57, 1.33),
   nrow = 3, byrow = TRUE
 )
 # fit a model with no covariates
-fit <- fit_trinomix(data_matrix = y)
+fit <- fit_zoid(data_matrix = y)
 p_hat <- get_fitted(fit)
 }
 

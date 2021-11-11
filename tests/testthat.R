@@ -1,4 +1,4 @@
 library(testthat)
-library(trinomix)
+library(zoid)
 
-test_check("trinomix")
+test_check("zoid")

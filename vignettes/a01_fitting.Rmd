@@ -1,0 +1,118 @@
+---
+title: "Fitting models with zoid"
+author: ""
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fitting models with zoid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r set-knitr-options, cache=FALSE, echo=FALSE}
+library("knitr")
+opts_chunk$set(message = FALSE, warning=FALSE, fig.width = 5.5)
+```
+
+Let's load the necessary packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(zoid)
+```
+
+## Fish stomach contents example
+
+Here, we will use a dataset of cod stomachs on the Faroe Bank, published in 
+
+*Magnussen, E. 2011. Food and feeding habits of cod (Gadus morhua) on the Faroe Bank. – ICES Journal of Marine Science, 68: 1909–1917.*
+
+The data are also included with our package, and represent a dataframe with observations on rows (stratified by year and season) and prey items across columns. 
+
+```{r}
+data(coddiet)
+```
+
+We need to split the dataset into 2 matrices, one representing the design matrix for the observations ('Year' and 'Season') and the other representing the data matrix of observed biomass per sample - prey item. If all rows are considered replicate observations, there's no need to create a design matrix - but we can test for the effects of Season and Year. 
+
+```{r}
+design_matrix = coddiet[,names(coddiet)%in%c("Year","Season")==TRUE]
+data_matrix = coddiet[,names(coddiet)%in%c("Year","Season")==FALSE]
+```
+
+### Overdispersion or not? 
+
+One optional feature of the model is to include overdispersion in the calculations of the 3 probabilities for each cell. Including overdispersion is generally only advised with replicated data or shared information -- and may fit heterogeneous datasets with lots of 0s better than the model without overdispersion. For the cod diet data, we'll include overdispersion because of poor MCMC sampling without it. 
+
+### Model selection  
+
+Next, we can test some hypotheses about how the data are structured. We'll create the following models (1) a model with all observations as replicate samples, (2) a model with only seasonal effects, (3) a model with only differences by year, and (4) a model with both year and season. Both year and season are treated as factors here -- but continuous covariates can also be included.
+
+Note that for fitting, the data_matrix should be a matrix, but the design_matrix should be a data frame.  
+
+```{r results="hide", eval=FALSE}
+design_matrix$Season = as.factor(design_matrix$Season)
+design_matrix$Year = as.factor(design_matrix$Year)
+design_matrix$y = 1 # dummy variable
+
+set.seed(123)
+fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix),
+                      overdispersion = TRUE,
+                      chains=4,
+                      iter=4000)
+
+fit_2 <- fit_zoid(formula = y ~ Season, 
+                      design_matrix = design_matrix, 
+                      data_matrix = as.matrix(data_matrix),
+                      overdispersion = TRUE,
+                      chains=4,
+                      iter=4000)
+
+fit_3 <- fit_zoid(formula = y ~ Year, 
+                      design_matrix = design_matrix, 
+                      data_matrix = as.matrix(data_matrix),
+                      overdispersion = TRUE,
+                      chains=4,
+                      iter=4000)
+
+fit_4 <- fit_zoid(formula = y ~ Year + Season, 
+                      design_matrix = design_matrix, 
+                      data_matrix = as.matrix(data_matrix),
+                      overdispersion = TRUE,
+                      chains=4,
+                      iter=4000)
+```
+
+To compare models, we could use criteria like LOOIC in the loo package -- this is accessible by calling  
+
+```{r eval=FALSE}
+loo_1 = loo::loo(fit_1$model)
+loo_2 = loo::loo(fit_2$model)
+loo_3 = loo::loo(fit_3$model)
+loo_4 = loo::loo(fit_4$model)
+```
+
+For our example, the LOOIC from the model with Season and Year is lowest (2584.9) indicating the most support over the base model (2879.7), model with Season only (2892.4), and model with Year only (2637.2). Two words of caution for this application are (1) the standard errors of the LOOIC estimates are all in the 120-160 range, so many of the models are within +/- 1 SE of each other and (2) the Pareto-k diagnostic values fall into the 'bad' category for about 20% of the data points. There's a couple solutions for this, including more MCMC sampling, and using PSIS smooth sampling 
+
+### Summarizing estimates
+
+We include several helper functions for processing output into more manageable data frames. First, we can extract the predicted point estimates (and uncertainty intervals) around proportions,
+
+```{r warning=FALSE, message=FALSE}
+fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix), 
+                      chains=1,
+                      iter=5000,
+                      overdispersion = TRUE, refresh=0)
+
+fitted_vals = get_fitted(fit_1)
+head(fitted_vals)
+```
+
+Second, we can return all parameters (including betas for coefficients and $\phi$, the overdispersion term) 
+
+```{r}
+fitted_vals = get_pars(fit_1)
+head(fitted_vals$betas)
+```
+
+
+

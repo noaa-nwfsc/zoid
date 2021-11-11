@@ -1,5 +1,5 @@
-Package: trinomix
-Title: Multivariate Trinomial Mixture Models With Stan
+Package: zoid
+Title: Bayesian Zero-and-One Inflated Dirichlet Regression Modelling 
 Version: 1.0.0
 Authors@R: 
     c(person(given = "Eric J.",
@@ -10,19 +10,23 @@ Authors@R:
       person(given = "Alexander J.",
            family = "Jensen",
            role = c("aut"),
-           email = "jensena1@uw.edu"),
+           email = "jensena1@uw.edu",
+           comment = c(ORCID = "0000-0002-2911-8884")),
       person(given = "Ryan P.",
            family = "Kelly",
            role = c("aut"),
-           email = "rpkelly@uw.edu"),
+           email = "rpkelly@uw.edu",
+           comment = c(ORCID = "0000-0001-5037-2441")),
       person(given = "Andrew O.",
            family = "Shelton",
            role = c("aut"),
-           email = "ole.shelton@noaa.gov"),
+           email = "ole.shelton@noaa.gov",
+           comment = c(ORCID = "0000-0002-8045-6141")),
       person(given = "William H.",
            family = "Satterthwaite",
            role = c("aut"),
-           email = "will.satterthwaite@noaa.gov"))
+           email = "will.satterthwaite@noaa.gov",
+           comment = c(ORCID = "0000-0002-0436-7390")))
 Description: This package fits trinomial mixture models to observed data, with option of including covariates.
 License: GPL (>=3)
 Encoding: UTF-8
@@ -30,8 +34,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Biarch: true
-URL: https://nwfsc-cb.github.io/trinomix/
-BugReports: https://github.com/nwfsc-cb/trinomix/issues
+URL: https://nwfsc-cb.github.io/zoid/
+BugReports: https://github.com/nwfsc-cb/zoid/issues
 Depends: 
     R (>= 3.4.0)
 Imports: 

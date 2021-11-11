@@ -30,14 +30,14 @@
 #'   nrow = 3, byrow = TRUE
 #' )
 #' # fit a model with no covariates
-#' fit <- fit_trinomix(data_matrix = y)
+#' fit <- fit_zoid(data_matrix = y)
 #'
 #' # fit a model with 1 factor
 #' design <- data.frame("y" = c(1, 1, 1), "fac" = c("spring", "spring", "fall"))
-#' fit <- fit_trinomix(formula = ~fac, design_matrix = design, data_matrix = y)
+#' fit <- fit_zoid(formula = ~fac, design_matrix = design, data_matrix = y)
 #' }
 #'
-fit_trinomix <- function(formula = NULL,
+fit_zoid <- function(formula = NULL,
                          design_matrix,
                          data_matrix,
                          chains = 3,

@@ -1,0 +1,51 @@
+---
+title: "Simulating data"
+author: ""
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Simulating data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r set-knitr-options, cache=FALSE, echo=FALSE}
+library("knitr")
+opts_chunk$set(message = FALSE, warning=FALSE, fig.width = 5.5)
+```
+
+Let's load the necessary packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(zoid)
+```
+
+## Simulating data
+
+We will use the "broken stick" approach to simulate data from the Dirichlet - trinomial model. This model assumes that the group proportions for each observation are Dirichlet, but the observed values are either 0, the total sample size (N) or a number between 0 and N.
+
+Our `broken_stick` function can be called as follows,
+
+```{r}
+y = broken_stick(n_obs = 10,
+                        n_groups = 10,
+                        tot_n = 100)
+```
+
+The object `y` is a list with 2 elements, (1) the true underlying compositions (p) and the realized data (X_obs). They can be accessed as 
+
+```{r eval=FALSE}
+y$p
+y$X_obs
+```
+
+By default, the simulation function assumes a uniform prior for the Dirichlet, with hyperparameters = 1. We can change this by specifying our own values of hyperparameters. Using the argument `p`, we can simulate new values with a slightly larger effective sample size, and pass that into `broken_stick`
+
+```{r}
+p = gtools::rdirichlet(1, alpha = rep(2,10))
+
+y = broken_stick(n_obs = 10,
+                        n_groups = 10,
+                        tot_n = 100,
+                 p = p)
+```

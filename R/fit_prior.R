@@ -49,6 +49,7 @@ fit_prior <- function(n_bins, n_draws = 10000, target = 1 / n_bins, iterations =
 #' @param n_draws Numbers of samples to use for doing calculation
 #' @param target The goal of the specified prior, e.g. 1 or 1/n_bins
 #' @importFrom stats rnorm
+#' @importFrom compositions fitDirichlet
 rmspe_calc <- function(par, n_bins, n_draws, target) {
   x <- matrix(rnorm(n_draws * (n_bins - 1), 0, exp(par)), n_draws, n_bins - 1)
   x <- cbind(x, 0)

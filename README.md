@@ -1,18 +1,18 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-trinomix
-========
+# ZOID
 
 <!-- badges: start --> [![R build
-status](https://github.com/nwfsc-cb/trinomix/workflows/R-CMD-check/badge.svg)](https://github.com/nwfsc-cb/trinomix/actions)
+status](https://github.com/nwfsc-cb/zoid/workflows/R-CMD-check/badge.svg)](https://github.com/nwfsc-cb/zoid/actions)
 <!-- badges: end -->
 
-trinomix implements Trinomial mixture models in Stan
+zoid implements zero-and-one inflated Dirichlet regression (also known
+as trinomial mixture models) in a Bayesian framework (Stan)
 
 You can install the development version of the package with:
 
 ``` r
-remotes::install_github("nwfsc-cb/trinomix")
+remotes::install_github("nwfsc-cb/zoid")
 ```
 
 ### NOAA Disclaimer

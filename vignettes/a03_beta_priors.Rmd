@@ -1,0 +1,46 @@
+---
+title: "Priors for compositions"
+author: ""
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Priors for compositions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r set-knitr-options, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library("knitr")
+opts_chunk$set(message = FALSE, warning=FALSE, fig.width = 5.5)
+```
+
+Let's load the necessary packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(zoid)
+```
+
+This vignette is designed to illustrate how to build priors for the estimated compositions, $\textbf{p}$. When covariates are included in the design matrix, all elements of $\textbf{p}$ in the Dirichlet regression (both intercepts and slopes or offsets) are assigned $\sim N(0,1)$ priors. This approach is similar to the improper priors used in `brms::brm()`. These priors may be weakly informative, and the user may wish to change the standard deviation -- which can be done with the `prior_sd` argument in `fit_zoid()`.
+
+```{r eval=FALSE}
+fit <- fit_zoid(data, prior_sd = 2)
+```
+
+## Dirichlet priors
+
+A more familiar approach may be to work with Dirichlet priors. We can adjust the standard deviation in our Normal priors to match the Dirichlet. The helper function for this uses `optim` to minimize the RMSPE between the observed and target values. For example, if we had 8 bins and wanted to find the Dirichlet prior that would correspond to hyperparamters $(\alpha)=1$, we could call the `fit_prior` function.
+
+```{r}
+set.seed(123)
+sd = fit_prior(n_bins = 8, n_draws = 1000, target = 1, iterations=10)
+```
+
+The `sd` object is a list that contains (1) the estimated standard deviation, (2) the value of the objective function at convergence, and (3) whether or not convergence occurred (anything other than 0 is problematic). The value of the standard deviation here in `sd$sd` is 1.200453.
+
+So in this case, a standard deviation of ~ 1.20 yields a prior equivalent to a $\sim Dirichlet(1)$ prior. This new value can then be entered into our model with the `prior_sd` argument,
+
+```{r eval=FALSE}
+fit <- fit_zoid(data, prior_sd = 1.2)
+```
+
+
