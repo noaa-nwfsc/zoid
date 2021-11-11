@@ -12,6 +12,11 @@ get_fitted(fitted_model, conf_int = 0.05)
 \item{conf_int}{Parameter controlling confidence intervals calculated, defaults to 0.05
 for 95\% intervals}
 }
+\value{
+A list containing the posterior summaries of estimated parameters, with
+element \code{mu} (the predicted values in normal space). For predictions
+in transformed space, or overdispersion, see \code{\link{zoid::get_pars}}
+}
 \description{
 Extract point estimates of compositions from fitted model.
 }

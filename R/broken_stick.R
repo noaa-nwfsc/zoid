@@ -9,7 +9,8 @@
 #' simulated sample size will be slightly smaller. Defaults to 100
 #' @param p The stock proportions to simulate from, as a vector. Optional, and when not included,
 #' random draws from the dirichlet are used
-#'
+#' @return A 2-element list, whose 1st element `X_obs` is the simulated dataset, and whose
+#' 2nd element is the underlying vector of proportions `p` used to generate the data
 #' @export
 #' @importFrom gtools rdirichlet
 #' @importFrom stats median pbeta qbeta quantile rbeta runif

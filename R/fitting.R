@@ -1,6 +1,6 @@
-#' Fit a trinomial mixture model with Stan
+#' Fit a Bayesian Dirichlet regression model, allowing for zero-and-one inflation, covariates, and overdispersion
 #'
-#' Fit a trinomial mixture model that optionally includes covariates to estimate
+#' Fit a Bayesian Dirichlet regression model that optionally includes covariates to estimate
 #' effects of factor or continuous variables on proportions.
 #'
 #' @param formula The model formula for the design matrix. Does not need to have a response specified. If =NULL, then
@@ -20,6 +20,14 @@
 #' @param ... Any other arguments to pass to [rstan::sampling()].
 #'
 #' @export
+#' @return A list containing the fitted model and arguments and data used
+#' to fit the model. These include `model` (the fitted model object of class `stanfit`),
+#' `par_names` (the names of monitored parameters), `design_matrix` (the
+#' design matrix of covariates), `data_matrix` (the data matrix of responses),
+#' `overdispersion` (boolean, whether overdispersion was used),
+#' `overdispersion_prior` (the prior used for overdispersion),
+#' and `posterior_predict` (boolean, whether posterior prediction was done)
+#'
 #' @importFrom rstan sampling
 #' @importFrom stats model.frame model.matrix rcauchy
 #' @import Rcpp

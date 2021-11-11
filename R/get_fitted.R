@@ -6,6 +6,9 @@
 #' @param conf_int Parameter controlling confidence intervals calculated, defaults to 0.05
 #' for 95% intervals
 #' @export
+#' @return A list containing the posterior summaries of estimated parameters, with
+#' element `mu` (the predicted values in normal space). For predictions
+#' in transformed space, or overdispersion, see \code{\link{zoid::get_pars}}
 #' @importFrom rstan extract
 #'
 #' @examples

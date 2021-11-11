@@ -92,7 +92,7 @@
       <h1 data-toc-skip>Fitting models with zoid</h1>
                         <h4 class="author"></h4>
             
-            <h4 class="date">2021-11-10</h4>
+            <h4 class="date">2021-11-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/zoid/blob/master/vignettes/a01_fitting.Rmd"><code>vignettes/a01_fitting.Rmd</code></a></small>
       <div class="hidden name"><code>a01_fitting.Rmd</code></div>
@@ -178,23 +178,23 @@
 <span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
 <pre><code>##   obs group       mean     median         lo         hi
-## 1   1     1 0.03309559 0.03310075 0.03111914 0.03515103
-## 2   2     1 0.03309559 0.03310075 0.03111914 0.03515103
-## 3   3     1 0.03309559 0.03310075 0.03111914 0.03515103
-## 4   4     1 0.03309559 0.03310075 0.03111914 0.03515103
-## 5   5     1 0.03309559 0.03310075 0.03111914 0.03515103
-## 6   6     1 0.03309559 0.03310075 0.03111914 0.03515103</code></pre>
+## 1   1     1 0.03309099 0.03308943 0.03107161 0.03516097
+## 2   2     1 0.03309099 0.03308943 0.03107161 0.03516097
+## 3   3     1 0.03309099 0.03308943 0.03107161 0.03516097
+## 4   4     1 0.03309099 0.03308943 0.03107161 0.03516097
+## 5   5     1 0.03309099 0.03308943 0.03107161 0.03516097
+## 6   6     1 0.03309099 0.03308943 0.03107161 0.03516097</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and <span class="math inline">\(\phi\)</span>, the overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
 <pre><code>##   group cov         par         mean       median          lo         hi
-## 1     1   1 (Intercept) -0.008081829 -0.006733817 -0.07162078 0.05356789
-## 2     2   1 (Intercept) -0.011447313 -0.010992435 -0.07665872 0.05470987
-## 3     3   1 (Intercept) -0.008778916 -0.009607136 -0.07087712 0.05616393
-## 4     4   1 (Intercept) -0.011849068 -0.012004319 -0.07857605 0.05558563
-## 5     5   1 (Intercept) -0.010791658 -0.010791121 -0.07571168 0.05344148
-## 6     6   1 (Intercept) -0.009544226 -0.009724462 -0.06948266 0.05232811</code></pre>
+## 1     1   1 (Intercept) -0.008185662 -0.008147172 -0.07227225 0.05479529
+## 2     2   1 (Intercept) -0.011431673 -0.011499011 -0.07585676 0.05037818
+## 3     3   1 (Intercept) -0.008709752 -0.009110063 -0.07257853 0.05735913
+## 4     4   1 (Intercept) -0.011439891 -0.010484970 -0.07449241 0.05242547
+## 5     5   1 (Intercept) -0.010210123 -0.010536571 -0.07408482 0.05565763
+## 6     6   1 (Intercept) -0.008810639 -0.008208467 -0.07224260 0.05449695</code></pre>
 </div>
 </div>
   </div>

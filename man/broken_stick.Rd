@@ -25,6 +25,10 @@ simulated sample size will be slightly smaller. Defaults to 100}
 \item{p}{The stock proportions to simulate from, as a vector. Optional, and when not included,
 random draws from the dirichlet are used}
 }
+\value{
+A 2-element list, whose 1st element \code{X_obs} is the simulated dataset, and whose
+2nd element is the underlying vector of proportions \code{p} used to generate the data
+}
 \description{
 Random generation of datasets using the dirichlet broken stick method
 }

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fit a trinomial mixture model with Stan — fit_zoid • zoid</title>
+<title>Fit a Bayesian Dirichlet regression model, allowing for zero-and-one inflation, covariates, and overdispersion — fit_zoid • zoid</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Fit a trinomial mixture model with Stan — fit_zoid" />
-<meta property="og:description" content="Fit a trinomial mixture model that optionally includes covariates to estimate
+<meta property="og:title" content="Fit a Bayesian Dirichlet regression model, allowing for zero-and-one inflation, covariates, and overdispersion — fit_zoid" />
+<meta property="og:description" content="Fit a Bayesian Dirichlet regression model that optionally includes covariates to estimate
 effects of factor or continuous variables on proportions." />
 
 
@@ -132,13 +132,13 @@ effects of factor or continuous variables on proportions." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fit a trinomial mixture model with Stan</h1>
+    <h1>Fit a Bayesian Dirichlet regression model, allowing for zero-and-one inflation, covariates, and overdispersion</h1>
     <small class="dont-index">Source: <a href='https://github.com/nwfsc-cb/zoid/blob/master/R/fitting.R'><code>R/fitting.R</code></a></small>
     <div class="hidden name"><code>fit_zoid.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fit a trinomial mixture model that optionally includes covariates to estimate
+    <p>Fit a Bayesian Dirichlet regression model that optionally includes covariates to estimate
 effects of factor or continuous variables on proportions.</p>
     </div>
 
@@ -213,6 +213,15 @@ covariates are included this defaults to 1, but for models with single replicate
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list containing the fitted model and arguments and data used
+to fit the model. These include <code>model</code> (the fitted model object of class <code>stanfit</code>),
+<code>par_names</code> (the names of monitored parameters), <code>design_matrix</code> (the
+design matrix of covariates), <code>data_matrix</code> (the data matrix of responses),
+<code>overdispersion</code> (boolean, whether overdispersion was used),
+<code>overdispersion_prior</code> (the prior used for overdispersion),
+and <code>posterior_predict</code> (boolean, whether posterior prediction was done)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -224,8 +233,8 @@ covariates are included this defaults to 1, but for models with single replicate
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 4.7e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.47 seconds.
+#&gt; Chain 1: Gradient evaluation took 5.4e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.54 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -242,15 +251,15 @@ covariates are included this defaults to 1, but for models with single replicate
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.08409 seconds (Warm-up)
-#&gt; Chain 1:                0.070526 seconds (Sampling)
-#&gt; Chain 1:                0.154616 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.074082 seconds (Warm-up)
+#&gt; Chain 1:                0.051264 seconds (Sampling)
+#&gt; Chain 1:                0.125346 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 2.3e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.23 seconds.
+#&gt; Chain 2: Gradient evaluation took 1.6e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -267,15 +276,15 @@ covariates are included this defaults to 1, but for models with single replicate
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.079365 seconds (Warm-up)
-#&gt; Chain 2:                0.086137 seconds (Sampling)
-#&gt; Chain 2:                0.165502 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.057859 seconds (Warm-up)
+#&gt; Chain 2:                0.060739 seconds (Sampling)
+#&gt; Chain 2:                0.118598 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 2.1e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
+#&gt; Chain 3: Gradient evaluation took 2.9e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.29 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -292,9 +301,9 @@ covariates are included this defaults to 1, but for models with single replicate
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.079835 seconds (Warm-up)
-#&gt; Chain 3:                0.074554 seconds (Sampling)
-#&gt; Chain 3:                0.154389 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.059837 seconds (Warm-up)
+#&gt; Chain 3:                0.055183 seconds (Sampling)
+#&gt; Chain 3:                0.11502 seconds (Total)
 #&gt; Chain 3: </div><div class='input'>
 <span class='co'># fit a model with 1 factor</span>
 <span class='va'>design</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='st'>"y"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='st'>"fac"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"spring"</span>, <span class='st'>"spring"</span>, <span class='st'>"fall"</span><span class='op'>)</span><span class='op'>)</span>
@@ -302,8 +311,8 @@ covariates are included this defaults to 1, but for models with single replicate
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 2.8e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.28 seconds.
+#&gt; Chain 1: Gradient evaluation took 2.3e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.23 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -320,15 +329,15 @@ covariates are included this defaults to 1, but for models with single replicate
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.170436 seconds (Warm-up)
-#&gt; Chain 1:                0.182108 seconds (Sampling)
-#&gt; Chain 1:                0.352544 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.130575 seconds (Warm-up)
+#&gt; Chain 1:                0.122886 seconds (Sampling)
+#&gt; Chain 1:                0.253461 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 2.3e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.23 seconds.
+#&gt; Chain 2: Gradient evaluation took 1.7e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -345,15 +354,15 @@ covariates are included this defaults to 1, but for models with single replicate
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.170492 seconds (Warm-up)
-#&gt; Chain 2:                0.177229 seconds (Sampling)
-#&gt; Chain 2:                0.347721 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.130575 seconds (Warm-up)
+#&gt; Chain 2:                0.126915 seconds (Sampling)
+#&gt; Chain 2:                0.25749 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 2.6e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.26 seconds.
+#&gt; Chain 3: Gradient evaluation took 1.5e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.15 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -370,9 +379,9 @@ covariates are included this defaults to 1, but for models with single replicate
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.166076 seconds (Warm-up)
-#&gt; Chain 3:                0.175078 seconds (Sampling)
-#&gt; Chain 3:                0.341154 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.120932 seconds (Warm-up)
+#&gt; Chain 3:                0.124389 seconds (Sampling)
+#&gt; Chain 3:                0.245321 seconds (Total)
 #&gt; Chain 3: </div><div class='input'><span class='co'># }</span>
 
 </div></pre>

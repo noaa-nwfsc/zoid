@@ -156,6 +156,11 @@ for 95% intervals</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list containing the posterior summaries of estimated parameters, with
+element <code>mu</code> (the predicted values in normal space). For predictions
+in transformed space, or overdispersion, see <code><a href='get_pars.html'>zoid::get_pars</a></code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -167,8 +172,8 @@ for 95% intervals</p></td>
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 2.7e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.27 seconds.
+#&gt; Chain 1: Gradient evaluation took 3e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.3 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -185,15 +190,15 @@ for 95% intervals</p></td>
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.091712 seconds (Warm-up)
-#&gt; Chain 1:                0.074724 seconds (Sampling)
-#&gt; Chain 1:                0.166436 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.077166 seconds (Warm-up)
+#&gt; Chain 1:                0.057886 seconds (Sampling)
+#&gt; Chain 1:                0.135052 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 2.3e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.23 seconds.
+#&gt; Chain 2: Gradient evaluation took 1.7e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -210,15 +215,15 @@ for 95% intervals</p></td>
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.079365 seconds (Warm-up)
-#&gt; Chain 2:                0.089144 seconds (Sampling)
-#&gt; Chain 2:                0.168509 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.056784 seconds (Warm-up)
+#&gt; Chain 2:                0.074789 seconds (Sampling)
+#&gt; Chain 2:                0.131573 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 2.2e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.22 seconds.
+#&gt; Chain 3: Gradient evaluation took 2.4e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.24 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -235,9 +240,9 @@ for 95% intervals</p></td>
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.080855 seconds (Warm-up)
-#&gt; Chain 3:                0.078692 seconds (Sampling)
-#&gt; Chain 3:                0.159547 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.06165 seconds (Warm-up)
+#&gt; Chain 3:                0.056345 seconds (Sampling)
+#&gt; Chain 3:                0.117995 seconds (Total)
 #&gt; Chain 3: </div><div class='input'><span class='va'>p_hat</span> <span class='op'>&lt;-</span> <span class='fu'>get_fitted</span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 <span class='co'># }</span>
 
