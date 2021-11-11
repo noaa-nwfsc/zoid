@@ -27,7 +27,7 @@ Authors@R:
            role = c("aut"),
            email = "will.satterthwaite@noaa.gov",
            comment = c(ORCID = "0000-0002-0436-7390")))
-Description: This package fits trinomial mixture models to observed data, with option of including covariates.
+Description: Fits Dirichlet regression and zero-and-one inflated Dirichlet regression with Bayesian methods implemented in Stan. These models are sometimes referred to as trinomial mixture models; covariates and overdispersion can optionally be included.
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
