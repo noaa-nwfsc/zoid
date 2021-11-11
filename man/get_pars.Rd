@@ -17,7 +17,7 @@ A list containing the posterior summaries of estimated parameters. At minimum,
 this will include \code{p} (the estimated proportions) and \code{betas} (the predicted values in
 transformed space). For models with overdispersion, an extra
 element \code{phi} will also be returned, summarizing overdispersion. For predictions
-in normal space, see \code{\link{zoid::get_fitted}}
+in normal space, see \code{\link[=get_fitted]{get_fitted()}}
 }
 \description{
 Extract estimated parameters from fitted model.

@@ -8,7 +8,7 @@
 #' @export
 #' @return A list containing the posterior summaries of estimated parameters, with
 #' element `mu` (the predicted values in normal space). For predictions
-#' in transformed space, or overdispersion, see \code{\link{zoid::get_pars}}
+#' in transformed space, or overdispersion, see [get_pars()]
 #' @importFrom rstan extract
 #'
 #' @examples

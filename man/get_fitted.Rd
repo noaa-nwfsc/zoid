@@ -15,7 +15,7 @@ for 95\% intervals}
 \value{
 A list containing the posterior summaries of estimated parameters, with
 element \code{mu} (the predicted values in normal space). For predictions
-in transformed space, or overdispersion, see \code{\link{zoid::get_pars}}
+in transformed space, or overdispersion, see \code{\link[=get_pars]{get_pars()}}
 }
 \description{
 Extract point estimates of compositions from fitted model.

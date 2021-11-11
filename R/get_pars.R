@@ -10,7 +10,7 @@
 #' this will include `p` (the estimated proportions) and `betas` (the predicted values in
 #' transformed space). For models with overdispersion, an extra
 #' element `phi` will also be returned, summarizing overdispersion. For predictions
-#' in normal space, see \code{\link{zoid::get_fitted}}
+#' in normal space, see [get_fitted()]
 #' @importFrom rstan extract
 #'
 #' @examples

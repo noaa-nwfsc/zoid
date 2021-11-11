@@ -9,8 +9,8 @@
 #' @return A 3-element list consisting of `sd` (the approximate standard deviation
 #' in transformed space that gives a similar prior to that specified), `value` (the
 #' value of the root mean squared percent error function being minimized),
-#' and `convergence` (0 if convergence occcurred, error code from
-#' \code{\link{stats::optim}} otherwise)
+#' and `convergence` (0 if convergence occurred, error code from
+#' [optim()] otherwise)
 #' @examples
 #' \donttest{
 #' # fit model with 3 components / alpha = 1

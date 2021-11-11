@@ -19,8 +19,8 @@ fit_prior(n_bins, n_draws = 10000, target = 1/n_bins, iterations = 5)
 A 3-element list consisting of \code{sd} (the approximate standard deviation
 in transformed space that gives a similar prior to that specified), \code{value} (the
 value of the root mean squared percent error function being minimized),
-and \code{convergence} (0 if convergence occcurred, error code from
-\code{\link{stats::optim}} otherwise)
+and \code{convergence} (0 if convergence occurred, error code from
+\code{\link[=optim]{optim()}} otherwise)
 }
 \description{
 Find appropriate standard deviations for prior

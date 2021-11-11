@@ -162,7 +162,7 @@ for 95% intervals</p></td>
 this will include <code>p</code> (the estimated proportions) and <code>betas</code> (the predicted values in
 transformed space). For models with overdispersion, an extra
 element <code>phi</code> will also be returned, summarizing overdispersion. For predictions
-in normal space, see <code><a href='get_fitted.html'>zoid::get_fitted</a></code></p>
+in normal space, see <code><a href='get_fitted.html'>get_fitted()</a></code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -174,8 +174,8 @@ in normal space, see <code><a href='get_fitted.html'>zoid::get_fitted</a></code>
 </div><div class='output co'>#&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 2e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
+#&gt; Chain 1: Gradient evaluation took 2.2e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.22 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -192,15 +192,15 @@ in normal space, see <code><a href='get_fitted.html'>zoid::get_fitted</a></code>
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.066589 seconds (Warm-up)
-#&gt; Chain 1:                0.062051 seconds (Sampling)
-#&gt; Chain 1:                0.12864 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.072341 seconds (Warm-up)
+#&gt; Chain 1:                0.077513 seconds (Sampling)
+#&gt; Chain 1:                0.149854 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 1.6e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
+#&gt; Chain 2: Gradient evaluation took 2e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -217,15 +217,15 @@ in normal space, see <code><a href='get_fitted.html'>zoid::get_fitted</a></code>
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.05716 seconds (Warm-up)
-#&gt; Chain 2:                0.067509 seconds (Sampling)
-#&gt; Chain 2:                0.124669 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.076235 seconds (Warm-up)
+#&gt; Chain 2:                0.068754 seconds (Sampling)
+#&gt; Chain 2:                0.144989 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL 'dirichregmod' NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 1.9e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+#&gt; Chain 3: Gradient evaluation took 1.7e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -242,9 +242,9 @@ in normal space, see <code><a href='get_fitted.html'>zoid::get_fitted</a></code>
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.060441 seconds (Warm-up)
-#&gt; Chain 3:                0.053716 seconds (Sampling)
-#&gt; Chain 3:                0.114157 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.068169 seconds (Warm-up)
+#&gt; Chain 3:                0.06551 seconds (Sampling)
+#&gt; Chain 3:                0.133679 seconds (Total)
 #&gt; Chain 3: </div><div class='input'><span class='va'>p_hat</span> <span class='op'>&lt;-</span> <span class='fu'>get_pars</span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 <span class='co'># }</span>
 
