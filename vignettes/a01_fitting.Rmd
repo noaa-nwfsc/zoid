@@ -12,6 +12,12 @@ vignette: >
 ```{r set-knitr-options, cache=FALSE, echo=FALSE}
 library("knitr")
 opts_chunk$set(message = FALSE, warning=FALSE, fig.width = 5.5)
+build = "cran"
+if(build=="cran") {
+  mcmc_iter = 50
+} else {
+  mcmc_iter = 5000
+}
 ```
 
 Let's load the necessary packages:
@@ -100,7 +106,7 @@ We include several helper functions for processing output into more manageable d
 ```{r warning=FALSE, message=FALSE}
 fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix), 
                       chains=1,
-                      iter=5000,
+                      iter=mcmc_iter,
                       overdispersion = TRUE, refresh=0)
 
 fitted_vals = get_fitted(fit_1)

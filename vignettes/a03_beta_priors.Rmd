@@ -12,6 +12,14 @@ vignette: >
 ```{r set-knitr-options, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 library("knitr")
 opts_chunk$set(message = FALSE, warning=FALSE, fig.width = 5.5)
+build = "cran"
+if(build=="cran") {
+  draws=100
+  iter = 3
+} else {
+  draws=1000
+  iter = 10
+}
 ```
 
 Let's load the necessary packages:
@@ -32,7 +40,7 @@ A more familiar approach may be to work with Dirichlet priors. We can adjust the
 
 ```{r}
 set.seed(123)
-sd = fit_prior(n_bins = 8, n_draws = 1000, target = 1, iterations=10)
+sd = fit_prior(n_bins = 8, n_draws = draws, target = 1, iterations=iter)
 ```
 
 The `sd` object is a list that contains (1) the estimated standard deviation, (2) the value of the objective function at convergence, and (3) whether or not convergence occurred (anything other than 0 is problematic). The value of the standard deviation here in `sd$sd` is 1.200453.

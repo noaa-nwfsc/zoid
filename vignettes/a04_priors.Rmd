@@ -12,6 +12,14 @@ vignette: >
 ```{r set-knitr-options, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 library("knitr")
 opts_chunk$set(message = FALSE, warning=FALSE, fig.width = 5.5)
+build = "cran"
+if(build=="cran") {
+  length_out = 10
+  mcmc_iter = 50
+} else {
+  length_out = 4
+  mcmc_iter = 5000
+}
 ```
 
 Let's load the necessary packages:
@@ -43,7 +51,7 @@ fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
                       overdispersion_sd = 5,
                       chains=1,
-                      iter=2000, refresh=0)
+                      iter=mcmc_iter, refresh=0)
 ```
 
 Now we can compare the prior and posterior distributions; because these are skewed, we'll show them in log-space. 
@@ -62,13 +70,13 @@ hist(log(rstan::extract(fit_1$model,"phi")$phi),breaks=seq(-20,20,length.out=100
 Next we can try re-fitting the model with a lot more informative (smaller) value of $\sigma$. We can calculate the percent overlap across each iteration to quantify similarity between prior and posterior.
 
 ```{r results="hide"}
-df = data.frame("sd"=exp(seq(log(0.001),log(0.1),length.out=10)),overlap=0)
+df = data.frame("sd"=exp(seq(log(0.001),log(0.1),length.out=length_out)),overlap=0)
 for(i in 1:nrow(df)) {
   fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
                       overdispersion_sd = df$sd[i],
                       chains=1,
-                      iter=2000, refresh=0)
+                      iter=mcmc_iter, refresh=0)
   df$overlap[i] = length(which(fit_1$overdispersion_prior < max(rstan::extract(fit_1$model,"phi")$phi))) / length(fit_1$overdispersion_prior)
 }
 ```
@@ -86,13 +94,13 @@ data_matrix = data_matrix / 1000
 Now, we repeat the sensitivity as a function of the prior scale $\sigma$.
 
 ```{r results="hide"}
-df = data.frame("sd"=exp(seq(log(0.001),log(20),length.out=10)),overlap=0)
+df = data.frame("sd"=exp(seq(log(0.001),log(20),length.out=length_out)),overlap=0)
 for(i in 1:nrow(df)) {
   fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
                       overdispersion_sd = df$sd[i],
                       chains=1,
-                      iter=2000, refresh=0)
+                      iter=mcmc_iter, refresh=0)
   df$overlap[i] = length(which(fit_1$overdispersion_prior < max(rstan::extract(fit_1$model,"phi")$phi))) / length(fit_1$overdispersion_prior)
 }
 ```
@@ -113,12 +121,12 @@ fit_1 <- fit_zoid(data_matrix = as.matrix(data_matrix),
                       overdispersion = TRUE,
                       overdispersion_sd = 5,
                       chains=1,
-                      iter=2000, refresh=0)
+                      iter=mcmc_iter, refresh=0)
 fit_2 <- fit_zoid(data_matrix = as.matrix(data_matrix)/1000,
                       overdispersion = TRUE,
                       overdispersion_sd = 5,
                       chains=1,
-                      iter=2000, refresh=0)
+                      iter=mcmc_iter, refresh=0)
 ```
 
 ```{r}
