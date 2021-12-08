@@ -3,7 +3,10 @@ data { // set up to run a single instance (1 stock) of GSI observations
   int N_bins; // number of bins, dimensions of X
   matrix[N_samples, N_bins] X; // proportions
   int N_covar; // number of covariates in design matrix X
-  matrix[N_samples, N_covar] design_X;
+  matrix[N_samples, N_covar] design_X_mu;
+  matrix[N_samples, N_covar] design_X_sigma;
+  matrix[N_samples, N_covar] design_X_zero;
+  matrix[N_samples, N_covar] design_X_ones;
   int overdisp; // whether or not to include overdispersion term
   int postpred; // whether or not to include posterior predictive samples
   real prior_sd;
@@ -60,19 +63,19 @@ transformed data {
 }
 parameters {
   vector[overdisp] phi_inv; // overdispersion
-  matrix[N_bins-1,N_covar] beta_raw;
-  matrix[N_bins-1,N_covar] alpha_raw;
-  matrix[N_bins-1,N_covar] delta_raw;
-  matrix[N_bins-1,N_covar] eta_raw;
+  matrix[N_bins-1,N_covar] beta_raw_mu;
+  matrix[N_bins-1,N_covar] beta_raw_sigma;
+  matrix[N_bins-1,N_covar] beta_raw_ones;
+  matrix[N_bins-1,N_covar] beta_raw_zero;
 }
 transformed parameters {
   real phi;
   matrix<lower=0,upper=1>[N_samples, N_bins] p_zero; // probability of 0 for each cell
   matrix<lower=0,upper=1>[N_samples, N_bins] p_one; // probability of 1 for each cell
-  matrix[N_bins,N_covar] beta; // coefficients
-  matrix[N_bins,N_covar] alpha; // coefficients
-  matrix[N_bins,N_covar] delta; // coefficients
-  matrix[N_bins,N_covar] eta; // coefficients
+  matrix[N_bins,N_covar] beta_mu; // coefficients
+  matrix[N_bins,N_covar] beta_sigma; // coefficients
+  matrix[N_bins,N_covar] beta_ones; // coefficients
+  matrix[N_bins,N_covar] beta_zero; // coefficients
 
   matrix<lower=0,upper=1>[N_samples,N_bins] mu; // estimates, in normal space
   matrix<lower=0,upper=1>[N_samples,N_bins] sigma; // estimates, in normal space
@@ -82,43 +85,42 @@ transformed parameters {
   phi = 1;
   if(overdisp==1) {phi = 1/phi_inv[1];}
 
-
   for (l in 1:N_covar) {
-    beta[N_bins,l] = 0.0;
-    alpha[N_bins,l] = 0.0;
-    delta[N_bins,l] = 0.0;
-    eta[N_bins,l] = 0.0;
+    beta_mu[N_bins,l] = 0.0;
+    beta_sigma[N_bins,l] = 0.0;
+    beta_ones[N_bins,l] = 0.0;
+    beta_zero[N_bins,l] = 0.0;
   }
   for (k in 1:(N_bins-1)) {
     for (l in 1:N_covar) {
-      beta[k,l] = beta_raw[k,l];
-      alpha[k,l] = alpha_raw[k,l];
-      delta[k,l] = delta_raw[k,l];
-      eta[k,l] = eta_raw[k,l];
+      beta_mu[k,l] = beta_raw_mu[k,l];
+      beta_sigma[k,l] = beta_raw_sigma[k,l];
+      beta_ones[k,l] = beta_raw_ones[k,l];
+      beta_zero[k,l] = beta_raw_zero[k,l];
     }
   }
 
   // from betas, we can calculate sample-specific mu
   for (n in 1:N_samples) {
-    vector[N_bins] logits;
-    vector[N_bins] logits_alpha;
-    vector[N_bins] logits_delta;
-    vector[N_bins] logits_eta;
+    vector[N_bins] logits_mu;
+    vector[N_bins] logits_sigma;
+    vector[N_bins] logits_ones;
+    vector[N_bins] logits_zero;
     for (m in 1:N_bins){
-      logits[m] = design_X[n,] * transpose(beta[m,]);
-      logits_alpha[m] = design_X[n,] * transpose(alpha[m,]);
-      logits_delta[m] = design_X[n,] * transpose(delta[m,]);
-      logits_eta[m] = design_X[n,] * transpose(eta[m,]);
+      logits_mu[m] = design_X_mu[n,] * transpose(beta_mu[m,]);
+      logits_zero[m] = design_X_zero[n,] * transpose(beta_zero[m,]);
+      logits_ones[m] = design_X_ones[n,] * transpose(beta_ones[m,]);
+      logits_sigma[m] = design_X_sigma[n,] * transpose(beta_sigma[m,]);
     }
-    logits = softmax(logits);
-    logits_alpha = softmax(logits_alpha);
-    logits_delta = softmax(logits_delta);
-    logits_eta = softmax(logits_eta);
+    logits_mu = softmax(logits_mu);
+    logits_ones = softmax(logits_ones);
+    logits_zero = softmax(logits_zero);
+    //logits_eta = softmax(logits_eta);
     for(m in 1:N_bins) {
-      mu[n,m] = logits[m];
-      p_zero[n,m] = logits_alpha[m];
-      p_one[n,m] = logits_delta[m];
-      sigma[n,m] = logits_eta[m];
+      mu[n,m] = logits_mu[m];
+      p_zero[n,m] = logits_zero[m];
+      p_one[n,m] = logits_ones[m];
+      sigma[n,m] = exp(logits_sigma[m]);
       sigma2[n,m] = sigma[n,m]*sigma[n,m];
     }
   }
@@ -134,10 +136,10 @@ model {
   // priors for fixed effects for covariate factors
   for(i in 1:N_covar) {
     for(j in 1:(N_bins-1)) {
-      beta_raw[j,i] ~ normal(0,prior_sd);
-      alpha_raw[j,i] ~ normal(0,prior_sd);
-      delta_raw[j,i] ~ normal(0,prior_sd);
-      eta_raw[j,i] ~ normal(0,prior_sd);
+      beta_raw_mu[j,i] ~ normal(0,prior_sd);
+      beta_raw_sigma[j,i] ~ normal(0,prior_sd);
+      beta_raw_ones[j,i] ~ normal(0,prior_sd);
+      beta_raw_zero[j,i] ~ normal(0,prior_sd);
     }
   }
 
