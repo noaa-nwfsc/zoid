@@ -61,42 +61,65 @@ transformed data {
 parameters {
   vector[overdisp] phi_inv; // overdispersion
   matrix[N_bins-1,N_covar] beta_raw;
+  matrix[N_bins-1,N_covar] alpha_raw;
+  matrix[N_bins-1,N_covar] delta_raw;
+  matrix[N_bins-1,N_covar] eta_raw;
 }
 transformed parameters {
   real phi;
   matrix<lower=0,upper=1>[N_samples, N_bins] p_zero; // probability of 0 for each cell
   matrix<lower=0,upper=1>[N_samples, N_bins] p_one; // probability of 1 for each cell
   matrix[N_bins,N_covar] beta; // coefficients
+  matrix[N_bins,N_covar] alpha; // coefficients
+  matrix[N_bins,N_covar] delta; // coefficients
+  matrix[N_bins,N_covar] eta; // coefficients
+
   matrix<lower=0,upper=1>[N_samples,N_bins] mu; // estimates, in normal space
+  matrix<lower=0,upper=1>[N_samples,N_bins] sigma; // estimates, in normal space
+  matrix<lower=0,upper=1>[N_samples,N_bins] sigma2; // estimates, in normal space
+
   // phi is dynamic
   phi = 1;
   if(overdisp==1) {phi = 1/phi_inv[1];}
 
+
   for (l in 1:N_covar) {
     beta[N_bins,l] = 0.0;
+    alpha[N_bins,l] = 0.0;
+    delta[N_bins,l] = 0.0;
+    eta[N_bins,l] = 0.0;
   }
   for (k in 1:(N_bins-1)) {
     for (l in 1:N_covar) {
       beta[k,l] = beta_raw[k,l];
+      alpha[k,l] = alpha_raw[k,l];
+      delta[k,l] = delta_raw[k,l];
+      eta[k,l] = eta_raw[k,l];
     }
   }
 
   // from betas, we can calculate sample-specific mu
   for (n in 1:N_samples) {
     vector[N_bins] logits;
+    vector[N_bins] logits_alpha;
+    vector[N_bins] logits_delta;
+    vector[N_bins] logits_eta;
     for (m in 1:N_bins){
       logits[m] = design_X[n,] * transpose(beta[m,]);
+      logits_alpha[m] = design_X[n,] * transpose(alpha[m,]);
+      logits_delta[m] = design_X[n,] * transpose(delta[m,]);
+      logits_eta[m] = design_X[n,] * transpose(eta[m,]);
     }
     logits = softmax(logits);
+    logits_alpha = softmax(logits_alpha);
+    logits_delta = softmax(logits_delta);
+    logits_eta = softmax(logits_eta);
     for(m in 1:N_bins) {
       mu[n,m] = logits[m];
-    }
-  }
-
-  for(i in 1:N_samples) {
-    for(j in 1:N_bins) {
-      p_zero[i,j] = (1-mu[i,j])^(ESS[i]*phi);
-      p_one[i,j] = mu[i,j]^(ESS[i]*phi);
+      p_zero[n,m] = logits_alpha[m];
+      p_one[n,m] = logits_delta[m];
+      sigma[n,m] = logits_eta[m];
+      sigma2[n,m] = sigma[n,m]*sigma[n,m];
     }
   }
 
@@ -104,7 +127,7 @@ transformed parameters {
 model {
   real alpha_temp; // temp for extended beta
   real beta_temp; // temp for extended beta
-
+  real eta_temp; // temp for extended beta
   if(overdisp==1) {
     phi_inv ~ cauchy(0,5);
   }
@@ -112,6 +135,9 @@ model {
   for(i in 1:N_covar) {
     for(j in 1:(N_bins-1)) {
       beta_raw[j,i] ~ normal(0,prior_sd);
+      alpha_raw[j,i] ~ normal(0,prior_sd);
+      delta_raw[j,i] ~ normal(0,prior_sd);
+      eta_raw[j,i] ~ normal(0,prior_sd);
     }
   }
 
@@ -122,8 +148,9 @@ model {
       target += bernoulli_lpmf(is_one[i,j]| p_one[i,j]);
 
       if(is_proportion[i,j]==1) {
-        alpha_temp = mu[i,j]*ESS[i]*phi;
-        beta_temp = (1-mu[i,j])*ESS[i]*phi;
+        eta_temp = ((1 - mu[i,j])/sigma2[i,j] - 1/mu[i,j]);
+        alpha_temp = eta_temp * mu[i,j] * mu[i,j];
+        beta_temp = eta_temp * mu[i,j] * (1 - mu[i,j]);
         // beta lpmf for 3-parameter model
         target += log(1 - p_zero[i,j] - p_one[i,j]) + (alpha_temp-1)*logX[i,j] + (beta_temp-1)*logNX[i,j] - (alpha_temp+beta_temp-1)*log(ESS[i]) - lbeta(alpha_temp,beta_temp);
       }
@@ -134,6 +161,7 @@ model {
 generated quantities {
   real alpha_temp;
   real beta_temp;
+  real eta_temp;
   vector[N_bins] log_lik[N_samples]; // log likelihood
   vector[N_bins*postpred] ynew[N_samples*postpred]; // new data, posterior predictive distribution
   int newy_is_zero[N_samples*postpred,N_bins*postpred];
@@ -146,8 +174,11 @@ generated quantities {
       log_lik[i,j] += bernoulli_lpmf(is_zero[i,j]| p_zero[i,j]);
       log_lik[i,j] += bernoulli_lpmf(is_one[i,j]| p_one[i,j]);
       if(is_proportion[i,j]==1) {
-        alpha_temp = mu[i,j]*ESS[i]*phi;
-        beta_temp = (1-mu[i,j])*ESS[i]*phi;
+        //alpha_temp = mu[i,j]*ESS[i]*phi;
+        //beta_temp = (1-mu[i,j])*ESS[i]*phi;
+        eta_temp = ((1 - mu[i,j])/sigma2[i,j] - 1/mu[i,j]);
+        alpha_temp = eta_temp * mu[i,j] * mu[i,j] * (ESS[i]*phi);
+        beta_temp = eta_temp * mu[i,j] * (1 - mu[i,j]) * (ESS[i]*phi);
         log_lik[i,j] += log(1 - p_zero[i,j] - p_one[i,j]) + (alpha_temp-1)*logX[i,j] + (beta_temp-1)*logNX[i,j] - (alpha_temp+beta_temp-1)*log(ESS[i]) - lbeta(alpha_temp,beta_temp);
       }
 
@@ -159,8 +190,9 @@ generated quantities {
         if(newy_is_one[i,j]==1) ynew[i,j] = 1.0;
         newy_is_proportion = newy_is_zero[i,j] + newy_is_one[i,j];
         if(newy_is_proportion==0) {
-          alpha_temp = mu[i,j]*ESS[i];
-          beta_temp = (1-mu[i,j])*ESS[i];
+          eta_temp = ((1 - mu[i,j])/sigma2[i,j] - 1/mu[i,j]);
+          alpha_temp = eta_temp * mu[i,j] * mu[i,j] * (ESS[i]*phi);
+          beta_temp = eta_temp * mu[i,j] * (1 - mu[i,j]) * (ESS[i]*phi);
           ynew[i,j] = beta_rng(alpha_temp, beta_temp);
           ynew[i,j] = ynew[i,j]*ESS[i]; // stretch to N
         }
