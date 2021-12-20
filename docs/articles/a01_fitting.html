@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">zoid</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -86,13 +86,12 @@
 
       
 
-      </header><script src="a01_fitting_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><script src="a01_fitting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting models with zoid</h1>
-                        <h4 class="author"></h4>
             
-            <h4 class="date">2021-11-11</h4>
+            <h4 class="date">2021-12-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/zoid/blob/master/vignettes/a01_fitting.Rmd"><code>vignettes/a01_fitting.Rmd</code></a></small>
       <div class="hidden name"><code>a01_fitting.Rmd</code></div>
@@ -114,8 +113,8 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span></code></pre></div>
 <p>We need to split the dataset into 2 matrices, one representing the design matrix for the observations (‘Year’ and ‘Season’) and the other representing the data matrix of observed biomass per sample - prey item. If all rows are considered replicate observations, there’s no need to create a design matrix - but we can test for the effects of Season and Year.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">design_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">]</span>
-<span class="va">data_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span class="va">design_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">]</span>
+<span class="va">data_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">]</span></code></pre></div>
 <div id="overdispersion-or-not" class="section level3">
 <h3 class="hasAnchor">
 <a href="#overdispersion-or-not" class="anchor"></a>Overdispersion or not?</h3>
@@ -172,29 +171,29 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>, 
                       chains<span class="op">=</span><span class="fl">1</span>,
-                      iter<span class="op">=</span><span class="fl">5000</span>,
+                      iter<span class="op">=</span><span class="va">mcmc_iter</span>,
                       overdispersion <span class="op">=</span> <span class="cn">TRUE</span>, refresh<span class="op">=</span><span class="fl">0</span><span class="op">)</span>
 
 <span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code>##   obs group       mean     median        lo       hi
-## 1   1     1 0.03308873 0.03305587 0.0310118 0.035316
-## 2   2     1 0.03308873 0.03305587 0.0310118 0.035316
-## 3   3     1 0.03308873 0.03305587 0.0310118 0.035316
-## 4   4     1 0.03308873 0.03305587 0.0310118 0.035316
-## 5   5     1 0.03308873 0.03305587 0.0310118 0.035316
-## 6   6     1 0.03308873 0.03305587 0.0310118 0.035316</code></pre>
+<pre><code>##   obs group       mean     median         lo         hi
+## 1   1     1 0.03197133 0.03193913 0.03044311 0.03387786
+## 2   2     1 0.03197133 0.03193913 0.03044311 0.03387786
+## 3   3     1 0.03197133 0.03193913 0.03044311 0.03387786
+## 4   4     1 0.03197133 0.03193913 0.03044311 0.03387786
+## 5   5     1 0.03197133 0.03193913 0.03044311 0.03387786
+## 6   6     1 0.03197133 0.03193913 0.03044311 0.03387786</code></pre>
 <p>Second, we can return all parameters (including betas for coefficients and <span class="math inline">\(\phi\)</span>, the overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
-<pre><code>##   group cov         par         mean       median          lo         hi
-## 1     1   1 (Intercept) -0.008312222 -0.008754579 -0.07418162 0.05715234
-## 2     2   1 (Intercept) -0.010821502 -0.011267070 -0.07537373 0.05485009
-## 3     3   1 (Intercept) -0.009049603 -0.008669563 -0.07345920 0.05468629
-## 4     4   1 (Intercept) -0.010734660 -0.010030838 -0.07540767 0.05273312
-## 5     5   1 (Intercept) -0.010902734 -0.010631313 -0.07466238 0.05345857
-## 6     6   1 (Intercept) -0.008920750 -0.009556451 -0.07438643 0.05638353</code></pre>
+<pre><code>##   group cov         par        mean      median          lo           hi
+## 1     1   1 (Intercept) -0.04368421 -0.04646758 -0.08891250  0.014108714
+## 2     2   1 (Intercept) -0.07433725 -0.06971988 -0.12645565 -0.003783653
+## 3     3   1 (Intercept) -0.05184756 -0.04696763 -0.12158394  0.019413601
+## 4     4   1 (Intercept) -0.04342269 -0.04164755 -0.09606169  0.015787312
+## 5     5   1 (Intercept) -0.03463518 -0.03174559 -0.11281782  0.015258523
+## 6     6   1 (Intercept) -0.09543316 -0.09848694 -0.14291804 -0.033443162</code></pre>
 </div>
 </div>
   </div>

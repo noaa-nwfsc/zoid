@@ -2,7 +2,7 @@
 % Please edit documentation in R/fitting.R
 \name{fit_zoid}
 \alias{fit_zoid}
-\title{Fit a Bayesian Dirichlet regression model, allowing for zero-and-one inflation, covariates, and overdispersion}
+\title{Fit a trinomial mixture model with Stan}
 \usage{
 fit_zoid(
   formula = NULL,
@@ -47,17 +47,8 @@ covariates are included this defaults to 1, but for models with single replicate
 
 \item{...}{Any other arguments to pass to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
-\value{
-A list containing the fitted model and arguments and data used
-to fit the model. These include \code{model} (the fitted model object of class \code{stanfit}),
-\code{par_names} (the names of monitored parameters), \code{design_matrix} (the
-design matrix of covariates), \code{data_matrix} (the data matrix of responses),
-\code{overdispersion} (boolean, whether overdispersion was used),
-\code{overdispersion_prior} (the prior used for overdispersion),
-and \code{posterior_predict} (boolean, whether posterior prediction was done)
-}
 \description{
-Fit a Bayesian Dirichlet regression model that optionally includes covariates to estimate
+Fit a trinomial mixture model that optionally includes covariates to estimate
 effects of factor or continuous variables on proportions.
 }
 \examples{

@@ -44,75 +44,60 @@ broken_stick <- function(n_obs = 1000,
     n_obs, n_groups,
     byrow = T
   )
-
   X_mean <- X_mean_prob * tot_n
   X_var <- X_var_prob * tot_n^2
 
-  rand_unif <- matrix(runif(length(X_mean)), n_obs, n_groups)
-  X_obs <- rand_unif * 0
-  X_indicator <- X_obs
-
-  # Scale out the sample size to move to proportion space.
-  # calculate the probability of 0 and probability of 1 first
-  p_zero <- (1 - X_mean_prob)^ess
-  p_one <- X_mean_prob^ess
-
-  # Unconditional mean calculation
-  UNCOND.MEAN <- p_one[1, ] * tot_n + (1 - p_zero[1, ] - p_one[1, ]) * X_mean[1, ]
-  COND.MEAN <- X_mean[1, ]
-
-  # Method of moments to calculated alpha from the dirichlet
-  X_alpha <- (X_mean_prob) * ((X_mean_prob * (1 - X_mean_prob) / X_var_prob) - 1)
-  X_alpha_mod <- X_alpha * 0
-  # Calculate the betas for the marginal Beta distribution for potential later use
-  X_beta <- (1 - X_mean_prob) * ((X_mean_prob * (1 - X_mean_prob) / X_var_prob) - 1)
-
-  mu_vals <- X_mean * 0 # These will be independent Beta draws, conditioned on being non-zero.
-  q_vals <- mu_vals # These will be equivalent to dirichlet draws (mu_vals modified by stick-breaking algorithm)
-
-  for (i in 1:n_obs) {
-    BREAK <- "FALSE"
-    for (j in 1:(n_groups - 1)) { # Loop over stocks for the Multinomial component
-      mu_vals[i, j] <- rbeta(1, X_alpha[i, j], sum(X_alpha[i, (j + 1):n_groups]))
-      if (j == 1) {
-        q_vals[i, j] <- mu_vals[i, j]
-      } else if (j > 1) {
-        q_vals[i, j] <- prod(1 - mu_vals[i, (1:j - 1)]) * mu_vals[i, j]
+  # Simulate occurrence of 0s, 1s
+  X_obs_0 <- matrix(NA, n_obs, n_groups) #1 indicates that the observation is a zero
+  X_obs_1 <- matrix(NA, n_obs, n_groups)
+  for(i in 1:n_obs){
+    BREAK = "FALSE"
+    repeat{
+      for(j in 1:n_groups){
+        X_obs_0[i,j] <- rbinom(1,1,(1-p[j])^ess)
       }
+      if(sum(X_obs_0[i,])<n_groups){break}
     }
-    q_vals[i, n_groups] <- 1 - sum(q_vals[i, (1:n_groups - 1)])
-    # X_indicator[i,] <- rmultinom(1,tot_n,q_vals[i,])
+    for(j in 1:n_groups){
+      X_obs_1[i,j] <- ifelse(X_obs_0[i,j]==0 & sum(X_obs_0[i,])==(n_groups-1),1,0)
+    }
   }
 
-  # Calculate the quantile of each of the q_vals from their respective marginal Betas
-  X_cdf <- pbeta(q_vals, X_alpha, X_beta)
-  X_indicator <- X_cdf - p_zero
-  X_indicator[X_indicator < 0] <- 0
-  X_indicator[X_indicator > 0] <- 1
-  q_vals <- q_vals * 0
-  mu_vals <- mu_vals * 0
+  # Simulate proportions
+  X_indicator <- matrix(NA,n_obs,n_groups)
+  X_indicator[X_obs_0 == 0] <- 1
+  X_indicator[X_obs_0 == 1] <- 0
 
-  for (i in 1:n_obs) {
-    if (BREAK == "FALSE") {
-      X_alpha_mod[i, ] <- X_alpha[i, ] * X_indicator[i, ]
-      for (j in 1:(n_groups - 1)) { # Loop over stocks for dirichlet component
-        if (j == 1) {
-          if (X_alpha_mod[i, j] > 0) {
-            mu_vals[i, j] <- rbeta(1, X_alpha_mod[i, j], sum(X_alpha_mod[i, (j + 1):n_groups]))
-            q_vals[i, j] <- mu_vals[i, j]
+  X_alpha <- (X_mean_prob) * ((X_mean_prob * (1-X_mean_prob)/ X_var_prob) - 1)
+  X_alpha_mod <- X_alpha * 0
+
+  mu_vals <- X_mean * 0 # These will be independent Beta draws, conditioned on being non-zero.
+  q_vals <- mu_vals     # These will be equivalent to dirichlet draws (mu_vals modified by stick-breaking algorithm)
+
+  X_obs <- X_indicator*0
+
+  for(i in 1:n_obs){
+    if(BREAK == "FALSE"){
+      X_alpha_mod[i,] <- X_alpha[i,] * X_indicator[i,]
+      for(j in 1:(n_groups-1)){ # Loop over stocks for dirichlet component
+        if(j==1){
+          if(X_alpha_mod[i,j]>0){
+            mu_vals[i,j] <- rbeta(1,X_alpha_mod[i,j],sum(X_alpha_mod[i,(j+1):n_groups]))
+            q_vals[i,j] = mu_vals[i,j]
           }
-        } else if (j > 1) {
-          if (X_alpha_mod[i, j] > 0) {
-            mu_vals[i, j] <- rbeta(1, X_alpha_mod[i, j], sum(X_alpha_mod[i, (j + 1):n_groups]))
-            q_vals[i, j] <- prod(1 - mu_vals[i, (1:j - 1)]) * mu_vals[i, j]
+        }else if(j>1 ){
+          if(X_alpha_mod[i,j]>0){
+            mu_vals[i,j] <- rbeta(1,X_alpha_mod[i,j],sum(X_alpha_mod[i,(j+1):n_groups]))
+            q_vals[i,j] <- prod(1 - mu_vals[i,(1:j-1)]) * mu_vals[i,j]
           }
         }
       }
-      if (X_alpha_mod[i, n_groups] > 0) {
-        q_vals[i, n_groups] <- 1 - sum(q_vals[i, (1:n_groups - 1)])
+      if(X_alpha_mod[i,n_groups]>0){
+        q_vals[i,n_groups] <- 1 - sum(q_vals[i,(1:n_groups-1)])
       }
-      X_obs[i, ] <- q_vals[i, ] * (tot_n)
+      X_obs[i,] <- q_vals[i,] * (tot_n)
     }
   }
+
   return(list(X_obs = X_obs, p = p))
 }

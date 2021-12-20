@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">zoid</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -86,13 +86,12 @@
 
       
 
-      </header><script src="a03_beta_priors_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><script src="a03_beta_priors_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Priors for compositions</h1>
-                        <h4 class="author"></h4>
             
-            <h4 class="date">2021-11-11</h4>
+            <h4 class="date">2021-12-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/zoid/blob/master/vignettes/a03_beta_priors.Rmd"><code>vignettes/a03_beta_priors.Rmd</code></a></small>
       <div class="hidden name"><code>a03_beta_priors.Rmd</code></div>
@@ -113,7 +112,7 @@
 <p>A more familiar approach may be to work with Dirichlet priors. We can adjust the standard deviation in our Normal priors to match the Dirichlet. The helper function for this uses <code>optim</code> to minimize the RMSPE between the observed and target values. For example, if we had 8 bins and wanted to find the Dirichlet prior that would correspond to hyperparamters <span class="math inline">\((\alpha)=1\)</span>, we could call the <code>fit_prior</code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="va">sd</span> <span class="op">=</span> <span class="fu"><a href="../reference/fit_prior.html">fit_prior</a></span><span class="op">(</span>n_bins <span class="op">=</span> <span class="fl">8</span>, n_draws <span class="op">=</span> <span class="fl">1000</span>, target <span class="op">=</span> <span class="fl">1</span>, iterations<span class="op">=</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<span class="va">sd</span> <span class="op">=</span> <span class="fu"><a href="../reference/fit_prior.html">fit_prior</a></span><span class="op">(</span>n_bins <span class="op">=</span> <span class="fl">8</span>, n_draws <span class="op">=</span> <span class="va">draws</span>, target <span class="op">=</span> <span class="fl">1</span>, iterations<span class="op">=</span><span class="va">iter</span><span class="op">)</span></code></pre></div>
 <p>The <code>sd</code> object is a list that contains (1) the estimated standard deviation, (2) the value of the objective function at convergence, and (3) whether or not convergence occurred (anything other than 0 is problematic). The value of the standard deviation here in <code>sd$sd</code> is 1.200453.</p>
 <p>So in this case, a standard deviation of ~ 1.20 yields a prior equivalent to a <span class="math inline">\(\sim Dirichlet(1)\)</span> prior. This new value can then be entered into our model with the <code>prior_sd</code> argument,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
