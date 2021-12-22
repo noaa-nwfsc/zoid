@@ -56,11 +56,11 @@ transformed data {
 
 }
 parameters {
-  vector[overdisp] phi_inv; // overdispersion
+  vector<lower=0>[overdisp] phi_inv; // overdispersion
   matrix[N_bins-1,N_covar] beta_raw;
 }
 transformed parameters {
-  real phi;
+  real<lower=0> phi;
   matrix<lower=0,upper=1>[N_samples, N_bins] p_zero; // probability of 0 for each cell
   matrix<lower=0,upper=1>[N_samples, N_bins] p_one; // probability of 1 for each cell
   matrix[N_bins,N_covar] beta; // coefficients
@@ -68,7 +68,6 @@ transformed parameters {
   // phi is dynamic
   phi = 1;
   if(overdisp==1) {phi = 1/phi_inv[1];}
-
   for (l in 1:N_covar) {
     beta[N_bins,l] = 0.0;
   }
