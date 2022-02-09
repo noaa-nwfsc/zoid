@@ -10,6 +10,7 @@
 #' element `mu` (the predicted values in normal space). For predictions
 #' in transformed space, or overdispersion, see [get_pars()]
 #' @importFrom rstan extract
+#' @importFrom stats median quantile
 #'
 #' @examples
 #' \donttest{

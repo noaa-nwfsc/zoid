@@ -12,6 +12,7 @@
 #' element `phi` will also be returned, summarizing overdispersion. For predictions
 #' in normal space, see [get_fitted()]
 #' @importFrom rstan extract
+#' @importFrom stats median quantile
 #'
 #' @examples
 #' \donttest{

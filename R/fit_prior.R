@@ -5,7 +5,7 @@
 #' @param target The goal of the specified prior, e.g. 1 or 1/n_bins
 #' @param iterations to try, to ensure robust solution. Defaults to 5
 #' @export
-#' @importFrom stats optim
+#' @importFrom stats optim runif
 #' @return A 3-element list consisting of `sd` (the approximate standard deviation
 #' in transformed space that gives a similar prior to that specified), `value` (the
 #' value of the root mean squared percent error function being minimized),
