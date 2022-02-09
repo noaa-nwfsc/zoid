@@ -13,7 +13,7 @@
 #' 2nd element is the underlying vector of proportions `p` used to generate the data
 #' @export
 #' @importFrom gtools rdirichlet
-#' @importFrom stats median pbeta qbeta quantile rbeta runif
+#' @importFrom stats rbeta rbinom
 #'
 #' @examples
 #' \donttest{
