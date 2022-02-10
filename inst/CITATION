@@ -4,11 +4,12 @@ year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
 bibentry(bibtype = "Manual",
-         title = "{zoid}: Bayesian zero-and-one inflated Dirichlet regression modelling for compostional data",
+         title = "{zoid}: Bayesian zero-and-one inflated Dirichlet regression modelling for compositional data",
          author = c(person("Eric J.", "Ward"),
                     person("Alexander J.", "Jensen"),
                     person("Ryan P.", "Kelly"),
                     person("Andrew O.", "Shelton"),
+                    person("Eric A.", "Anderson"),
                     person("William H.", "Satterthwaite")
                     ),
          year = year,
