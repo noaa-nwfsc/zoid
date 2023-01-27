@@ -90,7 +90,7 @@ fit_zoid <- function(formula = NULL,
   pars <- c("beta", "log_lik", "mu")
   if (overdispersion == TRUE) pars <- c(pars, "phi")
   if (posterior_predict == TRUE) pars <- c(pars, "ynew")
-  if (moment_match == TRUE) pars <- c(pars, "phi_inv", "raw_beta", "p_zero", "p_one")
+  if (moment_match == TRUE) pars <- c(pars, "phi_inv", "beta_raw", "p_zero", "p_one")
   sampling_args <- list(
     object = stanmodels$dirichregmod,
     chains = chains,
