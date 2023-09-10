@@ -4,15 +4,15 @@ data { // set up to run a single instance (1 stock) of GSI observations
   matrix[N_samples, N_bins] X; // proportions
   int N_covar; // number of covariates in design matrix X
   matrix[N_samples, N_covar] design_X;
-  int prod_idx[N_bins,N_bins-1];
+  array[N_bins,N_bins-1] int prod_idx;
   int overdisp; // whether or not to include overdispersion term
   int postpred; // whether or not to include posterior predictive samples
   real prior_sd;
 }
 transformed data {
-  int is_zero[N_samples,N_bins]; // indicator for data being 1
-  //int is_one[N_samples,N_bins]; // indicator for data being 0
-  int is_proportion[N_samples,N_bins]; // indicator which elements to estimate
+  array[N_samples,N_bins] int is_zero; // indicator for data being 1
+  //array[N_samples,N_bins] int is_one; // indicator for data being 0
+  array[N_samples,N_bins] int is_proportion; // indicator which elements to estimate
   matrix[N_samples, N_bins] logX; // log proportions
   matrix[N_samples, N_bins] logNX; // log proportions
   vector[N_samples] ESS;
@@ -134,10 +134,10 @@ model {
 generated quantities {
   real alpha_temp;
   real beta_temp;
-  vector[N_bins] log_lik[N_samples]; // log likelihood
-  vector[N_bins*postpred] ynew[N_samples*postpred]; // new data, posterior predictive distribution
-  int newy_is_zero[N_samples*postpred,N_bins*postpred];
-  int newy_is_one[N_samples*postpred,N_bins*postpred];
+  array[N_samples] vector[N_bins] log_lik; // log likelihood
+  array[N_samples*postpred] vector[N_bins*postpred] ynew; // new data, posterior predictive distribution
+  array[N_samples*postpred,N_bins*postpred] int newy_is_zero;
+  array[N_samples*postpred,N_bins*postpred] int newy_is_one;
   int newy_is_proportion;
 
   for(i in 1:N_samples) {
