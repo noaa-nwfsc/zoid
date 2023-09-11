@@ -1,6 +1,6 @@
 Package: zoid
 Title: Bayesian Zero-and-One Inflated Dirichlet Regression Modelling 
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: 
     c(person(given = "Eric J.",
            family = "Ward",
@@ -37,16 +37,16 @@ License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Biarch: true
 URL: https://nwfsc-cb.github.io/zoid/
 BugReports: https://github.com/nwfsc-cb/zoid/issues
 Depends: 
     R (>= 3.4.0)
 Imports: 
-    methods,
-    gtools,
     compositions,
+    gtools,
+    methods,
     Rcpp (>= 0.12.0),
     RcppParallel (>= 5.0.1),
     rstan (>= 2.26.0),

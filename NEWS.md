@@ -1,3 +1,7 @@
+# zoid 1.2.0
+
+* Updated Stan code to reflect changes needed to be compatible with Stan 2.26 (arrays)
+
 # zoid 1.1.0
 
 * Changed treatment of zeros in Stan model. Package consistent with Jensen et al. (in review)

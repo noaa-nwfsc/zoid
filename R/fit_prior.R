@@ -30,7 +30,7 @@ fit_prior <- function(n_bins, n_draws = 10000, target = 1 / n_bins, iterations =
       n_draws = n_draws,
       method = "BFGS"
     ), silent = TRUE)
-    if (class(o) != "try-error") {
+    if(!identical(class(o), "try-error")) {
       if (o$value < best) {
         best <- o$value
         best_value <- list(
