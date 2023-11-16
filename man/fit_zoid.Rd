@@ -60,8 +60,14 @@ y <- matrix(c(3.77, 6.63, 2.60, 0.9, 1.44, 0.66, 2.10, 3.57, 1.33),
 fit <- fit_zoid(data_matrix = y)
 
 # fit a model with 1 factor
-design <- data.frame("y" = c(1, 1, 1), "fac" = c("spring", "spring", "fall"))
+design <- data.frame("fac" = c("spring", "spring", "fall"))
 fit <- fit_zoid(formula = ~fac, design_matrix = design, data_matrix = y)
 }
+# try a model with random effects
+set.seed(123)
+y <- matrix(runif(99,1,4), ncol=3)
+design <- data.frame("fac" = sample(letters[1:5], size=nrow(y), replace=TRUE))
+design$fac <- as.factor(design$fac)
+fit <- fit_zoid(formula = ~(1|fac), design_matrix = design, data_matrix = y)
 
 }

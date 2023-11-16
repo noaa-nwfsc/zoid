@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">zoid</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -44,7 +44,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,6 +64,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -82,12 +85,13 @@
 
       
 
-      </header><script src="a03_beta_priors_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Priors for compositions</h1>
+                        <h4 data-toc-skip class="author"></h4>
             
-            <h4 data-toc-skip class="date">2022-02-09</h4>
+            <h4 data-toc-skip class="date">2023-11-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/zoid/blob/HEAD/vignettes/a03_beta_priors.Rmd" class="external-link"><code>vignettes/a03_beta_priors.Rmd</code></a></small>
       <div class="hidden name"><code>a03_beta_priors.Rmd</code></div>
@@ -98,21 +102,41 @@
     
 <p>Let’s load the necessary packages:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nwfsc-cb.github.io/zoid/" class="external-link">zoid</a></span><span class="op">)</span></code></pre></div>
-<p>This vignette is designed to illustrate how to build priors for the estimated compositions, <span class="math inline">\(\textbf{p}\)</span>. When covariates are included in the design matrix, all elements of <span class="math inline">\(\textbf{p}\)</span> in the Dirichlet regression (both intercepts and slopes or offsets) are assigned <span class="math inline">\(\sim N(0,1)\)</span> priors. This approach is similar to the improper priors used in <code><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brms::brm()</a></code>. These priors may be weakly informative, and the user may wish to change the standard deviation – which can be done with the <code>prior_sd</code> argument in <code><a href="../reference/fit_zoid.html">fit_zoid()</a></code>.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nwfsc-cb.github.io/zoid/" class="external-link">zoid</a></span><span class="op">)</span></span></code></pre></div>
+<p>This vignette is designed to illustrate how to build priors for the
+estimated compositions, <span class="math inline">\(\textbf{p}\)</span>.
+When covariates are included in the design matrix, all elements of <span class="math inline">\(\textbf{p}\)</span> in the Dirichlet regression
+(both intercepts and slopes or offsets) are assigned <span class="math inline">\(\sim N(0,1)\)</span> priors. This approach is
+similar to the improper priors used in <code><a href="https://paul-buerkner.github.io/brms/reference/brm.html" class="external-link">brms::brm()</a></code>. These
+priors may be weakly informative, and the user may wish to change the
+standard deviation – which can be done with the <code>prior_sd</code>
+argument in <code><a href="../reference/fit_zoid.html">fit_zoid()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span><span class="va">data</span>, prior_sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span><span class="va">data</span>, prior_sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="dirichlet-priors">Dirichlet priors<a class="anchor" aria-label="anchor" href="#dirichlet-priors"></a>
 </h2>
-<p>A more familiar approach may be to work with Dirichlet priors. We can adjust the standard deviation in our Normal priors to match the Dirichlet. The helper function for this uses <code>optim</code> to minimize the RMSPE between the observed and target values. For example, if we had 8 bins and wanted to find the Dirichlet prior that would correspond to hyperparamters <span class="math inline">\((\alpha)=1\)</span>, we could call the <code>fit_prior</code> function.</p>
+<p>A more familiar approach may be to work with Dirichlet priors. We can
+adjust the standard deviation in our Normal priors to match the
+Dirichlet. The helper function for this uses <code>optim</code> to
+minimize the RMSPE between the observed and target values. For example,
+if we had 8 bins and wanted to find the Dirichlet prior that would
+correspond to hyperparamters <span class="math inline">\((\alpha)=1\)</span>, we could call the
+<code>fit_prior</code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="va">sd</span> <span class="op">=</span> <span class="fu"><a href="../reference/fit_prior.html">fit_prior</a></span><span class="op">(</span>n_bins <span class="op">=</span> <span class="fl">8</span>, n_draws <span class="op">=</span> <span class="va">draws</span>, target <span class="op">=</span> <span class="fl">1</span>, iterations<span class="op">=</span><span class="va">iter</span><span class="op">)</span></code></pre></div>
-<p>The <code>sd</code> object is a list that contains (1) the estimated standard deviation, (2) the value of the objective function at convergence, and (3) whether or not convergence occurred (anything other than 0 is problematic). The value of the standard deviation here in <code>sd$sd</code> is 1.200453.</p>
-<p>So in this case, a standard deviation of ~ 1.20 yields a prior equivalent to a <span class="math inline">\(\sim Dirichlet(1)\)</span> prior. This new value can then be entered into our model with the <code>prior_sd</code> argument,</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">sd</span> <span class="op">=</span> <span class="fu"><a href="../reference/fit_prior.html">fit_prior</a></span><span class="op">(</span>n_bins <span class="op">=</span> <span class="fl">8</span>, n_draws <span class="op">=</span> <span class="va">draws</span>, target <span class="op">=</span> <span class="fl">1</span>, iterations<span class="op">=</span><span class="va">iter</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>sd</code> object is a list that contains (1) the estimated
+standard deviation, (2) the value of the objective function at
+convergence, and (3) whether or not convergence occurred (anything other
+than 0 is problematic). The value of the standard deviation here in
+<code>sd$sd</code> is 1.200453.</p>
+<p>So in this case, a standard deviation of ~ 1.20 yields a prior
+equivalent to a <span class="math inline">\(\sim Dirichlet(1)\)</span>
+prior. This new value can then be entered into our model with the
+<code>prior_sd</code> argument,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span><span class="va">data</span>, prior_sd <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span><span class="va">data</span>, prior_sd <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
@@ -133,7 +157,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -1,10 +1,10 @@
-pandoc: 2.7.3
-pkgdown: 2.0.2
+pandoc: 3.1.1
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   a01_fitting: a01_fitting.html
   a02_simulating: a02_simulating.html
   a03_beta_priors: a03_beta_priors.html
   a04_priors: a04_priors.html
-last_built: 2022-02-09T14:27Z
+last_built: 2023-11-16T22:23Z
 
