@@ -8,6 +8,12 @@ data { // set up to run a single instance (1 stock) of GSI observations
   int overdisp; // whether or not to include overdispersion term
   int postpred; // whether or not to include posterior predictive samples
   real prior_sd;
+  int tot_re; // total number of random intercepts
+  int n_groups; // number of re groups
+  matrix[N_samples, tot_re] design_Z; // design matrix of random ints
+  int re_var_indx[tot_re + 1]; // total index across acll groups
+  int n_re_by_group[n_groups + 1]; // indices by group
+  int est_re; // 0 or 1 indicator
 }
 transformed data {
   array[N_samples,N_bins] int is_zero; // indicator for data being 1
@@ -58,16 +64,20 @@ transformed data {
 parameters {
   vector<lower=0>[overdisp] phi_inv; // overdispersion
   matrix[N_bins-1,N_covar] beta_raw;
+  matrix[(N_bins - 1) * est_re, tot_re * est_re] zeta_raw;
+  vector<lower=0>[est_re * n_groups] zeta_sds; // sds of random intercepts
 }
 transformed parameters {
   real<lower=0> phi;
   matrix<lower=0,upper=1>[N_samples, N_bins] p_zero; // probability of 0 for each cell
   matrix<lower=0,upper=1>[N_samples, N_bins] p_one; // probability of 1 for each cell
   matrix[N_bins,N_covar] beta; // coefficients
+  matrix[N_bins, tot_re * est_re] zeta; // coefficients
   matrix<lower=0,upper=1>[N_samples,N_bins] mu; // estimates, in normal space
   // phi is dynamic
   phi = 1;
   if(overdisp==1) {phi = 1/phi_inv[1];}
+  // identifiability
   for (l in 1:N_covar) {
     beta[N_bins,l] = 0.0;
   }
@@ -76,16 +86,39 @@ transformed parameters {
       beta[k,l] = beta_raw[k,l];
     }
   }
+  if(est_re == 1) {
+    for (l in 1:tot_re) {
+      zeta[N_bins,l] = 0.0;
+    }
+    for (k in 1:(N_bins-1)) {
+      for (l in 1:tot_re) {
+        zeta[k,l] = zeta_raw[k,l];
+      }
+    }
+  }
 
   // from betas, we can calculate sample-specific mu
-  for (n in 1:N_samples) {
-    vector[N_bins] logits;
-    for (m in 1:N_bins){
-      logits[m] = design_X[n,] * transpose(beta[m,]);
+  if(est_re == 0) {
+    for (n in 1:N_samples) {
+      vector[N_bins] logits;
+      for (m in 1:N_bins){
+        logits[m] = design_X[n,] * transpose(beta[m,]);
+      }
+      logits = softmax(logits);
+      for(m in 1:N_bins) {
+        mu[n,m] = logits[m];
+      }
     }
-    logits = softmax(logits);
-    for(m in 1:N_bins) {
-      mu[n,m] = logits[m];
+  } else {
+    for (n in 1:N_samples) {
+      vector[N_bins] logits;
+      for (m in 1:N_bins){
+        logits[m] = design_X[n,] * transpose(beta[m,]) + design_Z[n,] * transpose(zeta[m,]);
+      }
+      logits = softmax(logits);
+      for(m in 1:N_bins) {
+        mu[n,m] = logits[m];
+      }
     }
   }
 
@@ -113,6 +146,18 @@ model {
   for(i in 1:N_covar) {
     for(j in 1:(N_bins-1)) {
       beta_raw[j,i] ~ normal(0,prior_sd);
+    }
+  }
+  //
+  if(est_re==1) {
+    for(i in 1:n_groups) {
+      zeta_sds[i] ~ student_t(3,0,2); // priors on standard deviations
+    }
+    for(i in 1:(N_bins-1)) {
+      for(j in 1:tot_re) {
+        // normal deviations in mv logit space
+        zeta_raw[i,j] ~ normal(0, zeta_sds[re_var_indx[j]]);
+      }
     }
   }
 

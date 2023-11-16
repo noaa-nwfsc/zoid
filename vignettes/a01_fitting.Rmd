@@ -120,5 +120,14 @@ fitted_vals = get_pars(fit_1)
 head(fitted_vals$betas)
 ```
 
+### Random effects
 
+For models with grouping variables or factor predictor variables, either fixed or random effects may be included. Both need to be included via the formula interface, and random effects may be included in the typical form (`lme4`, `glmmTMB`),
+
+```{r eval=FALSE}
+formula <- ~ (1|group)
+formula <- ~ (1|group) + (1|year) + (1|season)
+```
+
+For now, only random intercepts are allowed; random slopes will be included eventually.
 

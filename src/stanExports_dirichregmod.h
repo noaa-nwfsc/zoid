@@ -75,97 +75,134 @@ using stan::math::pow;
 stan::math::profile_map profiles__;
 static int current_statement__= 0;
 static const std::vector<string> locations_array__ = {" (found before start of program)",
-                                                      " (in 'dirichregmod', line 54, column 2 to column 36)",
-                                                      " (in 'dirichregmod', line 55, column 2 to column 36)",
-                                                      " (in 'dirichregmod', line 58, column 2 to column 20)",
-                                                      " (in 'dirichregmod', line 59, column 2 to column 52)",
-                                                      " (in 'dirichregmod', line 60, column 2 to column 51)",
-                                                      " (in 'dirichregmod', line 61, column 2 to column 30)",
-                                                      " (in 'dirichregmod', line 62, column 2 to column 47)",
-                                                      " (in 'dirichregmod', line 64, column 2 to column 10)",
-                                                      " (in 'dirichregmod', line 65, column 19 to column 38)",
-                                                      " (in 'dirichregmod', line 65, column 18 to column 39)",
-                                                      " (in 'dirichregmod', line 65, column 2 to column 39)",
-                                                      " (in 'dirichregmod', line 67, column 4 to column 25)",
-                                                      " (in 'dirichregmod', line 66, column 23 to line 68, column 3)",
-                                                      " (in 'dirichregmod', line 66, column 2 to line 68, column 3)",
-                                                      " (in 'dirichregmod', line 71, column 6 to column 32)",
-                                                      " (in 'dirichregmod', line 70, column 25 to line 72, column 5)",
-                                                      " (in 'dirichregmod', line 70, column 4 to line 72, column 5)",
-                                                      " (in 'dirichregmod', line 69, column 26 to line 73, column 3)",
-                                                      " (in 'dirichregmod', line 69, column 2 to line 73, column 3)",
-                                                      " (in 'dirichregmod', line 76, column 11 to column 17)",
-                                                      " (in 'dirichregmod', line 76, column 4 to column 26)",
-                                                      " (in 'dirichregmod', line 78, column 6 to column 53)",
-                                                      " (in 'dirichregmod', line 77, column 23 to line 79, column 5)",
-                                                      " (in 'dirichregmod', line 77, column 4 to line 79, column 5)",
-                                                      " (in 'dirichregmod', line 80, column 4 to column 29)",
-                                                      " (in 'dirichregmod', line 82, column 6 to column 26)",
-                                                      " (in 'dirichregmod', line 81, column 23 to line 83, column 5)",
-                                                      " (in 'dirichregmod', line 81, column 4 to line 83, column 5)",
-                                                      " (in 'dirichregmod', line 75, column 25 to line 84, column 3)",
-                                                      " (in 'dirichregmod', line 75, column 2 to line 84, column 3)",
-                                                      " (in 'dirichregmod', line 87, column 6 to column 45)",
-                                                      " (in 'dirichregmod', line 86, column 23 to line 90, column 5)",
-                                                      " (in 'dirichregmod', line 86, column 4 to line 90, column 5)",
-                                                      " (in 'dirichregmod', line 93, column 6 to column 70)",
-                                                      " (in 'dirichregmod', line 92, column 23 to line 94, column 5)",
-                                                      " (in 'dirichregmod', line 92, column 4 to line 94, column 5)",
-                                                      " (in 'dirichregmod', line 85, column 24 to line 95, column 3)",
-                                                      " (in 'dirichregmod', line 85, column 2 to line 95, column 3)",
-                                                      " (in 'dirichregmod', line 123, column 2 to column 18)",
-                                                      " (in 'dirichregmod', line 124, column 2 to column 17)",
-                                                      " (in 'dirichregmod', line 125, column 2 to column 42)",
-                                                      " (in 'dirichregmod', line 126, column 2 to column 57)",
-                                                      " (in 'dirichregmod', line 127, column 2 to column 61)",
-                                                      " (in 'dirichregmod', line 128, column 2 to column 60)",
-                                                      " (in 'dirichregmod', line 129, column 2 to column 25)",
-                                                      " (in 'dirichregmod', line 132, column 6 to column 23)",
-                                                      " (in 'dirichregmod', line 133, column 6 to column 64)",
-                                                      " (in 'dirichregmod', line 135, column 8 to column 40)",
-                                                      " (in 'dirichregmod', line 136, column 8 to column 43)",
-                                                      " (in 'dirichregmod', line 137, column 8 to column 181)",
-                                                      " (in 'dirichregmod', line 134, column 32 to line 138, column 7)",
-                                                      " (in 'dirichregmod', line 134, column 6 to line 138, column 7)",
-                                                      " (in 'dirichregmod', line 141, column 8 to column 55)",
-                                                      " (in 'dirichregmod', line 142, column 33 to column 49)",
-                                                      " (in 'dirichregmod', line 142, column 8 to column 49)",
-                                                      " (in 'dirichregmod', line 143, column 8 to column 53)",
-                                                      " (in 'dirichregmod', line 144, column 32 to column 48)",
-                                                      " (in 'dirichregmod', line 144, column 8 to column 48)",
-                                                      " (in 'dirichregmod', line 145, column 8 to column 66)",
-                                                      " (in 'dirichregmod', line 147, column 10 to column 38)",
-                                                      " (in 'dirichregmod', line 148, column 10 to column 41)",
-                                                      " (in 'dirichregmod', line 149, column 10 to column 54)",
-                                                      " (in 'dirichregmod', line 150, column 10 to column 39)",
-                                                      " (in 'dirichregmod', line 146, column 34 to line 151, column 9)",
-                                                      " (in 'dirichregmod', line 146, column 8 to line 151, column 9)",
-                                                      " (in 'dirichregmod', line 140, column 22 to line 152, column 7)",
-                                                      " (in 'dirichregmod', line 140, column 6 to line 152, column 7)",
-                                                      " (in 'dirichregmod', line 131, column 23 to line 153, column 5)",
-                                                      " (in 'dirichregmod', line 131, column 4 to line 153, column 5)",
-                                                      " (in 'dirichregmod', line 130, column 24 to line 154, column 3)",
-                                                      " (in 'dirichregmod', line 130, column 2 to line 154, column 3)",
-                                                      " (in 'dirichregmod', line 98, column 2 to column 18)",
-                                                      " (in 'dirichregmod', line 99, column 2 to column 17)",
-                                                      " (in 'dirichregmod', line 101, column 4 to column 26)",
-                                                      " (in 'dirichregmod', line 100, column 18 to line 102, column 3)",
-                                                      " (in 'dirichregmod', line 100, column 2 to line 102, column 3)",
-                                                      " (in 'dirichregmod', line 106, column 6 to column 41)",
-                                                      " (in 'dirichregmod', line 105, column 27 to line 107, column 5)",
-                                                      " (in 'dirichregmod', line 105, column 4 to line 107, column 5)",
-                                                      " (in 'dirichregmod', line 104, column 22 to line 108, column 3)",
-                                                      " (in 'dirichregmod', line 104, column 2 to line 108, column 3)",
-                                                      " (in 'dirichregmod', line 112, column 6 to column 58)",
-                                                      " (in 'dirichregmod', line 114, column 8 to column 40)",
-                                                      " (in 'dirichregmod', line 115, column 8 to column 43)",
-                                                      " (in 'dirichregmod', line 117, column 8 to column 175)",
-                                                      " (in 'dirichregmod', line 113, column 32 to line 118, column 7)",
-                                                      " (in 'dirichregmod', line 113, column 6 to line 118, column 7)",
-                                                      " (in 'dirichregmod', line 110, column 23 to line 119, column 5)",
-                                                      " (in 'dirichregmod', line 110, column 4 to line 119, column 5)",
-                                                      " (in 'dirichregmod', line 109, column 24 to line 120, column 3)",
-                                                      " (in 'dirichregmod', line 109, column 2 to line 120, column 3)",
+                                                      " (in 'dirichregmod', line 60, column 2 to column 36)",
+                                                      " (in 'dirichregmod', line 61, column 2 to column 36)",
+                                                      " (in 'dirichregmod', line 62, column 2 to column 58)",
+                                                      " (in 'dirichregmod', line 63, column 2 to column 46)",
+                                                      " (in 'dirichregmod', line 66, column 2 to column 20)",
+                                                      " (in 'dirichregmod', line 67, column 2 to column 52)",
+                                                      " (in 'dirichregmod', line 68, column 2 to column 51)",
+                                                      " (in 'dirichregmod', line 69, column 2 to column 30)",
+                                                      " (in 'dirichregmod', line 70, column 2 to column 39)",
+                                                      " (in 'dirichregmod', line 71, column 2 to column 47)",
+                                                      " (in 'dirichregmod', line 73, column 2 to column 10)",
+                                                      " (in 'dirichregmod', line 74, column 19 to column 38)",
+                                                      " (in 'dirichregmod', line 74, column 18 to column 39)",
+                                                      " (in 'dirichregmod', line 74, column 2 to column 39)",
+                                                      " (in 'dirichregmod', line 77, column 4 to column 25)",
+                                                      " (in 'dirichregmod', line 76, column 23 to line 78, column 3)",
+                                                      " (in 'dirichregmod', line 76, column 2 to line 78, column 3)",
+                                                      " (in 'dirichregmod', line 81, column 6 to column 32)",
+                                                      " (in 'dirichregmod', line 80, column 25 to line 82, column 5)",
+                                                      " (in 'dirichregmod', line 80, column 4 to line 82, column 5)",
+                                                      " (in 'dirichregmod', line 79, column 26 to line 83, column 3)",
+                                                      " (in 'dirichregmod', line 79, column 2 to line 83, column 3)",
+                                                      " (in 'dirichregmod', line 86, column 6 to column 27)",
+                                                      " (in 'dirichregmod', line 85, column 24 to line 87, column 5)",
+                                                      " (in 'dirichregmod', line 85, column 4 to line 87, column 5)",
+                                                      " (in 'dirichregmod', line 90, column 8 to column 34)",
+                                                      " (in 'dirichregmod', line 89, column 26 to line 91, column 7)",
+                                                      " (in 'dirichregmod', line 89, column 6 to line 91, column 7)",
+                                                      " (in 'dirichregmod', line 88, column 28 to line 92, column 5)",
+                                                      " (in 'dirichregmod', line 88, column 4 to line 92, column 5)",
+                                                      " (in 'dirichregmod', line 84, column 18 to line 93, column 3)",
+                                                      " (in 'dirichregmod', line 84, column 2 to line 93, column 3)",
+                                                      " (in 'dirichregmod', line 108, column 13 to column 19)",
+                                                      " (in 'dirichregmod', line 108, column 6 to column 28)",
+                                                      " (in 'dirichregmod', line 110, column 8 to column 92)",
+                                                      " (in 'dirichregmod', line 109, column 25 to line 111, column 7)",
+                                                      " (in 'dirichregmod', line 109, column 6 to line 111, column 7)",
+                                                      " (in 'dirichregmod', line 112, column 6 to column 31)",
+                                                      " (in 'dirichregmod', line 114, column 8 to column 28)",
+                                                      " (in 'dirichregmod', line 113, column 25 to line 115, column 7)",
+                                                      " (in 'dirichregmod', line 113, column 6 to line 115, column 7)",
+                                                      " (in 'dirichregmod', line 107, column 27 to line 116, column 5)",
+                                                      " (in 'dirichregmod', line 107, column 4 to line 116, column 5)",
+                                                      " (in 'dirichregmod', line 106, column 9 to line 117, column 3)",
+                                                      " (in 'dirichregmod', line 97, column 13 to column 19)",
+                                                      " (in 'dirichregmod', line 97, column 6 to column 28)",
+                                                      " (in 'dirichregmod', line 99, column 8 to column 55)",
+                                                      " (in 'dirichregmod', line 98, column 25 to line 100, column 7)",
+                                                      " (in 'dirichregmod', line 98, column 6 to line 100, column 7)",
+                                                      " (in 'dirichregmod', line 101, column 6 to column 31)",
+                                                      " (in 'dirichregmod', line 103, column 8 to column 28)",
+                                                      " (in 'dirichregmod', line 102, column 25 to line 104, column 7)",
+                                                      " (in 'dirichregmod', line 102, column 6 to line 104, column 7)",
+                                                      " (in 'dirichregmod', line 96, column 27 to line 105, column 5)",
+                                                      " (in 'dirichregmod', line 96, column 4 to line 105, column 5)",
+                                                      " (in 'dirichregmod', line 95, column 18 to line 106, column 3)",
+                                                      " (in 'dirichregmod', line 95, column 2 to line 117, column 3)",
+                                                      " (in 'dirichregmod', line 120, column 6 to column 45)",
+                                                      " (in 'dirichregmod', line 119, column 23 to line 123, column 5)",
+                                                      " (in 'dirichregmod', line 119, column 4 to line 123, column 5)",
+                                                      " (in 'dirichregmod', line 126, column 6 to column 70)",
+                                                      " (in 'dirichregmod', line 125, column 23 to line 127, column 5)",
+                                                      " (in 'dirichregmod', line 125, column 4 to line 127, column 5)",
+                                                      " (in 'dirichregmod', line 118, column 24 to line 128, column 3)",
+                                                      " (in 'dirichregmod', line 118, column 2 to line 128, column 3)",
+                                                      " (in 'dirichregmod', line 168, column 2 to column 18)",
+                                                      " (in 'dirichregmod', line 169, column 2 to column 17)",
+                                                      " (in 'dirichregmod', line 170, column 2 to column 42)",
+                                                      " (in 'dirichregmod', line 171, column 2 to column 57)",
+                                                      " (in 'dirichregmod', line 172, column 2 to column 61)",
+                                                      " (in 'dirichregmod', line 173, column 2 to column 60)",
+                                                      " (in 'dirichregmod', line 174, column 2 to column 25)",
+                                                      " (in 'dirichregmod', line 177, column 6 to column 23)",
+                                                      " (in 'dirichregmod', line 178, column 6 to column 64)",
+                                                      " (in 'dirichregmod', line 180, column 8 to column 40)",
+                                                      " (in 'dirichregmod', line 181, column 8 to column 43)",
+                                                      " (in 'dirichregmod', line 182, column 8 to column 181)",
+                                                      " (in 'dirichregmod', line 179, column 32 to line 183, column 7)",
+                                                      " (in 'dirichregmod', line 179, column 6 to line 183, column 7)",
+                                                      " (in 'dirichregmod', line 186, column 8 to column 55)",
+                                                      " (in 'dirichregmod', line 187, column 33 to column 49)",
+                                                      " (in 'dirichregmod', line 187, column 8 to column 49)",
+                                                      " (in 'dirichregmod', line 188, column 8 to column 53)",
+                                                      " (in 'dirichregmod', line 189, column 32 to column 48)",
+                                                      " (in 'dirichregmod', line 189, column 8 to column 48)",
+                                                      " (in 'dirichregmod', line 190, column 8 to column 66)",
+                                                      " (in 'dirichregmod', line 192, column 10 to column 38)",
+                                                      " (in 'dirichregmod', line 193, column 10 to column 41)",
+                                                      " (in 'dirichregmod', line 194, column 10 to column 54)",
+                                                      " (in 'dirichregmod', line 195, column 10 to column 39)",
+                                                      " (in 'dirichregmod', line 191, column 34 to line 196, column 9)",
+                                                      " (in 'dirichregmod', line 191, column 8 to line 196, column 9)",
+                                                      " (in 'dirichregmod', line 185, column 22 to line 197, column 7)",
+                                                      " (in 'dirichregmod', line 185, column 6 to line 197, column 7)",
+                                                      " (in 'dirichregmod', line 176, column 23 to line 198, column 5)",
+                                                      " (in 'dirichregmod', line 176, column 4 to line 198, column 5)",
+                                                      " (in 'dirichregmod', line 175, column 24 to line 199, column 3)",
+                                                      " (in 'dirichregmod', line 175, column 2 to line 199, column 3)",
+                                                      " (in 'dirichregmod', line 131, column 2 to column 18)",
+                                                      " (in 'dirichregmod', line 132, column 2 to column 17)",
+                                                      " (in 'dirichregmod', line 134, column 4 to column 26)",
+                                                      " (in 'dirichregmod', line 133, column 18 to line 135, column 3)",
+                                                      " (in 'dirichregmod', line 133, column 2 to line 135, column 3)",
+                                                      " (in 'dirichregmod', line 139, column 6 to column 41)",
+                                                      " (in 'dirichregmod', line 138, column 27 to line 140, column 5)",
+                                                      " (in 'dirichregmod', line 138, column 4 to line 140, column 5)",
+                                                      " (in 'dirichregmod', line 137, column 22 to line 141, column 3)",
+                                                      " (in 'dirichregmod', line 137, column 2 to line 141, column 3)",
+                                                      " (in 'dirichregmod', line 145, column 6 to column 37)",
+                                                      " (in 'dirichregmod', line 144, column 25 to line 146, column 5)",
+                                                      " (in 'dirichregmod', line 144, column 4 to line 146, column 5)",
+                                                      " (in 'dirichregmod', line 150, column 8 to column 60)",
+                                                      " (in 'dirichregmod', line 148, column 25 to line 151, column 7)",
+                                                      " (in 'dirichregmod', line 148, column 6 to line 151, column 7)",
+                                                      " (in 'dirichregmod', line 147, column 27 to line 152, column 5)",
+                                                      " (in 'dirichregmod', line 147, column 4 to line 152, column 5)",
+                                                      " (in 'dirichregmod', line 143, column 16 to line 153, column 3)",
+                                                      " (in 'dirichregmod', line 143, column 2 to line 153, column 3)",
+                                                      " (in 'dirichregmod', line 157, column 6 to column 58)",
+                                                      " (in 'dirichregmod', line 159, column 8 to column 40)",
+                                                      " (in 'dirichregmod', line 160, column 8 to column 43)",
+                                                      " (in 'dirichregmod', line 162, column 8 to column 175)",
+                                                      " (in 'dirichregmod', line 158, column 32 to line 163, column 7)",
+                                                      " (in 'dirichregmod', line 158, column 6 to line 163, column 7)",
+                                                      " (in 'dirichregmod', line 155, column 23 to line 164, column 5)",
+                                                      " (in 'dirichregmod', line 155, column 4 to line 164, column 5)",
+                                                      " (in 'dirichregmod', line 154, column 24 to line 165, column 3)",
+                                                      " (in 'dirichregmod', line 154, column 2 to line 165, column 3)",
                                                       " (in 'dirichregmod', line 2, column 2 to column 16)",
                                                       " (in 'dirichregmod', line 3, column 2 to column 13)",
                                                       " (in 'dirichregmod', line 4, column 9 to column 18)",
@@ -181,70 +218,85 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'dirichregmod', line 8, column 2 to column 15)",
                                                       " (in 'dirichregmod', line 9, column 2 to column 15)",
                                                       " (in 'dirichregmod', line 10, column 2 to column 16)",
-                                                      " (in 'dirichregmod', line 13, column 8 to column 17)",
-                                                      " (in 'dirichregmod', line 13, column 18 to column 24)",
-                                                      " (in 'dirichregmod', line 13, column 2 to column 38)",
-                                                      " (in 'dirichregmod', line 15, column 8 to column 17)",
-                                                      " (in 'dirichregmod', line 15, column 18 to column 24)",
-                                                      " (in 'dirichregmod', line 15, column 2 to column 44)",
-                                                      " (in 'dirichregmod', line 16, column 9 to column 18)",
-                                                      " (in 'dirichregmod', line 16, column 20 to column 26)",
-                                                      " (in 'dirichregmod', line 16, column 2 to column 33)",
-                                                      " (in 'dirichregmod', line 17, column 9 to column 18)",
-                                                      " (in 'dirichregmod', line 17, column 20 to column 26)",
-                                                      " (in 'dirichregmod', line 17, column 2 to column 34)",
-                                                      " (in 'dirichregmod', line 18, column 9 to column 18)",
-                                                      " (in 'dirichregmod', line 18, column 2 to column 24)",
-                                                      " (in 'dirichregmod', line 19, column 9 to column 15)",
-                                                      " (in 'dirichregmod', line 19, column 2 to column 22)",
-                                                      " (in 'dirichregmod', line 22, column 4 to column 16)",
-                                                      " (in 'dirichregmod', line 21, column 21 to line 23, column 3)",
-                                                      " (in 'dirichregmod', line 21, column 2 to line 23, column 3)",
-                                                      " (in 'dirichregmod', line 26, column 4 to column 15)",
-                                                      " (in 'dirichregmod', line 28, column 6 to column 31)",
-                                                      " (in 'dirichregmod', line 27, column 23 to line 29, column 5)",
-                                                      " (in 'dirichregmod', line 27, column 4 to line 29, column 5)",
-                                                      " (in 'dirichregmod', line 25, column 24 to line 30, column 3)",
-                                                      " (in 'dirichregmod', line 25, column 2 to line 30, column 3)",
-                                                      " (in 'dirichregmod', line 36, column 8 to column 25)",
-                                                      " (in 'dirichregmod', line 35, column 13 to line 37, column 7)",
-                                                      " (in 'dirichregmod', line 34, column 8 to column 25)",
-                                                      " (in 'dirichregmod', line 33, column 20 to line 35, column 7)",
-                                                      " (in 'dirichregmod', line 33, column 6 to line 37, column 7)",
-                                                      " (in 'dirichregmod', line 39, column 8 to column 31)",
-                                                      " (in 'dirichregmod', line 38, column 40 to line 40, column 7)",
-                                                      " (in 'dirichregmod', line 38, column 6 to line 40, column 7)",
-                                                      " (in 'dirichregmod', line 32, column 23 to line 41, column 5)",
-                                                      " (in 'dirichregmod', line 32, column 4 to line 41, column 5)",
-                                                      " (in 'dirichregmod', line 31, column 24 to line 42, column 3)",
-                                                      " (in 'dirichregmod', line 31, column 2 to line 42, column 3)",
-                                                      " (in 'dirichregmod', line 47, column 10 to column 34)",
-                                                      " (in 'dirichregmod', line 48, column 10 to column 44)",
-                                                      " (in 'dirichregmod', line 46, column 34 to line 49, column 9)",
-                                                      " (in 'dirichregmod', line 46, column 8 to line 49, column 9)",
-                                                      " (in 'dirichregmod', line 45, column 25 to line 50, column 7)",
-                                                      " (in 'dirichregmod', line 45, column 6 to line 50, column 7)",
-                                                      " (in 'dirichregmod', line 44, column 26 to line 51, column 5)",
-                                                      " (in 'dirichregmod', line 44, column 4 to line 51, column 5)",
-                                                      " (in 'dirichregmod', line 54, column 18 to column 26)",
-                                                      " (in 'dirichregmod', line 55, column 9 to column 17)",
-                                                      " (in 'dirichregmod', line 55, column 18 to column 25)",
-                                                      " (in 'dirichregmod', line 59, column 26 to column 35)",
-                                                      " (in 'dirichregmod', line 59, column 37 to column 43)",
-                                                      " (in 'dirichregmod', line 60, column 26 to column 35)",
-                                                      " (in 'dirichregmod', line 60, column 37 to column 43)",
-                                                      " (in 'dirichregmod', line 61, column 9 to column 15)",
-                                                      " (in 'dirichregmod', line 61, column 16 to column 23)",
-                                                      " (in 'dirichregmod', line 62, column 26 to column 35)",
-                                                      " (in 'dirichregmod', line 62, column 36 to column 42)",
-                                                      " (in 'dirichregmod', line 125, column 8 to column 17)",
-                                                      " (in 'dirichregmod', line 125, column 26 to column 32)",
-                                                      " (in 'dirichregmod', line 126, column 8 to column 26)",
-                                                      " (in 'dirichregmod', line 126, column 35 to column 50)",
-                                                      " (in 'dirichregmod', line 127, column 8 to column 26)",
-                                                      " (in 'dirichregmod', line 127, column 27 to column 42)",
-                                                      " (in 'dirichregmod', line 128, column 8 to column 26)",
-                                                      " (in 'dirichregmod', line 128, column 27 to column 42)"};
+                                                      " (in 'dirichregmod', line 11, column 2 to column 13)",
+                                                      " (in 'dirichregmod', line 12, column 2 to column 15)",
+                                                      " (in 'dirichregmod', line 13, column 9 to column 18)",
+                                                      " (in 'dirichregmod', line 13, column 20 to column 26)",
+                                                      " (in 'dirichregmod', line 13, column 2 to column 37)",
+                                                      " (in 'dirichregmod', line 14, column 18 to column 28)",
+                                                      " (in 'dirichregmod', line 14, column 2 to column 30)",
+                                                      " (in 'dirichregmod', line 15, column 20 to column 32)",
+                                                      " (in 'dirichregmod', line 15, column 2 to column 34)",
+                                                      " (in 'dirichregmod', line 16, column 2 to column 13)",
+                                                      " (in 'dirichregmod', line 19, column 8 to column 17)",
+                                                      " (in 'dirichregmod', line 19, column 18 to column 24)",
+                                                      " (in 'dirichregmod', line 19, column 2 to column 38)",
+                                                      " (in 'dirichregmod', line 21, column 8 to column 17)",
+                                                      " (in 'dirichregmod', line 21, column 18 to column 24)",
+                                                      " (in 'dirichregmod', line 21, column 2 to column 44)",
+                                                      " (in 'dirichregmod', line 22, column 9 to column 18)",
+                                                      " (in 'dirichregmod', line 22, column 20 to column 26)",
+                                                      " (in 'dirichregmod', line 22, column 2 to column 33)",
+                                                      " (in 'dirichregmod', line 23, column 9 to column 18)",
+                                                      " (in 'dirichregmod', line 23, column 20 to column 26)",
+                                                      " (in 'dirichregmod', line 23, column 2 to column 34)",
+                                                      " (in 'dirichregmod', line 24, column 9 to column 18)",
+                                                      " (in 'dirichregmod', line 24, column 2 to column 24)",
+                                                      " (in 'dirichregmod', line 25, column 9 to column 15)",
+                                                      " (in 'dirichregmod', line 25, column 2 to column 22)",
+                                                      " (in 'dirichregmod', line 28, column 4 to column 16)",
+                                                      " (in 'dirichregmod', line 27, column 21 to line 29, column 3)",
+                                                      " (in 'dirichregmod', line 27, column 2 to line 29, column 3)",
+                                                      " (in 'dirichregmod', line 32, column 4 to column 15)",
+                                                      " (in 'dirichregmod', line 34, column 6 to column 31)",
+                                                      " (in 'dirichregmod', line 33, column 23 to line 35, column 5)",
+                                                      " (in 'dirichregmod', line 33, column 4 to line 35, column 5)",
+                                                      " (in 'dirichregmod', line 31, column 24 to line 36, column 3)",
+                                                      " (in 'dirichregmod', line 31, column 2 to line 36, column 3)",
+                                                      " (in 'dirichregmod', line 42, column 8 to column 25)",
+                                                      " (in 'dirichregmod', line 41, column 13 to line 43, column 7)",
+                                                      " (in 'dirichregmod', line 40, column 8 to column 25)",
+                                                      " (in 'dirichregmod', line 39, column 20 to line 41, column 7)",
+                                                      " (in 'dirichregmod', line 39, column 6 to line 43, column 7)",
+                                                      " (in 'dirichregmod', line 45, column 8 to column 31)",
+                                                      " (in 'dirichregmod', line 44, column 40 to line 46, column 7)",
+                                                      " (in 'dirichregmod', line 44, column 6 to line 46, column 7)",
+                                                      " (in 'dirichregmod', line 38, column 23 to line 47, column 5)",
+                                                      " (in 'dirichregmod', line 38, column 4 to line 47, column 5)",
+                                                      " (in 'dirichregmod', line 37, column 24 to line 48, column 3)",
+                                                      " (in 'dirichregmod', line 37, column 2 to line 48, column 3)",
+                                                      " (in 'dirichregmod', line 53, column 10 to column 34)",
+                                                      " (in 'dirichregmod', line 54, column 10 to column 44)",
+                                                      " (in 'dirichregmod', line 52, column 34 to line 55, column 9)",
+                                                      " (in 'dirichregmod', line 52, column 8 to line 55, column 9)",
+                                                      " (in 'dirichregmod', line 51, column 25 to line 56, column 7)",
+                                                      " (in 'dirichregmod', line 51, column 6 to line 56, column 7)",
+                                                      " (in 'dirichregmod', line 50, column 26 to line 57, column 5)",
+                                                      " (in 'dirichregmod', line 50, column 4 to line 57, column 5)",
+                                                      " (in 'dirichregmod', line 60, column 18 to column 26)",
+                                                      " (in 'dirichregmod', line 61, column 9 to column 17)",
+                                                      " (in 'dirichregmod', line 61, column 18 to column 25)",
+                                                      " (in 'dirichregmod', line 62, column 9 to column 30)",
+                                                      " (in 'dirichregmod', line 62, column 32 to column 47)",
+                                                      " (in 'dirichregmod', line 63, column 18 to column 35)",
+                                                      " (in 'dirichregmod', line 67, column 26 to column 35)",
+                                                      " (in 'dirichregmod', line 67, column 37 to column 43)",
+                                                      " (in 'dirichregmod', line 68, column 26 to column 35)",
+                                                      " (in 'dirichregmod', line 68, column 37 to column 43)",
+                                                      " (in 'dirichregmod', line 69, column 9 to column 15)",
+                                                      " (in 'dirichregmod', line 69, column 16 to column 23)",
+                                                      " (in 'dirichregmod', line 70, column 9 to column 15)",
+                                                      " (in 'dirichregmod', line 70, column 17 to column 32)",
+                                                      " (in 'dirichregmod', line 71, column 26 to column 35)",
+                                                      " (in 'dirichregmod', line 71, column 36 to column 42)",
+                                                      " (in 'dirichregmod', line 170, column 8 to column 17)",
+                                                      " (in 'dirichregmod', line 170, column 26 to column 32)",
+                                                      " (in 'dirichregmod', line 171, column 8 to column 26)",
+                                                      " (in 'dirichregmod', line 171, column 35 to column 50)",
+                                                      " (in 'dirichregmod', line 172, column 8 to column 26)",
+                                                      " (in 'dirichregmod', line 172, column 27 to column 42)",
+                                                      " (in 'dirichregmod', line 173, column 8 to column 26)",
+                                                      " (in 'dirichregmod', line 173, column 27 to column 42)"};
 #include <stan_meta_header.hpp>
 class model_dirichregmod final : public model_base_crtp<model_dirichregmod> {
 private:
@@ -257,6 +309,12 @@ private:
   int overdisp;
   int postpred;
   double prior_sd;
+  int tot_re;
+  int n_groups;
+  Eigen::Matrix<double, -1, -1> design_Z;
+  std::vector<int> re_var_indx;
+  std::vector<int> n_re_by_group;
+  int est_re;
   std::vector<std::vector<int>> is_zero;
   std::vector<std::vector<int>> is_proportion;
   Eigen::Matrix<double, -1, -1> logX;
@@ -264,6 +322,10 @@ private:
   Eigen::Matrix<double, -1, 1> ESS;
   Eigen::Matrix<double, -1, 1> ones;
   int beta_raw_1dim__;
+  int zeta_raw_1dim__;
+  int zeta_raw_2dim__;
+  int zeta_sds_1dim__;
+  int zeta_2dim__;
   int ynew_1dim__;
   int ynew_2dim__;
   int newy_is_zero_1dim__;
@@ -297,25 +359,25 @@ public:
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 92;
+      current_statement__ = 129;
       context__.validate_dims("data initialization","N_samples","int",
           context__.to_vec());
       N_samples = std::numeric_limits<int>::min();
       
-      current_statement__ = 92;
+      current_statement__ = 129;
       N_samples = context__.vals_i("N_samples")[(1 - 1)];
-      current_statement__ = 93;
+      current_statement__ = 130;
       context__.validate_dims("data initialization","N_bins","int",
           context__.to_vec());
       N_bins = std::numeric_limits<int>::min();
       
-      current_statement__ = 93;
+      current_statement__ = 130;
       N_bins = context__.vals_i("N_bins")[(1 - 1)];
-      current_statement__ = 94;
+      current_statement__ = 131;
       validate_non_negative_index("X", "N_samples", N_samples);
-      current_statement__ = 95;
+      current_statement__ = 132;
       validate_non_negative_index("X", "N_bins", N_bins);
-      current_statement__ = 96;
+      current_statement__ = 133;
       context__.validate_dims("data initialization","X","double",
           context__.to_vec(N_samples, N_bins));
       X = Eigen::Matrix<double, -1, -1>(N_samples, N_bins);
@@ -323,35 +385,35 @@ public:
       
       {
         std::vector<local_scalar_t__> X_flat__;
-        current_statement__ = 96;
+        current_statement__ = 133;
         assign(X_flat__, nil_index_list(), context__.vals_r("X"),
           "assigning variable X_flat__");
-        current_statement__ = 96;
+        current_statement__ = 133;
         pos__ = 1;
-        current_statement__ = 96;
+        current_statement__ = 133;
         for (int sym1__ = 1; sym1__ <= N_bins; ++sym1__) {
-          current_statement__ = 96;
+          current_statement__ = 133;
           for (int sym2__ = 1; sym2__ <= N_samples; ++sym2__) {
-            current_statement__ = 96;
+            current_statement__ = 133;
             assign(X,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               X_flat__[(pos__ - 1)], "assigning variable X");
-            current_statement__ = 96;
+            current_statement__ = 133;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 97;
+      current_statement__ = 134;
       context__.validate_dims("data initialization","N_covar","int",
           context__.to_vec());
       N_covar = std::numeric_limits<int>::min();
       
-      current_statement__ = 97;
+      current_statement__ = 134;
       N_covar = context__.vals_i("N_covar")[(1 - 1)];
-      current_statement__ = 98;
+      current_statement__ = 135;
       validate_non_negative_index("design_X", "N_samples", N_samples);
-      current_statement__ = 99;
+      current_statement__ = 136;
       validate_non_negative_index("design_X", "N_covar", N_covar);
-      current_statement__ = 100;
+      current_statement__ = 137;
       context__.validate_dims("data initialization","design_X","double",
           context__.to_vec(N_samples, N_covar));
       design_X = Eigen::Matrix<double, -1, -1>(N_samples, N_covar);
@@ -359,28 +421,28 @@ public:
       
       {
         std::vector<local_scalar_t__> design_X_flat__;
-        current_statement__ = 100;
+        current_statement__ = 137;
         assign(design_X_flat__, nil_index_list(),
           context__.vals_r("design_X"), "assigning variable design_X_flat__");
-        current_statement__ = 100;
+        current_statement__ = 137;
         pos__ = 1;
-        current_statement__ = 100;
+        current_statement__ = 137;
         for (int sym1__ = 1; sym1__ <= N_covar; ++sym1__) {
-          current_statement__ = 100;
+          current_statement__ = 137;
           for (int sym2__ = 1; sym2__ <= N_samples; ++sym2__) {
-            current_statement__ = 100;
+            current_statement__ = 137;
             assign(design_X,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               design_X_flat__[(pos__ - 1)], "assigning variable design_X");
-            current_statement__ = 100;
+            current_statement__ = 137;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 101;
+      current_statement__ = 138;
       validate_non_negative_index("prod_idx", "N_bins", N_bins);
-      current_statement__ = 102;
+      current_statement__ = 139;
       validate_non_negative_index("prod_idx", "N_bins - 1", (N_bins - 1));
-      current_statement__ = 103;
+      current_statement__ = 140;
       context__.validate_dims("data initialization","prod_idx","int",
           context__.to_vec(N_bins, (N_bins - 1)));
       prod_idx = std::vector<std::vector<int>>(N_bins, std::vector<int>(
@@ -388,127 +450,198 @@ public:
       
       {
         std::vector<int> prod_idx_flat__;
-        current_statement__ = 103;
+        current_statement__ = 140;
         assign(prod_idx_flat__, nil_index_list(),
           context__.vals_i("prod_idx"), "assigning variable prod_idx_flat__");
-        current_statement__ = 103;
+        current_statement__ = 140;
         pos__ = 1;
-        current_statement__ = 103;
+        current_statement__ = 140;
         for (int sym1__ = 1; sym1__ <= (N_bins - 1); ++sym1__) {
-          current_statement__ = 103;
+          current_statement__ = 140;
           for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-            current_statement__ = 103;
+            current_statement__ = 140;
             assign(prod_idx,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               prod_idx_flat__[(pos__ - 1)], "assigning variable prod_idx");
-            current_statement__ = 103;
+            current_statement__ = 140;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 104;
+      current_statement__ = 141;
       context__.validate_dims("data initialization","overdisp","int",
           context__.to_vec());
       overdisp = std::numeric_limits<int>::min();
       
-      current_statement__ = 104;
+      current_statement__ = 141;
       overdisp = context__.vals_i("overdisp")[(1 - 1)];
-      current_statement__ = 105;
+      current_statement__ = 142;
       context__.validate_dims("data initialization","postpred","int",
           context__.to_vec());
       postpred = std::numeric_limits<int>::min();
       
-      current_statement__ = 105;
+      current_statement__ = 142;
       postpred = context__.vals_i("postpred")[(1 - 1)];
-      current_statement__ = 106;
+      current_statement__ = 143;
       context__.validate_dims("data initialization","prior_sd","double",
           context__.to_vec());
       prior_sd = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 106;
+      current_statement__ = 143;
       prior_sd = context__.vals_r("prior_sd")[(1 - 1)];
-      current_statement__ = 107;
+      current_statement__ = 144;
+      context__.validate_dims("data initialization","tot_re","int",
+          context__.to_vec());
+      tot_re = std::numeric_limits<int>::min();
+      
+      current_statement__ = 144;
+      tot_re = context__.vals_i("tot_re")[(1 - 1)];
+      current_statement__ = 145;
+      context__.validate_dims("data initialization","n_groups","int",
+          context__.to_vec());
+      n_groups = std::numeric_limits<int>::min();
+      
+      current_statement__ = 145;
+      n_groups = context__.vals_i("n_groups")[(1 - 1)];
+      current_statement__ = 146;
+      validate_non_negative_index("design_Z", "N_samples", N_samples);
+      current_statement__ = 147;
+      validate_non_negative_index("design_Z", "tot_re", tot_re);
+      current_statement__ = 148;
+      context__.validate_dims("data initialization","design_Z","double",
+          context__.to_vec(N_samples, tot_re));
+      design_Z = Eigen::Matrix<double, -1, -1>(N_samples, tot_re);
+      stan::math::fill(design_Z, std::numeric_limits<double>::quiet_NaN());
+      
+      {
+        std::vector<local_scalar_t__> design_Z_flat__;
+        current_statement__ = 148;
+        assign(design_Z_flat__, nil_index_list(),
+          context__.vals_r("design_Z"), "assigning variable design_Z_flat__");
+        current_statement__ = 148;
+        pos__ = 1;
+        current_statement__ = 148;
+        for (int sym1__ = 1; sym1__ <= tot_re; ++sym1__) {
+          current_statement__ = 148;
+          for (int sym2__ = 1; sym2__ <= N_samples; ++sym2__) {
+            current_statement__ = 148;
+            assign(design_Z,
+              cons_list(index_uni(sym2__),
+                cons_list(index_uni(sym1__), nil_index_list())),
+              design_Z_flat__[(pos__ - 1)], "assigning variable design_Z");
+            current_statement__ = 148;
+            pos__ = (pos__ + 1);}}
+      }
+      current_statement__ = 149;
+      validate_non_negative_index("re_var_indx", "tot_re + 1", (tot_re + 1));
+      current_statement__ = 150;
+      context__.validate_dims("data initialization","re_var_indx","int",
+          context__.to_vec((tot_re + 1)));
+      re_var_indx = std::vector<int>((tot_re + 1), std::numeric_limits<int>::min());
+      
+      current_statement__ = 150;
+      assign(re_var_indx, nil_index_list(), context__.vals_i("re_var_indx"),
+        "assigning variable re_var_indx");
+      current_statement__ = 151;
+      validate_non_negative_index("n_re_by_group", "n_groups + 1",
+                                  (n_groups + 1));
+      current_statement__ = 152;
+      context__.validate_dims("data initialization","n_re_by_group","int",
+          context__.to_vec((n_groups + 1)));
+      n_re_by_group = std::vector<int>((n_groups + 1), std::numeric_limits<int>::min());
+      
+      current_statement__ = 152;
+      assign(n_re_by_group, nil_index_list(),
+        context__.vals_i("n_re_by_group"), "assigning variable n_re_by_group");
+      current_statement__ = 153;
+      context__.validate_dims("data initialization","est_re","int",
+          context__.to_vec());
+      est_re = std::numeric_limits<int>::min();
+      
+      current_statement__ = 153;
+      est_re = context__.vals_i("est_re")[(1 - 1)];
+      current_statement__ = 154;
       validate_non_negative_index("is_zero", "N_samples", N_samples);
-      current_statement__ = 108;
+      current_statement__ = 155;
       validate_non_negative_index("is_zero", "N_bins", N_bins);
-      current_statement__ = 109;
+      current_statement__ = 156;
       is_zero = std::vector<std::vector<int>>(N_samples, std::vector<int>(N_bins, std::numeric_limits<int>::min()));
       
-      current_statement__ = 110;
+      current_statement__ = 157;
       validate_non_negative_index("is_proportion", "N_samples", N_samples);
-      current_statement__ = 111;
+      current_statement__ = 158;
       validate_non_negative_index("is_proportion", "N_bins", N_bins);
-      current_statement__ = 112;
+      current_statement__ = 159;
       is_proportion = std::vector<std::vector<int>>(N_samples, std::vector<int>(N_bins, std::numeric_limits<int>::min()));
       
-      current_statement__ = 113;
+      current_statement__ = 160;
       validate_non_negative_index("logX", "N_samples", N_samples);
-      current_statement__ = 114;
+      current_statement__ = 161;
       validate_non_negative_index("logX", "N_bins", N_bins);
-      current_statement__ = 115;
+      current_statement__ = 162;
       logX = Eigen::Matrix<double, -1, -1>(N_samples, N_bins);
       stan::math::fill(logX, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 116;
+      current_statement__ = 163;
       validate_non_negative_index("logNX", "N_samples", N_samples);
-      current_statement__ = 117;
+      current_statement__ = 164;
       validate_non_negative_index("logNX", "N_bins", N_bins);
-      current_statement__ = 118;
+      current_statement__ = 165;
       logNX = Eigen::Matrix<double, -1, -1>(N_samples, N_bins);
       stan::math::fill(logNX, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 119;
+      current_statement__ = 166;
       validate_non_negative_index("ESS", "N_samples", N_samples);
-      current_statement__ = 120;
+      current_statement__ = 167;
       ESS = Eigen::Matrix<double, -1, 1>(N_samples);
       stan::math::fill(ESS, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 121;
+      current_statement__ = 168;
       validate_non_negative_index("ones", "N_bins", N_bins);
-      current_statement__ = 122;
+      current_statement__ = 169;
       ones = Eigen::Matrix<double, -1, 1>(N_bins);
       stan::math::fill(ones, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 125;
+      current_statement__ = 172;
       for (int i = 1; i <= N_bins; ++i) {
-        current_statement__ = 123;
+        current_statement__ = 170;
         assign(ones, cons_list(index_uni(i), nil_index_list()), 1,
           "assigning variable ones");}
-      current_statement__ = 131;
+      current_statement__ = 178;
       for (int i = 1; i <= N_samples; ++i) {
-        current_statement__ = 126;
+        current_statement__ = 173;
         assign(ESS, cons_list(index_uni(i), nil_index_list()), 0,
           "assigning variable ESS");
-        current_statement__ = 129;
+        current_statement__ = 176;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 127;
+          current_statement__ = 174;
           assign(ESS, cons_list(index_uni(i), nil_index_list()),
             (ESS[(i - 1)] +
               rvalue(X,
                 cons_list(index_uni(i),
                   cons_list(index_uni(j), nil_index_list())), "X")),
             "assigning variable ESS");}}
-      current_statement__ = 143;
+      current_statement__ = 190;
       for (int i = 1; i <= N_samples; ++i) {
-        current_statement__ = 141;
+        current_statement__ = 188;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 136;
+          current_statement__ = 183;
           if (logical_eq(
                 rvalue(X,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "X"), 0)) {
-            current_statement__ = 134;
+            current_statement__ = 181;
             assign(is_zero,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())), 1,
               "assigning variable is_zero");
           } else {
-            current_statement__ = 132;
+            current_statement__ = 179;
             assign(is_zero,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())), 0,
               "assigning variable is_zero");
           }
-          current_statement__ = 139;
+          current_statement__ = 186;
           if ((primitive_value(
               logical_lt(
                 rvalue(X,
@@ -519,19 +652,19 @@ public:
                 rvalue(X,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "X"), 0)))) {
-            current_statement__ = 137;
+            current_statement__ = 184;
             assign(is_proportion,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())), 1,
               "assigning variable is_proportion");
           } }}
-      current_statement__ = 151;
+      current_statement__ = 198;
       for (int i = 1; i <= N_samples; ++i) {
-        current_statement__ = 149;
+        current_statement__ = 196;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 147;
+          current_statement__ = 194;
           if (logical_eq(is_proportion[(i - 1)][(j - 1)], 1)) {
-            current_statement__ = 144;
+            current_statement__ = 191;
             assign(logX,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())),
@@ -540,7 +673,7 @@ public:
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "X")),
               "assigning variable logX");
-            current_statement__ = 145;
+            current_statement__ = 192;
             assign(logNX,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())),
@@ -551,81 +684,114 @@ public:
                       cons_list(index_uni(j), nil_index_list())), "X"))),
               "assigning variable logNX");
           } }}
-      current_statement__ = 152;
+      current_statement__ = 199;
       validate_non_negative_index("phi_inv", "overdisp", overdisp);
-      current_statement__ = 153;
+      current_statement__ = 200;
       beta_raw_1dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 153;
+      current_statement__ = 200;
       beta_raw_1dim__ = (N_bins - 1);
-      current_statement__ = 153;
+      current_statement__ = 200;
       validate_non_negative_index("beta_raw", "N_bins - 1", beta_raw_1dim__);
-      current_statement__ = 154;
+      current_statement__ = 201;
       validate_non_negative_index("beta_raw", "N_covar", N_covar);
-      current_statement__ = 155;
+      current_statement__ = 202;
+      zeta_raw_1dim__ = std::numeric_limits<int>::min();
+      
+      current_statement__ = 202;
+      zeta_raw_1dim__ = ((N_bins - 1) * est_re);
+      current_statement__ = 202;
+      validate_non_negative_index("zeta_raw", "(N_bins - 1) * est_re",
+                                  zeta_raw_1dim__);
+      current_statement__ = 203;
+      zeta_raw_2dim__ = std::numeric_limits<int>::min();
+      
+      current_statement__ = 203;
+      zeta_raw_2dim__ = (tot_re * est_re);
+      current_statement__ = 203;
+      validate_non_negative_index("zeta_raw", "tot_re * est_re",
+                                  zeta_raw_2dim__);
+      current_statement__ = 204;
+      zeta_sds_1dim__ = std::numeric_limits<int>::min();
+      
+      current_statement__ = 204;
+      zeta_sds_1dim__ = (est_re * n_groups);
+      current_statement__ = 204;
+      validate_non_negative_index("zeta_sds", "est_re * n_groups",
+                                  zeta_sds_1dim__);
+      current_statement__ = 205;
       validate_non_negative_index("p_zero", "N_samples", N_samples);
-      current_statement__ = 156;
+      current_statement__ = 206;
       validate_non_negative_index("p_zero", "N_bins", N_bins);
-      current_statement__ = 157;
+      current_statement__ = 207;
       validate_non_negative_index("p_one", "N_samples", N_samples);
-      current_statement__ = 158;
+      current_statement__ = 208;
       validate_non_negative_index("p_one", "N_bins", N_bins);
-      current_statement__ = 159;
+      current_statement__ = 209;
       validate_non_negative_index("beta", "N_bins", N_bins);
-      current_statement__ = 160;
+      current_statement__ = 210;
       validate_non_negative_index("beta", "N_covar", N_covar);
-      current_statement__ = 161;
+      current_statement__ = 211;
+      validate_non_negative_index("zeta", "N_bins", N_bins);
+      current_statement__ = 212;
+      zeta_2dim__ = std::numeric_limits<int>::min();
+      
+      current_statement__ = 212;
+      zeta_2dim__ = (tot_re * est_re);
+      current_statement__ = 212;
+      validate_non_negative_index("zeta", "tot_re * est_re", zeta_2dim__);
+      current_statement__ = 213;
       validate_non_negative_index("mu", "N_samples", N_samples);
-      current_statement__ = 162;
+      current_statement__ = 214;
       validate_non_negative_index("mu", "N_bins", N_bins);
-      current_statement__ = 163;
+      current_statement__ = 215;
       validate_non_negative_index("log_lik", "N_samples", N_samples);
-      current_statement__ = 164;
+      current_statement__ = 216;
       validate_non_negative_index("log_lik", "N_bins", N_bins);
-      current_statement__ = 165;
+      current_statement__ = 217;
       ynew_1dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 165;
+      current_statement__ = 217;
       ynew_1dim__ = (N_samples * postpred);
-      current_statement__ = 165;
+      current_statement__ = 217;
       validate_non_negative_index("ynew", "N_samples * postpred", ynew_1dim__);
-      current_statement__ = 166;
+      current_statement__ = 218;
       ynew_2dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 166;
+      current_statement__ = 218;
       ynew_2dim__ = (N_bins * postpred);
-      current_statement__ = 166;
+      current_statement__ = 218;
       validate_non_negative_index("ynew", "N_bins * postpred", ynew_2dim__);
-      current_statement__ = 167;
+      current_statement__ = 219;
       newy_is_zero_1dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 167;
+      current_statement__ = 219;
       newy_is_zero_1dim__ = (N_samples * postpred);
-      current_statement__ = 167;
+      current_statement__ = 219;
       validate_non_negative_index("newy_is_zero", "N_samples * postpred",
                                   newy_is_zero_1dim__);
-      current_statement__ = 168;
+      current_statement__ = 220;
       newy_is_zero_2dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 168;
+      current_statement__ = 220;
       newy_is_zero_2dim__ = (N_bins * postpred);
-      current_statement__ = 168;
+      current_statement__ = 220;
       validate_non_negative_index("newy_is_zero", "N_bins * postpred",
                                   newy_is_zero_2dim__);
-      current_statement__ = 169;
+      current_statement__ = 221;
       newy_is_one_1dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 169;
+      current_statement__ = 221;
       newy_is_one_1dim__ = (N_samples * postpred);
-      current_statement__ = 169;
+      current_statement__ = 221;
       validate_non_negative_index("newy_is_one", "N_samples * postpred",
                                   newy_is_one_1dim__);
-      current_statement__ = 170;
+      current_statement__ = 222;
       newy_is_one_2dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 170;
+      current_statement__ = 222;
       newy_is_one_2dim__ = (N_bins * postpred);
-      current_statement__ = 170;
+      current_statement__ = 222;
       validate_non_negative_index("newy_is_one", "N_bins * postpred",
                                   newy_is_one_2dim__);
     } catch (const std::exception& e) {
@@ -638,6 +804,8 @@ public:
     try {
       num_params_r__ += overdisp;
       num_params_r__ += beta_raw_1dim__ * N_covar;
+      num_params_r__ += zeta_raw_1dim__ * zeta_raw_2dim__;
+      num_params_r__ += zeta_sds_1dim__;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
       // Next line prevents compiler griping about no return
@@ -685,6 +853,32 @@ public:
       
       current_statement__ = 2;
       beta_raw = in__.matrix(beta_raw_1dim__, N_covar);
+      Eigen::Matrix<local_scalar_t__, -1, -1> zeta_raw;
+      zeta_raw = Eigen::Matrix<local_scalar_t__, -1, -1>(zeta_raw_1dim__, zeta_raw_2dim__);
+      stan::math::fill(zeta_raw, DUMMY_VAR__);
+      
+      current_statement__ = 3;
+      zeta_raw = in__.matrix(zeta_raw_1dim__, zeta_raw_2dim__);
+      Eigen::Matrix<local_scalar_t__, -1, 1> zeta_sds;
+      zeta_sds = Eigen::Matrix<local_scalar_t__, -1, 1>(zeta_sds_1dim__);
+      stan::math::fill(zeta_sds, DUMMY_VAR__);
+      
+      current_statement__ = 4;
+      zeta_sds = in__.vector(zeta_sds_1dim__);
+      current_statement__ = 4;
+      for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+        current_statement__ = 4;
+        if (jacobian__) {
+          current_statement__ = 4;
+          assign(zeta_sds, cons_list(index_uni(sym1__), nil_index_list()),
+            stan::math::lb_constrain(zeta_sds[(sym1__ - 1)], 0, lp__),
+            "assigning variable zeta_sds");
+        } else {
+          current_statement__ = 4;
+          assign(zeta_sds, cons_list(index_uni(sym1__), nil_index_list()),
+            stan::math::lb_constrain(zeta_sds[(sym1__ - 1)], 0),
+            "assigning variable zeta_sds");
+        }}
       local_scalar_t__ phi;
       phi = DUMMY_VAR__;
       
@@ -700,29 +894,33 @@ public:
       beta = Eigen::Matrix<local_scalar_t__, -1, -1>(N_bins, N_covar);
       stan::math::fill(beta, DUMMY_VAR__);
       
+      Eigen::Matrix<local_scalar_t__, -1, -1> zeta;
+      zeta = Eigen::Matrix<local_scalar_t__, -1, -1>(N_bins, zeta_2dim__);
+      stan::math::fill(zeta, DUMMY_VAR__);
+      
       Eigen::Matrix<local_scalar_t__, -1, -1> mu;
       mu = Eigen::Matrix<local_scalar_t__, -1, -1>(N_samples, N_bins);
       stan::math::fill(mu, DUMMY_VAR__);
       
-      current_statement__ = 8;
-      phi = 1;
       current_statement__ = 11;
+      phi = 1;
+      current_statement__ = 14;
       if (logical_eq(overdisp, 1)) {
-        current_statement__ = 9;
+        current_statement__ = 12;
         phi = (1 / phi_inv[(1 - 1)]);
       } 
-      current_statement__ = 14;
+      current_statement__ = 17;
       for (int l = 1; l <= N_covar; ++l) {
-        current_statement__ = 12;
+        current_statement__ = 15;
         assign(beta,
           cons_list(index_uni(N_bins),
             cons_list(index_uni(l), nil_index_list())), 0.0,
           "assigning variable beta");}
-      current_statement__ = 19;
+      current_statement__ = 22;
       for (int k = 1; k <= (N_bins - 1); ++k) {
-        current_statement__ = 17;
+        current_statement__ = 20;
         for (int l = 1; l <= N_covar; ++l) {
-          current_statement__ = 15;
+          current_statement__ = 18;
           assign(beta,
             cons_list(index_uni(k),
               cons_list(index_uni(l), nil_index_list())),
@@ -730,43 +928,110 @@ public:
               cons_list(index_uni(k),
                 cons_list(index_uni(l), nil_index_list())), "beta_raw"),
             "assigning variable beta");}}
-      current_statement__ = 30;
-      for (int n = 1; n <= N_samples; ++n) {
-        current_statement__ = 20;
-        validate_non_negative_index("logits", "N_bins", N_bins);
-        Eigen::Matrix<local_scalar_t__, -1, 1> logits;
-        logits = Eigen::Matrix<local_scalar_t__, -1, 1>(N_bins);
-        stan::math::fill(logits, DUMMY_VAR__);
-        
-        current_statement__ = 24;
-        for (int m = 1; m <= N_bins; ++m) {
-          current_statement__ = 22;
-          assign(logits, cons_list(index_uni(m), nil_index_list()),
-            multiply(
-              rvalue(design_X,
-                cons_list(index_uni(n),
-                  cons_list(index_omni(), nil_index_list())), "design_X"),
-              transpose(
-                rvalue(beta,
-                  cons_list(index_uni(m),
-                    cons_list(index_omni(), nil_index_list())), "beta"))),
-            "assigning variable logits");}
+      current_statement__ = 32;
+      if (logical_eq(est_re, 1)) {
         current_statement__ = 25;
-        assign(logits, nil_index_list(),
-          softmax(stan::model::deep_copy(logits)),
-          "assigning variable logits");
-        current_statement__ = 28;
-        for (int m = 1; m <= N_bins; ++m) {
-          current_statement__ = 26;
-          assign(mu,
-            cons_list(index_uni(n),
-              cons_list(index_uni(m), nil_index_list())), logits[(m - 1)],
-            "assigning variable mu");}}
-      current_statement__ = 38;
+        for (int l = 1; l <= tot_re; ++l) {
+          current_statement__ = 23;
+          assign(zeta,
+            cons_list(index_uni(N_bins),
+              cons_list(index_uni(l), nil_index_list())), 0.0,
+            "assigning variable zeta");}
+        current_statement__ = 30;
+        for (int k = 1; k <= (N_bins - 1); ++k) {
+          current_statement__ = 28;
+          for (int l = 1; l <= tot_re; ++l) {
+            current_statement__ = 26;
+            assign(zeta,
+              cons_list(index_uni(k),
+                cons_list(index_uni(l), nil_index_list())),
+              rvalue(zeta_raw,
+                cons_list(index_uni(k),
+                  cons_list(index_uni(l), nil_index_list())), "zeta_raw"),
+              "assigning variable zeta");}}
+      } 
+      current_statement__ = 57;
+      if (logical_eq(est_re, 0)) {
+        current_statement__ = 55;
+        for (int n = 1; n <= N_samples; ++n) {
+          current_statement__ = 45;
+          validate_non_negative_index("logits", "N_bins", N_bins);
+          Eigen::Matrix<local_scalar_t__, -1, 1> logits;
+          logits = Eigen::Matrix<local_scalar_t__, -1, 1>(N_bins);
+          stan::math::fill(logits, DUMMY_VAR__);
+          
+          current_statement__ = 49;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 47;
+            assign(logits, cons_list(index_uni(m), nil_index_list()),
+              multiply(
+                rvalue(design_X,
+                  cons_list(index_uni(n),
+                    cons_list(index_omni(), nil_index_list())), "design_X"),
+                transpose(
+                  rvalue(beta,
+                    cons_list(index_uni(m),
+                      cons_list(index_omni(), nil_index_list())), "beta"))),
+              "assigning variable logits");}
+          current_statement__ = 50;
+          assign(logits, nil_index_list(),
+            softmax(stan::model::deep_copy(logits)),
+            "assigning variable logits");
+          current_statement__ = 53;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 51;
+            assign(mu,
+              cons_list(index_uni(n),
+                cons_list(index_uni(m), nil_index_list())), logits[(m - 1)],
+              "assigning variable mu");}}
+      } else {
+        current_statement__ = 43;
+        for (int n = 1; n <= N_samples; ++n) {
+          current_statement__ = 33;
+          validate_non_negative_index("logits", "N_bins", N_bins);
+          Eigen::Matrix<local_scalar_t__, -1, 1> logits;
+          logits = Eigen::Matrix<local_scalar_t__, -1, 1>(N_bins);
+          stan::math::fill(logits, DUMMY_VAR__);
+          
+          current_statement__ = 37;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 35;
+            assign(logits, cons_list(index_uni(m), nil_index_list()),
+              (multiply(
+                 rvalue(design_X,
+                   cons_list(index_uni(n),
+                     cons_list(index_omni(), nil_index_list())), "design_X"),
+                 transpose(
+                   rvalue(beta,
+                     cons_list(index_uni(m),
+                       cons_list(index_omni(), nil_index_list())), "beta")))
+                +
+                multiply(
+                  rvalue(design_Z,
+                    cons_list(index_uni(n),
+                      cons_list(index_omni(), nil_index_list())), "design_Z"),
+                  transpose(
+                    rvalue(zeta,
+                      cons_list(index_uni(m),
+                        cons_list(index_omni(), nil_index_list())), "zeta")))),
+              "assigning variable logits");}
+          current_statement__ = 38;
+          assign(logits, nil_index_list(),
+            softmax(stan::model::deep_copy(logits)),
+            "assigning variable logits");
+          current_statement__ = 41;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 39;
+            assign(mu,
+              cons_list(index_uni(n),
+                cons_list(index_uni(m), nil_index_list())), logits[(m - 1)],
+              "assigning variable mu");}}
+      }
+      current_statement__ = 65;
       for (int i = 1; i <= N_samples; ++i) {
-        current_statement__ = 33;
+        current_statement__ = 60;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 31;
+          current_statement__ = 58;
           assign(p_zero,
             cons_list(index_uni(i),
               cons_list(index_uni(j), nil_index_list())),
@@ -776,9 +1041,9 @@ public:
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "mu")),
               (ESS[(i - 1)] * phi)), "assigning variable p_zero");}
-        current_statement__ = 36;
+        current_statement__ = 63;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 34;
+          current_statement__ = 61;
           assign(p_one,
             cons_list(index_uni(i),
               cons_list(index_uni(j), nil_index_list())),
@@ -796,70 +1061,70 @@ public:
                                         nil_index_list())), "prod_idx")),
                       nil_index_list())), "p_zero"))),
             "assigning variable p_one");}}
-      current_statement__ = 3;
-      current_statement__ = 3;
+      current_statement__ = 5;
+      current_statement__ = 5;
       check_greater_or_equal(function__, "phi", phi, 0);
-      current_statement__ = 4;
+      current_statement__ = 6;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 4;
+        current_statement__ = 6;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 4;
-          current_statement__ = 4;
+          current_statement__ = 6;
+          current_statement__ = 6;
           check_greater_or_equal(function__, "p_zero[sym1__, sym2__]",
                                  rvalue(p_zero,
                                    cons_list(index_uni(sym1__),
                                      cons_list(index_uni(sym2__),
                                        nil_index_list())), "p_zero"), 0);}}
-      current_statement__ = 4;
+      current_statement__ = 6;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 4;
+        current_statement__ = 6;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 4;
-          current_statement__ = 4;
+          current_statement__ = 6;
+          current_statement__ = 6;
           check_less_or_equal(function__, "p_zero[sym1__, sym2__]",
                               rvalue(p_zero,
                                 cons_list(index_uni(sym1__),
                                   cons_list(index_uni(sym2__),
                                     nil_index_list())), "p_zero"), 1);}}
-      current_statement__ = 5;
+      current_statement__ = 7;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 5;
+        current_statement__ = 7;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 5;
-          current_statement__ = 5;
+          current_statement__ = 7;
+          current_statement__ = 7;
           check_greater_or_equal(function__, "p_one[sym1__, sym2__]",
                                  rvalue(p_one,
                                    cons_list(index_uni(sym1__),
                                      cons_list(index_uni(sym2__),
                                        nil_index_list())), "p_one"), 0);}}
-      current_statement__ = 5;
+      current_statement__ = 7;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 5;
+        current_statement__ = 7;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 5;
-          current_statement__ = 5;
+          current_statement__ = 7;
+          current_statement__ = 7;
           check_less_or_equal(function__, "p_one[sym1__, sym2__]",
                               rvalue(p_one,
                                 cons_list(index_uni(sym1__),
                                   cons_list(index_uni(sym2__),
                                     nil_index_list())), "p_one"), 1);}}
-      current_statement__ = 7;
+      current_statement__ = 10;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 7;
+        current_statement__ = 10;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 7;
-          current_statement__ = 7;
+          current_statement__ = 10;
+          current_statement__ = 10;
           check_greater_or_equal(function__, "mu[sym1__, sym2__]",
                                  rvalue(mu,
                                    cons_list(index_uni(sym1__),
                                      cons_list(index_uni(sym2__),
                                        nil_index_list())), "mu"), 0);}}
-      current_statement__ = 7;
+      current_statement__ = 10;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 7;
+        current_statement__ = 10;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 7;
-          current_statement__ = 7;
+          current_statement__ = 10;
+          current_statement__ = 10;
           check_less_or_equal(function__, "mu[sym1__, sym2__]",
                               rvalue(mu,
                                 cons_list(index_uni(sym1__),
@@ -872,46 +1137,65 @@ public:
         local_scalar_t__ beta_temp;
         beta_temp = DUMMY_VAR__;
         
-        current_statement__ = 76;
+        current_statement__ = 103;
         if (logical_eq(overdisp, 1)) {
-          current_statement__ = 74;
+          current_statement__ = 101;
           lp_accum__.add(cauchy_lpdf<propto__>(phi_inv, 0, 5));
         } 
-        current_statement__ = 81;
+        current_statement__ = 108;
         for (int i = 1; i <= N_covar; ++i) {
-          current_statement__ = 79;
+          current_statement__ = 106;
           for (int j = 1; j <= (N_bins - 1); ++j) {
-            current_statement__ = 77;
+            current_statement__ = 104;
             lp_accum__.add(
               normal_lpdf<propto__>(
                 rvalue(beta_raw,
                   cons_list(index_uni(j),
                     cons_list(index_uni(i), nil_index_list())), "beta_raw"),
                 0, prior_sd));}}
-        current_statement__ = 91;
+        current_statement__ = 118;
+        if (logical_eq(est_re, 1)) {
+          current_statement__ = 111;
+          for (int i = 1; i <= n_groups; ++i) {
+            current_statement__ = 109;
+            lp_accum__.add(
+              student_t_lpdf<propto__>(zeta_sds[(i - 1)], 3, 0, 2));}
+          current_statement__ = 116;
+          for (int i = 1; i <= (N_bins - 1); ++i) {
+            current_statement__ = 114;
+            for (int j = 1; j <= tot_re; ++j) {
+              current_statement__ = 112;
+              lp_accum__.add(
+                normal_lpdf<propto__>(
+                  rvalue(zeta_raw,
+                    cons_list(index_uni(i),
+                      cons_list(index_uni(j), nil_index_list())), "zeta_raw"),
+                  0, zeta_sds[(re_var_indx[(j - 1)] - 1)]));}}
+        } 
+        current_statement__ = 128;
         for (int i = 1; i <= N_samples; ++i) {
-          current_statement__ = 89;
+          current_statement__ = 126;
           for (int j = 1; j <= N_bins; ++j) {
-            current_statement__ = 82;
+            current_statement__ = 119;
             lp_accum__.add(
               bernoulli_lpmf<false>(is_zero[(i - 1)][(j - 1)],
                 rvalue(p_zero,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "p_zero")));
-            current_statement__ = 87;
+            current_statement__ = 124;
             if (logical_eq(is_proportion[(i - 1)][(j - 1)], 1)) {
-              current_statement__ = 83;
+              current_statement__ = 120;
               alpha_temp = ((rvalue(mu,
                                cons_list(index_uni(i),
                                  cons_list(index_uni(j), nil_index_list())),
                                "mu") * ESS[(i - 1)]) * phi);
-              current_statement__ = 84;
+              current_statement__ = 121;
               beta_temp = (((1 -
                               rvalue(mu,
                                 cons_list(index_uni(i),
                                   cons_list(index_uni(j), nil_index_list())),
                                 "mu")) * ESS[(i - 1)]) * phi);
-              current_statement__ = 85;
+              current_statement__ = 122;
               lp_accum__.add(
                 ((((stan::math::log(
                       ((1 -
@@ -984,6 +1268,24 @@ public:
       
       current_statement__ = 2;
       beta_raw = in__.matrix(beta_raw_1dim__, N_covar);
+      Eigen::Matrix<double, -1, -1> zeta_raw;
+      zeta_raw = Eigen::Matrix<double, -1, -1>(zeta_raw_1dim__, zeta_raw_2dim__);
+      stan::math::fill(zeta_raw, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 3;
+      zeta_raw = in__.matrix(zeta_raw_1dim__, zeta_raw_2dim__);
+      Eigen::Matrix<double, -1, 1> zeta_sds;
+      zeta_sds = Eigen::Matrix<double, -1, 1>(zeta_sds_1dim__);
+      stan::math::fill(zeta_sds, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 4;
+      zeta_sds = in__.vector(zeta_sds_1dim__);
+      current_statement__ = 4;
+      for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+        current_statement__ = 4;
+        assign(zeta_sds, cons_list(index_uni(sym1__), nil_index_list()),
+          stan::math::lb_constrain(zeta_sds[(sym1__ - 1)], 0),
+          "assigning variable zeta_sds");}
       double phi;
       phi = std::numeric_limits<double>::quiet_NaN();
       
@@ -999,6 +1301,10 @@ public:
       beta = Eigen::Matrix<double, -1, -1>(N_bins, N_covar);
       stan::math::fill(beta, std::numeric_limits<double>::quiet_NaN());
       
+      Eigen::Matrix<double, -1, -1> zeta;
+      zeta = Eigen::Matrix<double, -1, -1>(N_bins, zeta_2dim__);
+      stan::math::fill(zeta, std::numeric_limits<double>::quiet_NaN());
+      
       Eigen::Matrix<double, -1, -1> mu;
       mu = Eigen::Matrix<double, -1, -1>(N_samples, N_bins);
       stan::math::fill(mu, std::numeric_limits<double>::quiet_NaN());
@@ -1012,29 +1318,38 @@ public:
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())), "beta_raw"));
         }}
+      for (int sym1__ = 1; sym1__ <= zeta_raw_2dim__; ++sym1__) {
+        for (int sym2__ = 1; sym2__ <= zeta_raw_1dim__; ++sym2__) {
+          vars__.emplace_back(
+            rvalue(zeta_raw,
+              cons_list(index_uni(sym2__),
+                cons_list(index_uni(sym1__), nil_index_list())), "zeta_raw"));
+        }}
+      for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+        vars__.emplace_back(zeta_sds[(sym1__ - 1)]);}
       if (logical_negation((primitive_value(emit_transformed_parameters__) ||
             primitive_value(emit_generated_quantities__)))) {
         return ;
       } 
-      current_statement__ = 8;
-      phi = 1;
       current_statement__ = 11;
+      phi = 1;
+      current_statement__ = 14;
       if (logical_eq(overdisp, 1)) {
-        current_statement__ = 9;
+        current_statement__ = 12;
         phi = (1 / phi_inv[(1 - 1)]);
       } 
-      current_statement__ = 14;
+      current_statement__ = 17;
       for (int l = 1; l <= N_covar; ++l) {
-        current_statement__ = 12;
+        current_statement__ = 15;
         assign(beta,
           cons_list(index_uni(N_bins),
             cons_list(index_uni(l), nil_index_list())), 0.0,
           "assigning variable beta");}
-      current_statement__ = 19;
+      current_statement__ = 22;
       for (int k = 1; k <= (N_bins - 1); ++k) {
-        current_statement__ = 17;
+        current_statement__ = 20;
         for (int l = 1; l <= N_covar; ++l) {
-          current_statement__ = 15;
+          current_statement__ = 18;
           assign(beta,
             cons_list(index_uni(k),
               cons_list(index_uni(l), nil_index_list())),
@@ -1042,43 +1357,110 @@ public:
               cons_list(index_uni(k),
                 cons_list(index_uni(l), nil_index_list())), "beta_raw"),
             "assigning variable beta");}}
-      current_statement__ = 30;
-      for (int n = 1; n <= N_samples; ++n) {
-        current_statement__ = 20;
-        validate_non_negative_index("logits", "N_bins", N_bins);
-        Eigen::Matrix<double, -1, 1> logits;
-        logits = Eigen::Matrix<double, -1, 1>(N_bins);
-        stan::math::fill(logits, std::numeric_limits<double>::quiet_NaN());
-        
-        current_statement__ = 24;
-        for (int m = 1; m <= N_bins; ++m) {
-          current_statement__ = 22;
-          assign(logits, cons_list(index_uni(m), nil_index_list()),
-            multiply(
-              rvalue(design_X,
-                cons_list(index_uni(n),
-                  cons_list(index_omni(), nil_index_list())), "design_X"),
-              transpose(
-                rvalue(beta,
-                  cons_list(index_uni(m),
-                    cons_list(index_omni(), nil_index_list())), "beta"))),
-            "assigning variable logits");}
+      current_statement__ = 32;
+      if (logical_eq(est_re, 1)) {
         current_statement__ = 25;
-        assign(logits, nil_index_list(),
-          softmax(stan::model::deep_copy(logits)),
-          "assigning variable logits");
-        current_statement__ = 28;
-        for (int m = 1; m <= N_bins; ++m) {
-          current_statement__ = 26;
-          assign(mu,
-            cons_list(index_uni(n),
-              cons_list(index_uni(m), nil_index_list())), logits[(m - 1)],
-            "assigning variable mu");}}
-      current_statement__ = 38;
+        for (int l = 1; l <= tot_re; ++l) {
+          current_statement__ = 23;
+          assign(zeta,
+            cons_list(index_uni(N_bins),
+              cons_list(index_uni(l), nil_index_list())), 0.0,
+            "assigning variable zeta");}
+        current_statement__ = 30;
+        for (int k = 1; k <= (N_bins - 1); ++k) {
+          current_statement__ = 28;
+          for (int l = 1; l <= tot_re; ++l) {
+            current_statement__ = 26;
+            assign(zeta,
+              cons_list(index_uni(k),
+                cons_list(index_uni(l), nil_index_list())),
+              rvalue(zeta_raw,
+                cons_list(index_uni(k),
+                  cons_list(index_uni(l), nil_index_list())), "zeta_raw"),
+              "assigning variable zeta");}}
+      } 
+      current_statement__ = 57;
+      if (logical_eq(est_re, 0)) {
+        current_statement__ = 55;
+        for (int n = 1; n <= N_samples; ++n) {
+          current_statement__ = 45;
+          validate_non_negative_index("logits", "N_bins", N_bins);
+          Eigen::Matrix<double, -1, 1> logits;
+          logits = Eigen::Matrix<double, -1, 1>(N_bins);
+          stan::math::fill(logits, std::numeric_limits<double>::quiet_NaN());
+          
+          current_statement__ = 49;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 47;
+            assign(logits, cons_list(index_uni(m), nil_index_list()),
+              multiply(
+                rvalue(design_X,
+                  cons_list(index_uni(n),
+                    cons_list(index_omni(), nil_index_list())), "design_X"),
+                transpose(
+                  rvalue(beta,
+                    cons_list(index_uni(m),
+                      cons_list(index_omni(), nil_index_list())), "beta"))),
+              "assigning variable logits");}
+          current_statement__ = 50;
+          assign(logits, nil_index_list(),
+            softmax(stan::model::deep_copy(logits)),
+            "assigning variable logits");
+          current_statement__ = 53;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 51;
+            assign(mu,
+              cons_list(index_uni(n),
+                cons_list(index_uni(m), nil_index_list())), logits[(m - 1)],
+              "assigning variable mu");}}
+      } else {
+        current_statement__ = 43;
+        for (int n = 1; n <= N_samples; ++n) {
+          current_statement__ = 33;
+          validate_non_negative_index("logits", "N_bins", N_bins);
+          Eigen::Matrix<double, -1, 1> logits;
+          logits = Eigen::Matrix<double, -1, 1>(N_bins);
+          stan::math::fill(logits, std::numeric_limits<double>::quiet_NaN());
+          
+          current_statement__ = 37;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 35;
+            assign(logits, cons_list(index_uni(m), nil_index_list()),
+              (multiply(
+                 rvalue(design_X,
+                   cons_list(index_uni(n),
+                     cons_list(index_omni(), nil_index_list())), "design_X"),
+                 transpose(
+                   rvalue(beta,
+                     cons_list(index_uni(m),
+                       cons_list(index_omni(), nil_index_list())), "beta")))
+                +
+                multiply(
+                  rvalue(design_Z,
+                    cons_list(index_uni(n),
+                      cons_list(index_omni(), nil_index_list())), "design_Z"),
+                  transpose(
+                    rvalue(zeta,
+                      cons_list(index_uni(m),
+                        cons_list(index_omni(), nil_index_list())), "zeta")))),
+              "assigning variable logits");}
+          current_statement__ = 38;
+          assign(logits, nil_index_list(),
+            softmax(stan::model::deep_copy(logits)),
+            "assigning variable logits");
+          current_statement__ = 41;
+          for (int m = 1; m <= N_bins; ++m) {
+            current_statement__ = 39;
+            assign(mu,
+              cons_list(index_uni(n),
+                cons_list(index_uni(m), nil_index_list())), logits[(m - 1)],
+              "assigning variable mu");}}
+      }
+      current_statement__ = 65;
       for (int i = 1; i <= N_samples; ++i) {
-        current_statement__ = 33;
+        current_statement__ = 60;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 31;
+          current_statement__ = 58;
           assign(p_zero,
             cons_list(index_uni(i),
               cons_list(index_uni(j), nil_index_list())),
@@ -1088,9 +1470,9 @@ public:
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "mu")),
               (ESS[(i - 1)] * phi)), "assigning variable p_zero");}
-        current_statement__ = 36;
+        current_statement__ = 63;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 34;
+          current_statement__ = 61;
           assign(p_one,
             cons_list(index_uni(i),
               cons_list(index_uni(j), nil_index_list())),
@@ -1108,70 +1490,70 @@ public:
                                         nil_index_list())), "prod_idx")),
                       nil_index_list())), "p_zero"))),
             "assigning variable p_one");}}
-      current_statement__ = 3;
-      current_statement__ = 3;
+      current_statement__ = 5;
+      current_statement__ = 5;
       check_greater_or_equal(function__, "phi", phi, 0);
-      current_statement__ = 4;
+      current_statement__ = 6;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 4;
+        current_statement__ = 6;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 4;
-          current_statement__ = 4;
+          current_statement__ = 6;
+          current_statement__ = 6;
           check_greater_or_equal(function__, "p_zero[sym1__, sym2__]",
                                  rvalue(p_zero,
                                    cons_list(index_uni(sym1__),
                                      cons_list(index_uni(sym2__),
                                        nil_index_list())), "p_zero"), 0);}}
-      current_statement__ = 4;
+      current_statement__ = 6;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 4;
+        current_statement__ = 6;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 4;
-          current_statement__ = 4;
+          current_statement__ = 6;
+          current_statement__ = 6;
           check_less_or_equal(function__, "p_zero[sym1__, sym2__]",
                               rvalue(p_zero,
                                 cons_list(index_uni(sym1__),
                                   cons_list(index_uni(sym2__),
                                     nil_index_list())), "p_zero"), 1);}}
-      current_statement__ = 5;
+      current_statement__ = 7;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 5;
+        current_statement__ = 7;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 5;
-          current_statement__ = 5;
+          current_statement__ = 7;
+          current_statement__ = 7;
           check_greater_or_equal(function__, "p_one[sym1__, sym2__]",
                                  rvalue(p_one,
                                    cons_list(index_uni(sym1__),
                                      cons_list(index_uni(sym2__),
                                        nil_index_list())), "p_one"), 0);}}
-      current_statement__ = 5;
+      current_statement__ = 7;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 5;
+        current_statement__ = 7;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 5;
-          current_statement__ = 5;
+          current_statement__ = 7;
+          current_statement__ = 7;
           check_less_or_equal(function__, "p_one[sym1__, sym2__]",
                               rvalue(p_one,
                                 cons_list(index_uni(sym1__),
                                   cons_list(index_uni(sym2__),
                                     nil_index_list())), "p_one"), 1);}}
-      current_statement__ = 7;
+      current_statement__ = 10;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 7;
+        current_statement__ = 10;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 7;
-          current_statement__ = 7;
+          current_statement__ = 10;
+          current_statement__ = 10;
           check_greater_or_equal(function__, "mu[sym1__, sym2__]",
                                  rvalue(mu,
                                    cons_list(index_uni(sym1__),
                                      cons_list(index_uni(sym2__),
                                        nil_index_list())), "mu"), 0);}}
-      current_statement__ = 7;
+      current_statement__ = 10;
       for (int sym1__ = 1; sym1__ <= N_samples; ++sym1__) {
-        current_statement__ = 7;
+        current_statement__ = 10;
         for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
-          current_statement__ = 7;
-          current_statement__ = 7;
+          current_statement__ = 10;
+          current_statement__ = 10;
           check_less_or_equal(function__, "mu[sym1__, sym2__]",
                               rvalue(mu,
                                 cons_list(index_uni(sym1__),
@@ -1199,6 +1581,13 @@ public:
               rvalue(beta,
                 cons_list(index_uni(sym2__),
                   cons_list(index_uni(sym1__), nil_index_list())), "beta"));}
+        }
+        for (int sym1__ = 1; sym1__ <= zeta_2dim__; ++sym1__) {
+          for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
+            vars__.emplace_back(
+              rvalue(zeta,
+                cons_list(index_uni(sym2__),
+                  cons_list(index_uni(sym1__), nil_index_list())), "zeta"));}
         }
         for (int sym1__ = 1; sym1__ <= N_bins; ++sym1__) {
           for (int sym2__ = 1; sym2__ <= N_samples; ++sym2__) {
@@ -1233,16 +1622,16 @@ public:
       int newy_is_proportion;
       newy_is_proportion = std::numeric_limits<int>::min();
       
-      current_statement__ = 71;
+      current_statement__ = 98;
       for (int i = 1; i <= N_samples; ++i) {
-        current_statement__ = 69;
+        current_statement__ = 96;
         for (int j = 1; j <= N_bins; ++j) {
-          current_statement__ = 46;
+          current_statement__ = 73;
           assign(log_lik,
             cons_list(index_uni(i),
               cons_list(index_uni(j), nil_index_list())), 0,
             "assigning variable log_lik");
-          current_statement__ = 47;
+          current_statement__ = 74;
           assign(log_lik,
             cons_list(index_uni(i),
               cons_list(index_uni(j), nil_index_list())),
@@ -1252,20 +1641,20 @@ public:
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "p_zero"))),
             "assigning variable log_lik");
-          current_statement__ = 52;
+          current_statement__ = 79;
           if (logical_eq(is_proportion[(i - 1)][(j - 1)], 1)) {
-            current_statement__ = 48;
+            current_statement__ = 75;
             alpha_temp = ((rvalue(mu,
                              cons_list(index_uni(i),
                                cons_list(index_uni(j), nil_index_list())),
                              "mu") * ESS[(i - 1)]) * phi);
-            current_statement__ = 49;
+            current_statement__ = 76;
             beta_temp = (((1 -
                             rvalue(mu,
                               cons_list(index_uni(i),
                                 cons_list(index_uni(j), nil_index_list())),
                               "mu")) * ESS[(i - 1)]) * phi);
-            current_statement__ = 50;
+            current_statement__ = 77;
             assign(log_lik,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())),
@@ -1295,9 +1684,9 @@ public:
                   lbeta(alpha_temp, beta_temp))),
               "assigning variable log_lik");
           } 
-          current_statement__ = 67;
+          current_statement__ = 94;
           if (logical_eq(postpred, 1)) {
-            current_statement__ = 53;
+            current_statement__ = 80;
             assign(newy_is_zero,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())),
@@ -1306,15 +1695,15 @@ public:
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "p_zero"),
                 base_rng__), "assigning variable newy_is_zero");
-            current_statement__ = 55;
+            current_statement__ = 82;
             if (logical_eq(newy_is_zero[(i - 1)][(j - 1)], 1)) {
-              current_statement__ = 54;
+              current_statement__ = 81;
               assign(ynew,
                 cons_list(index_uni(i),
                   cons_list(index_uni(j), nil_index_list())), 0.0,
                 "assigning variable ynew");
             } 
-            current_statement__ = 56;
+            current_statement__ = 83;
             assign(newy_is_one,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())),
@@ -1323,37 +1712,37 @@ public:
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())), "p_one"),
                 base_rng__), "assigning variable newy_is_one");
-            current_statement__ = 58;
+            current_statement__ = 85;
             if (logical_eq(newy_is_one[(i - 1)][(j - 1)], 1)) {
-              current_statement__ = 57;
+              current_statement__ = 84;
               assign(ynew,
                 cons_list(index_uni(i),
                   cons_list(index_uni(j), nil_index_list())), 1.0,
                 "assigning variable ynew");
             } 
-            current_statement__ = 59;
+            current_statement__ = 86;
             newy_is_proportion = (newy_is_zero[(i - 1)][(j - 1)] +
                                    newy_is_one[(i - 1)][(j - 1)]);
-            current_statement__ = 65;
+            current_statement__ = 92;
             if (logical_eq(newy_is_proportion, 0)) {
-              current_statement__ = 60;
+              current_statement__ = 87;
               alpha_temp = (rvalue(mu,
                               cons_list(index_uni(i),
                                 cons_list(index_uni(j), nil_index_list())),
                               "mu") * ESS[(i - 1)]);
-              current_statement__ = 61;
+              current_statement__ = 88;
               beta_temp = ((1 -
                              rvalue(mu,
                                cons_list(index_uni(i),
                                  cons_list(index_uni(j), nil_index_list())),
                                "mu")) * ESS[(i - 1)]);
-              current_statement__ = 62;
+              current_statement__ = 89;
               assign(ynew,
                 cons_list(index_uni(i),
                   cons_list(index_uni(j), nil_index_list())),
                 beta_rng(alpha_temp, beta_temp, base_rng__),
                 "assigning variable ynew");
-              current_statement__ = 63;
+              current_statement__ = 90;
               assign(ynew,
                 cons_list(index_uni(i),
                   cons_list(index_uni(j), nil_index_list())),
@@ -1449,6 +1838,59 @@ public:
             current_statement__ = 2;
             pos__ = (pos__ + 1);}}
       }
+      Eigen::Matrix<double, -1, -1> zeta_raw;
+      zeta_raw = Eigen::Matrix<double, -1, -1>(zeta_raw_1dim__, zeta_raw_2dim__);
+      stan::math::fill(zeta_raw, std::numeric_limits<double>::quiet_NaN());
+      
+      {
+        std::vector<local_scalar_t__> zeta_raw_flat__;
+        current_statement__ = 3;
+        assign(zeta_raw_flat__, nil_index_list(),
+          context__.vals_r("zeta_raw"), "assigning variable zeta_raw_flat__");
+        current_statement__ = 3;
+        pos__ = 1;
+        current_statement__ = 3;
+        for (int sym1__ = 1; sym1__ <= zeta_raw_2dim__; ++sym1__) {
+          current_statement__ = 3;
+          for (int sym2__ = 1; sym2__ <= zeta_raw_1dim__; ++sym2__) {
+            current_statement__ = 3;
+            assign(zeta_raw,
+              cons_list(index_uni(sym2__),
+                cons_list(index_uni(sym1__), nil_index_list())),
+              zeta_raw_flat__[(pos__ - 1)], "assigning variable zeta_raw");
+            current_statement__ = 3;
+            pos__ = (pos__ + 1);}}
+      }
+      Eigen::Matrix<double, -1, 1> zeta_sds;
+      zeta_sds = Eigen::Matrix<double, -1, 1>(zeta_sds_1dim__);
+      stan::math::fill(zeta_sds, std::numeric_limits<double>::quiet_NaN());
+      
+      {
+        std::vector<local_scalar_t__> zeta_sds_flat__;
+        current_statement__ = 4;
+        assign(zeta_sds_flat__, nil_index_list(),
+          context__.vals_r("zeta_sds"), "assigning variable zeta_sds_flat__");
+        current_statement__ = 4;
+        pos__ = 1;
+        current_statement__ = 4;
+        for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+          current_statement__ = 4;
+          assign(zeta_sds, cons_list(index_uni(sym1__), nil_index_list()),
+            zeta_sds_flat__[(pos__ - 1)], "assigning variable zeta_sds");
+          current_statement__ = 4;
+          pos__ = (pos__ + 1);}
+      }
+      Eigen::Matrix<double, -1, 1> zeta_sds_free__;
+      zeta_sds_free__ = Eigen::Matrix<double, -1, 1>(zeta_sds_1dim__);
+      stan::math::fill(zeta_sds_free__, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 4;
+      for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+        current_statement__ = 4;
+        assign(zeta_sds_free__,
+          cons_list(index_uni(sym1__), nil_index_list()),
+          stan::math::lb_free(zeta_sds[(sym1__ - 1)], 0),
+          "assigning variable zeta_sds_free__");}
       for (int sym1__ = 1; sym1__ <= overdisp; ++sym1__) {
         vars__.emplace_back(phi_inv_free__[(sym1__ - 1)]);}
       for (int sym1__ = 1; sym1__ <= N_covar; ++sym1__) {
@@ -1458,6 +1900,15 @@ public:
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())), "beta_raw"));
         }}
+      for (int sym1__ = 1; sym1__ <= zeta_raw_2dim__; ++sym1__) {
+        for (int sym2__ = 1; sym2__ <= zeta_raw_1dim__; ++sym2__) {
+          vars__.emplace_back(
+            rvalue(zeta_raw,
+              cons_list(index_uni(sym2__),
+                cons_list(index_uni(sym1__), nil_index_list())), "zeta_raw"));
+        }}
+      for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+        vars__.emplace_back(zeta_sds_free__[(sym1__ - 1)]);}
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
       // Next line prevents compiler griping about no return
@@ -1470,10 +1921,13 @@ public:
     names__.clear();
     names__.emplace_back("phi_inv");
     names__.emplace_back("beta_raw");
+    names__.emplace_back("zeta_raw");
+    names__.emplace_back("zeta_sds");
     names__.emplace_back("phi");
     names__.emplace_back("p_zero");
     names__.emplace_back("p_one");
     names__.emplace_back("beta");
+    names__.emplace_back("zeta");
     names__.emplace_back("mu");
     names__.emplace_back("alpha_temp");
     names__.emplace_back("beta_temp");
@@ -1492,6 +1946,16 @@ public:
                                              static_cast<size_t>(beta_raw_1dim__)
                                              , static_cast<size_t>(N_covar)});
     
+    dimss__.emplace_back(std::vector<size_t>{
+                                             static_cast<size_t>(zeta_raw_1dim__)
+                                             ,
+                                             static_cast<size_t>(zeta_raw_2dim__)
+                                             });
+    
+    dimss__.emplace_back(std::vector<size_t>{
+                                             static_cast<size_t>(zeta_sds_1dim__)
+                                             });
+    
     dimss__.emplace_back(std::vector<size_t>{});
     
     dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N_samples),
@@ -1502,6 +1966,9 @@ public:
     
     dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N_bins),
                                              static_cast<size_t>(N_covar)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N_bins),
+                                             static_cast<size_t>(zeta_2dim__)});
     
     dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N_samples),
                                              static_cast<size_t>(N_bins)});
@@ -1550,6 +2017,17 @@ public:
             param_names__.emplace_back(std::string() + "beta_raw" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
           }}
       }}
+    for (int sym1__ = 1; sym1__ <= zeta_raw_2dim__; ++sym1__) {
+      {
+        for (int sym2__ = 1; sym2__ <= zeta_raw_1dim__; ++sym2__) {
+          {
+            param_names__.emplace_back(std::string() + "zeta_raw" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+          }}
+      }}
+    for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "zeta_sds" + '.' + std::to_string(sym1__));
+      }}
     if (emit_transformed_parameters__) {
       param_names__.emplace_back(std::string() + "phi");
       for (int sym1__ = 1; sym1__ <= N_bins; ++sym1__) {
@@ -1571,6 +2049,13 @@ public:
           for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
             {
               param_names__.emplace_back(std::string() + "beta" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+            }}
+        }}
+      for (int sym1__ = 1; sym1__ <= zeta_2dim__; ++sym1__) {
+        {
+          for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
+            {
+              param_names__.emplace_back(std::string() + "zeta" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
             }}
         }}
       for (int sym1__ = 1; sym1__ <= N_bins; ++sym1__) {
@@ -1635,6 +2120,17 @@ public:
             param_names__.emplace_back(std::string() + "beta_raw" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
           }}
       }}
+    for (int sym1__ = 1; sym1__ <= zeta_raw_2dim__; ++sym1__) {
+      {
+        for (int sym2__ = 1; sym2__ <= zeta_raw_1dim__; ++sym2__) {
+          {
+            param_names__.emplace_back(std::string() + "zeta_raw" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+          }}
+      }}
+    for (int sym1__ = 1; sym1__ <= zeta_sds_1dim__; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "zeta_sds" + '.' + std::to_string(sym1__));
+      }}
     if (emit_transformed_parameters__) {
       param_names__.emplace_back(std::string() + "phi");
       for (int sym1__ = 1; sym1__ <= N_bins; ++sym1__) {
@@ -1656,6 +2152,13 @@ public:
           for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
             {
               param_names__.emplace_back(std::string() + "beta" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+            }}
+        }}
+      for (int sym1__ = 1; sym1__ <= zeta_2dim__; ++sym1__) {
+        {
+          for (int sym2__ = 1; sym2__ <= N_bins; ++sym2__) {
+            {
+              param_names__.emplace_back(std::string() + "zeta" + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
             }}
         }}
       for (int sym1__ = 1; sym1__ <= N_bins; ++sym1__) {
@@ -1705,13 +2208,13 @@ public:
     
   inline std::string get_constrained_sizedtypes() const {
     stringstream s__;
-    s__ << "[{\"name\":\"phi_inv\",\"type\":{\"name\":\"vector\",\"length\":" << overdisp << "},\"block\":\"parameters\"},{\"name\":\"beta_raw\",\"type\":{\"name\":\"matrix\",\"rows\":" << beta_raw_1dim__ << ",\"cols\":" << N_covar << "},\"block\":\"parameters\"},{\"name\":\"phi\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"p_zero\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"p_one\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_bins << ",\"cols\":" << N_covar << "},\"block\":\"transformed_parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"alpha_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"array\",\"length\":" << N_samples << ",\"element_type\":{\"name\":\"vector\",\"length\":" << N_bins << "}},\"block\":\"generated_quantities\"},{\"name\":\"ynew\",\"type\":{\"name\":\"array\",\"length\":" << ynew_1dim__ << ",\"element_type\":{\"name\":\"vector\",\"length\":" << ynew_2dim__ << "}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_zero\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_zero_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_zero_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_one\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_one_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_one_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_proportion\",\"type\":{\"name\":\"int\"},\"block\":\"generated_quantities\"}]";
+    s__ << "[{\"name\":\"phi_inv\",\"type\":{\"name\":\"vector\",\"length\":" << overdisp << "},\"block\":\"parameters\"},{\"name\":\"beta_raw\",\"type\":{\"name\":\"matrix\",\"rows\":" << beta_raw_1dim__ << ",\"cols\":" << N_covar << "},\"block\":\"parameters\"},{\"name\":\"zeta_raw\",\"type\":{\"name\":\"matrix\",\"rows\":" << zeta_raw_1dim__ << ",\"cols\":" << zeta_raw_2dim__ << "},\"block\":\"parameters\"},{\"name\":\"zeta_sds\",\"type\":{\"name\":\"vector\",\"length\":" << zeta_sds_1dim__ << "},\"block\":\"parameters\"},{\"name\":\"phi\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"p_zero\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"p_one\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_bins << ",\"cols\":" << N_covar << "},\"block\":\"transformed_parameters\"},{\"name\":\"zeta\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_bins << ",\"cols\":" << zeta_2dim__ << "},\"block\":\"transformed_parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"alpha_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"array\",\"length\":" << N_samples << ",\"element_type\":{\"name\":\"vector\",\"length\":" << N_bins << "}},\"block\":\"generated_quantities\"},{\"name\":\"ynew\",\"type\":{\"name\":\"array\",\"length\":" << ynew_1dim__ << ",\"element_type\":{\"name\":\"vector\",\"length\":" << ynew_2dim__ << "}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_zero\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_zero_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_zero_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_one\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_one_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_one_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_proportion\",\"type\":{\"name\":\"int\"},\"block\":\"generated_quantities\"}]";
     return s__.str();
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     stringstream s__;
-    s__ << "[{\"name\":\"phi_inv\",\"type\":{\"name\":\"vector\",\"length\":" << overdisp << "},\"block\":\"parameters\"},{\"name\":\"beta_raw\",\"type\":{\"name\":\"matrix\",\"rows\":" << beta_raw_1dim__ << ",\"cols\":" << N_covar << "},\"block\":\"parameters\"},{\"name\":\"phi\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"p_zero\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"p_one\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_bins << ",\"cols\":" << N_covar << "},\"block\":\"transformed_parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"alpha_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"array\",\"length\":" << N_samples << ",\"element_type\":{\"name\":\"vector\",\"length\":" << N_bins << "}},\"block\":\"generated_quantities\"},{\"name\":\"ynew\",\"type\":{\"name\":\"array\",\"length\":" << ynew_1dim__ << ",\"element_type\":{\"name\":\"vector\",\"length\":" << ynew_2dim__ << "}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_zero\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_zero_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_zero_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_one\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_one_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_one_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_proportion\",\"type\":{\"name\":\"int\"},\"block\":\"generated_quantities\"}]";
+    s__ << "[{\"name\":\"phi_inv\",\"type\":{\"name\":\"vector\",\"length\":" << overdisp << "},\"block\":\"parameters\"},{\"name\":\"beta_raw\",\"type\":{\"name\":\"matrix\",\"rows\":" << beta_raw_1dim__ << ",\"cols\":" << N_covar << "},\"block\":\"parameters\"},{\"name\":\"zeta_raw\",\"type\":{\"name\":\"matrix\",\"rows\":" << zeta_raw_1dim__ << ",\"cols\":" << zeta_raw_2dim__ << "},\"block\":\"parameters\"},{\"name\":\"zeta_sds\",\"type\":{\"name\":\"vector\",\"length\":" << zeta_sds_1dim__ << "},\"block\":\"parameters\"},{\"name\":\"phi\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"p_zero\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"p_one\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_bins << ",\"cols\":" << N_covar << "},\"block\":\"transformed_parameters\"},{\"name\":\"zeta\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_bins << ",\"cols\":" << zeta_2dim__ << "},\"block\":\"transformed_parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"matrix\",\"rows\":" << N_samples << ",\"cols\":" << N_bins << "},\"block\":\"transformed_parameters\"},{\"name\":\"alpha_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta_temp\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"array\",\"length\":" << N_samples << ",\"element_type\":{\"name\":\"vector\",\"length\":" << N_bins << "}},\"block\":\"generated_quantities\"},{\"name\":\"ynew\",\"type\":{\"name\":\"array\",\"length\":" << ynew_1dim__ << ",\"element_type\":{\"name\":\"vector\",\"length\":" << ynew_2dim__ << "}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_zero\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_zero_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_zero_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_one\",\"type\":{\"name\":\"array\",\"length\":" << newy_is_one_1dim__ << ",\"element_type\":{\"name\":\"array\",\"length\":" << newy_is_one_2dim__ << ",\"element_type\":{\"name\":\"int\"}}},\"block\":\"generated_quantities\"},{\"name\":\"newy_is_proportion\",\"type\":{\"name\":\"int\"},\"block\":\"generated_quantities\"}]";
     return s__.str();
     } // get_unconstrained_sizedtypes() 
     

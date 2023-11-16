@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">zoid</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -44,7 +44,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,6 +64,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -82,12 +85,13 @@
 
       
 
-      </header><script src="a01_fitting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting models with zoid</h1>
+                        <h4 data-toc-skip class="author"></h4>
             
-            <h4 data-toc-skip class="date">2022-02-09</h4>
+            <h4 data-toc-skip class="date">2023-11-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/zoid/blob/HEAD/vignettes/a01_fitting.Rmd" class="external-link"><code>vignettes/a01_fitting.Rmd</code></a></small>
       <div class="hidden name"><code>a01_fitting.Rmd</code></div>
@@ -98,98 +102,145 @@
     
 <p>Let’s load the necessary packages:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nwfsc-cb.github.io/zoid/" class="external-link">zoid</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nwfsc-cb.github.io/zoid/" class="external-link">zoid</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="fish-stomach-contents-example">Fish stomach contents example<a class="anchor" aria-label="anchor" href="#fish-stomach-contents-example"></a>
 </h2>
-<p>Here, we will use a dataset of cod stomachs on the Faroe Bank, published in</p>
-<p><em>Magnussen, E. 2011. Food and feeding habits of cod (Gadus morhua) on the Faroe Bank. – ICES Journal of Marine Science, 68: 1909–1917.</em></p>
-<p>The data are also included with our package, and represent a dataframe with observations on rows (stratified by year and season) and prey items across columns.</p>
+<p>Here, we will use a dataset of cod stomachs on the Faroe Bank,
+published in</p>
+<p><em>Magnussen, E. 2011. Food and feeding habits of cod (Gadus morhua)
+on the Faroe Bank. – ICES Journal of Marine Science, 68:
+1909–1917.</em></p>
+<p>The data are also included with our package, and represent a
+dataframe with observations on rows (stratified by year and season) and
+prey items across columns.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span></code></pre></div>
-<p>We need to split the dataset into 2 matrices, one representing the design matrix for the observations (‘Year’ and ‘Season’) and the other representing the data matrix of observed biomass per sample - prey item. If all rows are considered replicate observations, there’s no need to create a design matrix - but we can test for the effects of Season and Year.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span></span></code></pre></div>
+<p>We need to split the dataset into 2 matrices, one representing the
+design matrix for the observations (‘Year’ and ‘Season’) and the other
+representing the data matrix of observed biomass per sample - prey item.
+If all rows are considered replicate observations, there’s no need to
+create a design matrix - but we can test for the effects of Season and
+Year.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">design_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">]</span>
-<span class="va">data_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">design_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">]</span></span>
+<span><span class="va">data_matrix</span> <span class="op">=</span> <span class="va">coddiet</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">coddiet</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Year"</span>,<span class="st">"Season"</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">]</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="overdispersion-or-not">Overdispersion or not?<a class="anchor" aria-label="anchor" href="#overdispersion-or-not"></a>
 </h3>
-<p>One optional feature of the model is to include overdispersion in the calculations of the 3 probabilities for each cell. Including overdispersion is generally only advised with replicated data or shared information – and may fit heterogeneous datasets with lots of 0s better than the model without overdispersion. For the cod diet data, we’ll include overdispersion because of poor MCMC sampling without it.</p>
+<p>One optional feature of the model is to include overdispersion in the
+calculations of the 3 probabilities for each cell. Including
+overdispersion is generally only advised with replicated data or shared
+information – and may fit heterogeneous datasets with lots of 0s better
+than the model without overdispersion. For the cod diet data, we’ll
+include overdispersion because of poor MCMC sampling without it.</p>
 </div>
 <div class="section level3">
 <h3 id="model-selection">Model selection<a class="anchor" aria-label="anchor" href="#model-selection"></a>
 </h3>
-<p>Next, we can test some hypotheses about how the data are structured. We’ll create the following models (1) a model with all observations as replicate samples, (2) a model with only seasonal effects, (3) a model with only differences by year, and (4) a model with both year and season. Both year and season are treated as factors here – but continuous covariates can also be included.</p>
-<p>Note that for fitting, the data_matrix should be a matrix, but the design_matrix should be a data frame.</p>
+<p>Next, we can test some hypotheses about how the data are structured.
+We’ll create the following models (1) a model with all observations as
+replicate samples, (2) a model with only seasonal effects, (3) a model
+with only differences by year, and (4) a model with both year and
+season. Both year and season are treated as factors here – but
+continuous covariates can also be included.</p>
+<p>Note that for fitting, the data_matrix should be a matrix, but the
+design_matrix should be a data frame.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">design_matrix</span><span class="op">$</span><span class="va">Season</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">design_matrix</span><span class="op">$</span><span class="va">Season</span><span class="op">)</span>
-<span class="va">design_matrix</span><span class="op">$</span><span class="va">Year</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">design_matrix</span><span class="op">$</span><span class="va">Year</span><span class="op">)</span>
-<span class="va">design_matrix</span><span class="op">$</span><span class="va">y</span> <span class="op">=</span> <span class="fl">1</span> <span class="co"># dummy variable</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,
-                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,
-                      chains<span class="op">=</span><span class="fl">4</span>,
-                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span>
-
-<span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">Season</span>, 
-                      design_matrix <span class="op">=</span> <span class="va">design_matrix</span>, 
-                      data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,
-                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,
-                      chains<span class="op">=</span><span class="fl">4</span>,
-                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span>
-
-<span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">Year</span>, 
-                      design_matrix <span class="op">=</span> <span class="va">design_matrix</span>, 
-                      data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,
-                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,
-                      chains<span class="op">=</span><span class="fl">4</span>,
-                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span>
-
-<span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">Year</span> <span class="op">+</span> <span class="va">Season</span>, 
-                      design_matrix <span class="op">=</span> <span class="va">design_matrix</span>, 
-                      data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,
-                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,
-                      chains<span class="op">=</span><span class="fl">4</span>,
-                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span></code></pre></div>
-<p>To compare models, we could use criteria like LOOIC in the loo package – this is accessible by calling</p>
+<code class="sourceCode R"><span><span class="va">design_matrix</span><span class="op">$</span><span class="va">Season</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">design_matrix</span><span class="op">$</span><span class="va">Season</span><span class="op">)</span></span>
+<span><span class="va">design_matrix</span><span class="op">$</span><span class="va">Year</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">design_matrix</span><span class="op">$</span><span class="va">Year</span><span class="op">)</span></span>
+<span><span class="va">design_matrix</span><span class="op">$</span><span class="va">y</span> <span class="op">=</span> <span class="fl">1</span> <span class="co"># dummy variable</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,</span>
+<span>                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      chains<span class="op">=</span><span class="fl">4</span>,</span>
+<span>                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">Season</span>, </span>
+<span>                      design_matrix <span class="op">=</span> <span class="va">design_matrix</span>, </span>
+<span>                      data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,</span>
+<span>                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      chains<span class="op">=</span><span class="fl">4</span>,</span>
+<span>                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">Year</span>, </span>
+<span>                      design_matrix <span class="op">=</span> <span class="va">design_matrix</span>, </span>
+<span>                      data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,</span>
+<span>                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      chains<span class="op">=</span><span class="fl">4</span>,</span>
+<span>                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">Year</span> <span class="op">+</span> <span class="va">Season</span>, </span>
+<span>                      design_matrix <span class="op">=</span> <span class="va">design_matrix</span>, </span>
+<span>                      data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>,</span>
+<span>                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      chains<span class="op">=</span><span class="fl">4</span>,</span>
+<span>                      iter<span class="op">=</span><span class="fl">4000</span><span class="op">)</span></span></code></pre></div>
+<p>To compare models, we could use criteria like LOOIC in the loo
+package – this is accessible by calling</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loo_1</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span>
-<span class="va">loo_2</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_2</span><span class="op">$</span><span class="va">model</span><span class="op">)</span>
-<span class="va">loo_3</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_3</span><span class="op">$</span><span class="va">model</span><span class="op">)</span>
-<span class="va">loo_4</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_4</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></code></pre></div>
-<p>For our example, the LOOIC from the model with Season and Year is lowest (2584.9) indicating the most support over the base model (2879.7), model with Season only (2892.4), and model with Year only (2637.2). Two words of caution for this application are (1) the standard errors of the LOOIC estimates are all in the 120-160 range, so many of the models are within +/- 1 SE of each other and (2) the Pareto-k diagnostic values fall into the ‘bad’ category for about 20% of the data points. There’s a couple solutions for this, including more MCMC sampling, and using PSIS smooth sampling</p>
+<code class="sourceCode R"><span><span class="va">loo_1</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="va">loo_2</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_2</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="va">loo_3</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_3</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="va">loo_4</span> <span class="op">=</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html" class="external-link">loo</a></span><span class="op">(</span><span class="va">fit_4</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<p>For our example, the LOOIC from the model with Season and Year is
+lowest (2584.9) indicating the most support over the base model
+(2879.7), model with Season only (2892.4), and model with Year only
+(2637.2). Two words of caution for this application are (1) the standard
+errors of the LOOIC estimates are all in the 120-160 range, so many of
+the models are within +/- 1 SE of each other and (2) the Pareto-k
+diagnostic values fall into the ‘bad’ category for about 20% of the data
+points. There’s a couple solutions for this, including more MCMC
+sampling, and using PSIS smooth sampling</p>
 </div>
 <div class="section level3">
 <h3 id="summarizing-estimates">Summarizing estimates<a class="anchor" aria-label="anchor" href="#summarizing-estimates"></a>
 </h3>
-<p>We include several helper functions for processing output into more manageable data frames. First, we can extract the predicted point estimates (and uncertainty intervals) around proportions,</p>
+<p>We include several helper functions for processing output into more
+manageable data frames. First, we can extract the predicted point
+estimates (and uncertainty intervals) around proportions,</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>, 
-                      chains<span class="op">=</span><span class="fl">1</span>,
-                      iter<span class="op">=</span><span class="va">mcmc_iter</span>,
-                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>, refresh<span class="op">=</span><span class="fl">0</span><span class="op">)</span>
-
-<span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   obs group       mean     median         lo         hi</span>
-<span class="co">## 1   1     1 0.03316379 0.03302663 0.03177026 0.03492603</span>
-<span class="co">## 2   2     1 0.03316379 0.03302663 0.03177026 0.03492603</span>
-<span class="co">## 3   3     1 0.03316379 0.03302663 0.03177026 0.03492603</span>
-<span class="co">## 4   4     1 0.03316379 0.03302663 0.03177026 0.03492603</span>
-<span class="co">## 5   5     1 0.03316379 0.03302663 0.03177026 0.03492603</span>
-<span class="co">## 6   6     1 0.03316379 0.03302663 0.03177026 0.03492603</span></code></pre>
-<p>Second, we can return all parameters (including betas for coefficients and <span class="math inline">\(\phi\)</span>, the overdispersion term)</p>
+<code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_zoid.html">fit_zoid</a></span><span class="op">(</span>data_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">data_matrix</span><span class="op">)</span>, </span>
+<span>                      chains<span class="op">=</span><span class="fl">1</span>,</span>
+<span>                      iter<span class="op">=</span><span class="va">mcmc_iter</span>,</span>
+<span>                      overdispersion <span class="op">=</span> <span class="cn">TRUE</span>, refresh<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   obs group       mean     median         lo         hi</span></span>
+<span><span class="co">## 1   1     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
+<span><span class="co">## 2   2     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
+<span><span class="co">## 3   3     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
+<span><span class="co">## 4   4     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
+<span><span class="co">## 5   5     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
+<span><span class="co">## 6   6     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span></code></pre>
+<p>Second, we can return all parameters (including betas for
+coefficients and <span class="math inline">\(\phi\)</span>, the
+overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   group cov         par         mean       median          lo         hi</span>
-<span class="co">## 1     1   1 (Intercept) -0.005274841 -0.008356368 -0.05055309 0.05448633</span>
-<span class="co">## 2     2   1 (Intercept) -0.013139559 -0.016221489 -0.06406942 0.03226512</span>
-<span class="co">## 3     3   1 (Intercept) -0.006138048 -0.002427124 -0.04722382 0.03998652</span>
-<span class="co">## 4     4   1 (Intercept) -0.011135417 -0.014518285 -0.06770722 0.05136764</span>
-<span class="co">## 5     5   1 (Intercept) -0.014466919 -0.013433180 -0.06278763 0.03695090</span>
-<span class="co">## 6     6   1 (Intercept) -0.004460286 -0.008936603 -0.05494277 0.06033448</span></code></pre>
+<code class="sourceCode R"><span><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   group cov         par         mean       median          lo         hi</span></span>
+<span><span class="co">## 1     1   1 (Intercept) -0.004300626  0.003728304 -0.08061205 0.06711826</span></span>
+<span><span class="co">## 2     2   1 (Intercept) -0.012716873 -0.010179878 -0.05548737 0.02753213</span></span>
+<span><span class="co">## 3     3   1 (Intercept) -0.007255368 -0.013251887 -0.05061225 0.04206267</span></span>
+<span><span class="co">## 4     4   1 (Intercept) -0.002244285 -0.003283913 -0.03619714 0.03073839</span></span>
+<span><span class="co">## 5     5   1 (Intercept) -0.011301175 -0.014129156 -0.06768030 0.05111281</span></span>
+<span><span class="co">## 6     6   1 (Intercept) -0.010774260 -0.005746702 -0.08245389 0.05148749</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="random-effects">Random effects<a class="anchor" aria-label="anchor" href="#random-effects"></a>
+</h3>
+<p>For models with grouping variables or factor predictor variables,
+either fixed or random effects may be included. Both need to be included
+via the formula interface, and random effects may be included in the
+typical form (<code>lme4</code>, <code>glmmTMB</code>),</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">formula</span> <span class="op">&lt;-</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">group</span><span class="op">)</span></span>
+<span><span class="va">formula</span> <span class="op">&lt;-</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">group</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">season</span><span class="op">)</span></span></code></pre></div>
+<p>For now, only random intercepts are allowed; random slopes will be
+included eventually.</p>
 </div>
 </div>
   </div>
@@ -211,7 +262,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

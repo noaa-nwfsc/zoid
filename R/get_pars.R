@@ -64,5 +64,28 @@ get_pars <- function(fitted_model, conf_int = 0.05) {
     par_list$phi <- phi
   }
 
+  # include zetas (random group intercepts)
+  if (fitted_model$stan_data$est_re == 1) {
+    n_group <- dim(pars$zeta)[2]
+    n_cov <- dim(pars$zeta)[3]
+    zetas <- expand.grid(
+      "group" = seq(1, n_group),
+      "cov" = seq(1, n_cov),
+      "par" = NA,
+      "mean" = NA,
+      "median" = NA,
+      "lo" = NA,
+      "hi" = NA
+    )
+    for (i in 1:nrow(zetas)) {
+      zetas$mean[i] <- mean(pars$zeta[, zetas$group[i], zetas$cov[i]])
+      zetas$median[i] <- median(pars$zeta[, zetas$group[i], zetas$cov[i]])
+      zetas$lo[i] <- quantile(pars$zeta[, zetas$group[i], zetas$cov[i]], conf_int / 2.0)
+      zetas$hi[i] <- quantile(pars$zeta[, zetas$group[i], zetas$cov[i]], 1 - conf_int / 2.0)
+      zetas$par[i] <- fitted_model$par_names[zetas$cov[i]]
+    }
+    par_list$zetas <- zetas
+  }
+
   return(par_list)
 }
