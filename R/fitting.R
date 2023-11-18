@@ -68,6 +68,7 @@ fit_zoid <- function(formula = NULL,
                      tot_re = 1,
                      n_groups = 1)
   est_re <- FALSE
+  re_group_names <- NA
   if (!is.null(formula)) {
     model_frame <- model.frame(formula, design_matrix)
     model_matrix <- model.matrix(formula, model_frame)
@@ -77,6 +78,7 @@ fit_zoid <- function(formula = NULL,
       parsed_res <- res # only update if REs are in formula
       est_re <- TRUE
       model_matrix <- res$fixed_design_matrix
+      re_group_names <- res$random_effect_group_names
     }
   } else {
     model_matrix <- matrix(1, nrow = nrow(data_matrix))
@@ -139,7 +141,8 @@ fit_zoid <- function(formula = NULL,
     overdispersion = overdispersion,
     overdispersion_prior = prior,
     posterior_predict = posterior_predict,
-    stan_data = stan_data
+    stan_data = stan_data,
+    re_group_names = re_group_names
   ))
 }
 
@@ -195,5 +198,6 @@ parse_re_formula <- function(formula, data) {
   if(length(var_indx) > 0) n_groups <- max(var_indx)
   return(list(design_matrix = design_matrix, var_indx = var_indx, n_re_by_group = n_re,
               tot_re = sum(n_re), n_groups = n_groups,
-              fixed_design_matrix = fixed_design_matrix))
+              fixed_design_matrix = fixed_design_matrix,
+              random_effect_group_names = random_effect_group_names))
 }
