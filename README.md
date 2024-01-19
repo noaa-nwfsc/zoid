@@ -4,7 +4,7 @@
 # ZOID
 
 <!-- badges: start --> [![R build
-status](https://github.com/nwfsc-cb/zoid/workflows/R-CMD-check/badge.svg)](https://github.com/nwfsc-cb/zoid/actions)
+status](https://github.com/noaa-nwfsc/zoid/workflows/R-CMD-check/badge.svg)](https://github.com/noaa-nwfsc/zoid/actions)
 <!-- badges: end -->
 
 zoid implements zero-and-one inflated Dirichlet regression (also known
