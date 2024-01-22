@@ -208,26 +208,26 @@ estimates (and uncertainty intervals) around proportions,</p>
 <span></span>
 <span><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   obs group       mean     median         lo         hi</span></span>
-<span><span class="co">## 1   1     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
-<span><span class="co">## 2   2     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
-<span><span class="co">## 3   3     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
-<span><span class="co">## 4   4     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
-<span><span class="co">## 5   5     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
-<span><span class="co">## 6   6     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span></code></pre>
+<pre><code><span><span class="co">##   obs group       mean    median         lo         hi</span></span>
+<span><span class="co">## 1   1     1 0.03311415 0.0329826 0.03161169 0.03523394</span></span>
+<span><span class="co">## 2   2     1 0.03311415 0.0329826 0.03161169 0.03523394</span></span>
+<span><span class="co">## 3   3     1 0.03311415 0.0329826 0.03161169 0.03523394</span></span>
+<span><span class="co">## 4   4     1 0.03311415 0.0329826 0.03161169 0.03523394</span></span>
+<span><span class="co">## 5   5     1 0.03311415 0.0329826 0.03161169 0.03523394</span></span>
+<span><span class="co">## 6   6     1 0.03311415 0.0329826 0.03161169 0.03523394</span></span></code></pre>
 <p>Second, we can return all parameters (including betas for
 coefficients and <span class="math inline">\(\phi\)</span>, the
 overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   m cov         par         mean        median          lo         hi</span></span>
-<span><span class="co">## 1 1   1 (Intercept) -0.003560550 -0.0038690074 -0.05207903 0.04997014</span></span>
-<span><span class="co">## 2 2   1 (Intercept) -0.015810989 -0.0086503675 -0.08457123 0.05672444</span></span>
-<span><span class="co">## 3 3   1 (Intercept) -0.004083677 -0.0009522793 -0.05567129 0.04460668</span></span>
-<span><span class="co">## 4 4   1 (Intercept) -0.014416716 -0.0162513228 -0.06703304 0.03740511</span></span>
-<span><span class="co">## 5 5   1 (Intercept) -0.016439159 -0.0091538651 -0.06154763 0.03013460</span></span>
-<span><span class="co">## 6 6   1 (Intercept) -0.009760563 -0.0080342907 -0.09782504 0.07198219</span></span></code></pre>
+<pre><code><span><span class="co">##   m cov         par         mean       median          lo         hi</span></span>
+<span><span class="co">## 1 1   1 (Intercept) -0.008802153 -0.017167978 -0.05964580 0.05494550</span></span>
+<span><span class="co">## 2 2   1 (Intercept) -0.010361087 -0.004366175 -0.07964858 0.04754372</span></span>
+<span><span class="co">## 3 3   1 (Intercept) -0.010413629 -0.012791217 -0.07726201 0.04417725</span></span>
+<span><span class="co">## 4 4   1 (Intercept) -0.010216399 -0.008846927 -0.05633023 0.03669548</span></span>
+<span><span class="co">## 5 5   1 (Intercept) -0.015234386 -0.012214700 -0.06023355 0.03678638</span></span>
+<span><span class="co">## 6 6   1 (Intercept) -0.013964539 -0.011279908 -0.08013811 0.03441358</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="random-effects">Random effects<a class="anchor" aria-label="anchor" href="#random-effects"></a>
