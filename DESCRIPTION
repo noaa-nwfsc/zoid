@@ -39,8 +39,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Biarch: true
-URL: https://nwfsc-cb.github.io/zoid/
-BugReports: https://github.com/nwfsc-cb/zoid/issues
+URL: https://noaa-nwfsc.github.io/zoid/
+BugReports: https://github.com/noaa-nwfsc/zoid/issues
 Depends: 
     R (>= 3.4.0)
 Imports: 

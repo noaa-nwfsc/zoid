@@ -3,8 +3,8 @@
 
 # ZOID
 
-<!-- badges: start --> 
-[![R build status](https://github.com/noaa-nwfsc/zoid/workflows/R-CMD-check/badge.svg)](https://github.com/noaa-nwfsc/zoid/actions)
+<!-- badges: start --> [![R build
+status](https://github.com/noaa-nwfsc/zoid/workflows/R-CMD-check/badge.svg)](https://github.com/noaa-nwfsc/zoid/actions)
 <!-- badges: end -->
 
 zoid implements zero-and-one inflated Dirichlet regression (also known
@@ -13,7 +13,7 @@ as trinomial mixture models) in a Bayesian framework (Stan)
 You can install the development version of the package with:
 
 ``` r
-remotes::install_github("nwfsc-cb/zoid")
+remotes::install_github("noaa-nwfsc/zoid")
 ```
 
 ### NOAA Disclaimer

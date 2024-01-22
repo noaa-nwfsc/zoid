@@ -70,7 +70,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/nwfsc-cb/zoid/" class="external-link">
+  <a href="https://github.com/noaa-nwfsc/zoid/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,9 +91,9 @@
       <h1 data-toc-skip>Fitting models with zoid</h1>
                         <h4 data-toc-skip class="author"></h4>
             
-            <h4 data-toc-skip class="date">2023-11-16</h4>
+            <h4 data-toc-skip class="date">2024-01-22</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/nwfsc-cb/zoid/blob/HEAD/vignettes/a01_fitting.Rmd" class="external-link"><code>vignettes/a01_fitting.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/noaa-nwfsc/zoid/blob/HEAD/vignettes/a01_fitting.Rmd" class="external-link"><code>vignettes/a01_fitting.Rmd</code></a></small>
       <div class="hidden name"><code>a01_fitting.Rmd</code></div>
 
     </div>
@@ -102,7 +102,7 @@
     
 <p>Let’s load the necessary packages:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nwfsc-cb.github.io/zoid/" class="external-link">zoid</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://noaa-nwfsc.github.io/zoid/" class="external-link">zoid</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="fish-stomach-contents-example">Fish stomach contents example<a class="anchor" aria-label="anchor" href="#fish-stomach-contents-example"></a>
 </h2>
@@ -209,25 +209,25 @@ estimates (and uncertainty intervals) around proportions,</p>
 <span><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fitted.html">get_fitted</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   obs group       mean     median         lo         hi</span></span>
-<span><span class="co">## 1   1     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
-<span><span class="co">## 2   2     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
-<span><span class="co">## 3   3     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
-<span><span class="co">## 4   4     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
-<span><span class="co">## 5   5     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span>
-<span><span class="co">## 6   6     1 0.03317982 0.03312846 0.03083749 0.03558772</span></span></code></pre>
+<span><span class="co">## 1   1     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
+<span><span class="co">## 2   2     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
+<span><span class="co">## 3   3     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
+<span><span class="co">## 4   4     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
+<span><span class="co">## 5   5     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span>
+<span><span class="co">## 6   6     1 0.03328127 0.03315307 0.03151279 0.03509031</span></span></code></pre>
 <p>Second, we can return all parameters (including betas for
 coefficients and <span class="math inline">\(\phi\)</span>, the
 overdispersion term)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fitted_vals</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_pars.html">get_pars</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fitted_vals</span><span class="op">$</span><span class="va">betas</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   group cov         par         mean       median          lo         hi</span></span>
-<span><span class="co">## 1     1   1 (Intercept) -0.004300626  0.003728304 -0.08061205 0.06711826</span></span>
-<span><span class="co">## 2     2   1 (Intercept) -0.012716873 -0.010179878 -0.05548737 0.02753213</span></span>
-<span><span class="co">## 3     3   1 (Intercept) -0.007255368 -0.013251887 -0.05061225 0.04206267</span></span>
-<span><span class="co">## 4     4   1 (Intercept) -0.002244285 -0.003283913 -0.03619714 0.03073839</span></span>
-<span><span class="co">## 5     5   1 (Intercept) -0.011301175 -0.014129156 -0.06768030 0.05111281</span></span>
-<span><span class="co">## 6     6   1 (Intercept) -0.010774260 -0.005746702 -0.08245389 0.05148749</span></span></code></pre>
+<pre><code><span><span class="co">##   m cov         par         mean        median          lo         hi</span></span>
+<span><span class="co">## 1 1   1 (Intercept) -0.003560550 -0.0038690074 -0.05207903 0.04997014</span></span>
+<span><span class="co">## 2 2   1 (Intercept) -0.015810989 -0.0086503675 -0.08457123 0.05672444</span></span>
+<span><span class="co">## 3 3   1 (Intercept) -0.004083677 -0.0009522793 -0.05567129 0.04460668</span></span>
+<span><span class="co">## 4 4   1 (Intercept) -0.014416716 -0.0162513228 -0.06703304 0.03740511</span></span>
+<span><span class="co">## 5 5   1 (Intercept) -0.016439159 -0.0091538651 -0.06154763 0.03013460</span></span>
+<span><span class="co">## 6 6   1 (Intercept) -0.009760563 -0.0080342907 -0.09782504 0.07198219</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="random-effects">Random effects<a class="anchor" aria-label="anchor" href="#random-effects"></a>
