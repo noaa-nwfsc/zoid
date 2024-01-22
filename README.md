@@ -10,6 +10,9 @@ status](https://github.com/noaa-nwfsc/zoid/workflows/R-CMD-check/badge.svg)](htt
 zoid implements zero-and-one inflated Dirichlet regression (also known
 as trinomial mixture models) in a Bayesian framework (Stan)
 
+You can view the pkgdown package information
+here:<https://noaa-nwfsc.github.io/zoid/>
+
 You can install the development version of the package with:
 
 ``` r
