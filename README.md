@@ -3,8 +3,8 @@
 
 # ZOID
 
-<!-- badges: start --> [![R build
-status](https://github.com/noaa-nwfsc/zoid/workflows/R-CMD-check/badge.svg)](https://github.com/noaa-nwfsc/zoid/actions)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/noaa-nwfsc/zoid/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/noaa-nwfsc/zoid/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 zoid implements zero-and-one inflated Dirichlet regression (also known
