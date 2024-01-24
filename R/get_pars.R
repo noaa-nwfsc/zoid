@@ -87,11 +87,11 @@ get_pars <- function(fitted_model, conf_int = 0.05) {
       zetas$par[i] <- fitted_model$par_names[zetas$group[i]]
     }
     # add group names
-    for(i in 1:fit$stan_data$n_groups) {
+    for(i in 1:fitted_model$stan_data$n_groups) {
       if(i==1) {
-        ids <- rep(i,fit$stan_data$n_re_by_group[i])
+        ids <- rep(i,fitted_model$stan_data$n_re_by_group[i])
       } else {
-        ids <- c(ids, rep(i,fit$stan_data$n_re_by_group[i]))
+        ids <- c(ids, rep(i,fitted_model$stan_data$n_re_by_group[i]))
       }
     }
     df <- data.frame("group" = 1:max(zetas$group), "group_name" = fit$re_group_names[ids])

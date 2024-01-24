@@ -44,6 +44,7 @@ BugReports: https://github.com/noaa-nwfsc/zoid/issues
 Depends: 
     R (>= 3.4.0)
 Imports: 
+    compositions,
     gtools,
     methods,
     Rcpp (>= 0.12.0),
