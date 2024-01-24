@@ -53,7 +53,6 @@ fit_prior <- function(n_bins, n_draws = 10000, target = 1 / n_bins, iterations =
 #' @param n_draws Numbers of samples to use for doing calculation
 #' @param target The goal of the specified prior, e.g. 1 or 1/n_bins
 #' @importFrom stats rnorm
-#' @importFrom compositions fitDirichlet
 rmspe_calc <- function(par, n_bins, n_draws, target) {
   x <- matrix(rnorm(n_draws * (n_bins - 1), 0, exp(par)), n_draws, n_bins - 1)
   x <- cbind(x, 0)
@@ -62,7 +61,33 @@ rmspe_calc <- function(par, n_bins, n_draws, target) {
   }
   p <- t(apply(x, 1, f))
 
-  funct_alpha <- fitDirichlet(p)$alpha
+  funct_alpha <- fit_dirichlet(p)
   rmspe <- sqrt(mean(((funct_alpha - target) / target)^2))
   return(rmspe)
+}
+
+#' Extract point estimates of compositions from fitted model.
+#'
+#' @param data The data to fit the dirichlet distribution to
+#' @importFrom stats optim
+#' @export
+fit_dirichlet <- function(data) {
+  # Log-likelihood of the Dirichlet distribution
+  logLikelihood <- function(params) {
+    # Ensure parameters are positive
+    if (any(params <= 0)) return(Inf)
+
+    alpha <- params
+    lgamma(sum(alpha)) - sum(lgamma(alpha)) +
+      sum((alpha - 1) * apply(log(data), 1, sum))
+  }
+
+  # Initial parameter estimates
+  init_params <- rep(1, ncol(data))
+
+  # Optimization using optim
+  fit <- optim(init_params, logLikelihood, control = list(fnscale = -1))
+
+  # Return estimated parameters
+  return(fit$par)
 }
