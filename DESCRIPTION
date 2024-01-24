@@ -1,6 +1,6 @@
 Package: zoid
 Title: Bayesian Zero-and-One Inflated Dirichlet Regression Modelling 
-Version: 1.3.0
+Version: 1.3.1
 Authors@R: 
     c(person(given = "Eric J.",
            family = "Ward",

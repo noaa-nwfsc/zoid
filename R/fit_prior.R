@@ -70,7 +70,6 @@ rmspe_calc <- function(par, n_bins, n_draws, target) {
 #'
 #' @param data The data to fit the dirichlet distribution to
 #' @importFrom stats optim
-#' @export
 fit_dirichlet <- function(data) {
   # Log-likelihood of the Dirichlet distribution
   logLikelihood <- function(params) {
