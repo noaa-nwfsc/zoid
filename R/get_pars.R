@@ -94,7 +94,7 @@ get_pars <- function(fitted_model, conf_int = 0.05) {
         ids <- c(ids, rep(i,fitted_model$stan_data$n_re_by_group[i]))
       }
     }
-    df <- data.frame("group" = 1:max(zetas$group), "group_name" = fit$re_group_names[ids])
+    df <- data.frame("group" = 1:max(zetas$group), "group_name" = fitted_model$re_group_names[ids])
     zetas$group_name <- ""
     for(i in 1:nrow(zetas)) zetas$group_name[i] <- df$group_name[which(df$group == zetas$group[i])]
     zetas <- zetas[,c("m","group","group_name","par","mean","median","lo","hi")]
