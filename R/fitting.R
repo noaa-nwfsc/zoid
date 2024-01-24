@@ -30,18 +30,18 @@
 #'   nrow = 3, byrow = TRUE
 #' )
 #' # fit a model with no covariates
-#' fit <- fit_zoid(data_matrix = y)
+#' fit <- fit_zoid(data_matrix = y, chains = 1, iter = 100)
 #'
 #' # fit a model with 1 factor
 #' design <- data.frame("fac" = c("spring", "spring", "fall"))
-#' fit <- fit_zoid(formula = ~fac, design_matrix = design, data_matrix = y)
+#' fit <- fit_zoid(formula = ~fac, design_matrix = design, data_matrix = y, chains = 1, iter = 100)
 #' }
 #' # try a model with random effects
 #' set.seed(123)
 #' y <- matrix(runif(99,1,4), ncol=3)
 #' design <- data.frame("fac" = sample(letters[1:5], size=nrow(y), replace=TRUE))
 #' design$fac <- as.factor(design$fac)
-#' fit <- fit_zoid(formula = ~(1|fac), design_matrix = design, data_matrix = y)
+#' fit <- fit_zoid(formula = ~(1|fac), design_matrix = design, data_matrix = y, chains = 1, iter = 100)
 #'
 fit_zoid <- function(formula = NULL,
                          design_matrix,

@@ -14,5 +14,5 @@ bibentry(bibtype = "Manual",
                     ),
          year = year,
          note = note,
-         url = "https://nwfsc-cb.github.io/zoid/")
+         url = "https://noaa-nwfsc.github.io/zoid/")
 
