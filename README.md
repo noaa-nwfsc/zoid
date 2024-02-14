@@ -40,3 +40,7 @@ commercial product or activity by DOC or the United States Government.
 [U.S. Department of Commerce](https://www.commerce.gov/) \| [National
 Oceanographic and Atmospheric Administration](https://www.noaa.gov) \|
 [NOAA Fisheries](https://www.fisheries.noaa.gov/)
+
+### License
+
+This content was created by U.S. Government employees as part of their official duties. This content is not subject to copyright in the United States (17 U.S.C. §105) and is in the public domain within the United States of America. See LICENSE file for additional details.
