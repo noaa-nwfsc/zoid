@@ -18,7 +18,7 @@
 #'
 #' @examples
 #' \donttest{
-#' y <- matrix(c(3.77, 6.63, 2.60, 0.9, 1.44, 0.66, 2.10, 3.57, 1.33),
+#' y <- matrix(c(3.77, 6.63, 2.60, 0.9, 1.44, 0.66, 2.10, 3.57, 1.33, 3.4, 1.4, 5),
 #'   nrow = 3, byrow = TRUE
 #' )
 #' # fit a model with no covariates

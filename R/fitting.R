@@ -41,7 +41,7 @@
 #' y <- matrix(runif(99,1,4), ncol=3)
 #' design <- data.frame("fac" = sample(letters[1:5], size=nrow(y), replace=TRUE))
 #' design$fac <- as.factor(design$fac)
-#' fit <- fit_zoid(formula = ~(1|fac), design_matrix = design, data_matrix = y, chains = 1, iter = 100)
+#' fit <- fit_zoid(formula = ~(1|fac), design_matrix = design, data_matrix = y, chains = 1, iter = 1000)
 #'
 fit_zoid <- function(formula = NULL,
                          design_matrix,
@@ -70,7 +70,7 @@ fit_zoid <- function(formula = NULL,
   est_re <- FALSE
   re_group_names <- NA
   if (!is.null(formula)) {
-    model_frame <- model.frame(formula, design_matrix)
+    model_frame <- suppressWarnings(model.frame(formula, design_matrix))
     model_matrix <- model.matrix(formula, model_frame)
     # extract the random effects
     res <- parse_re_formula(formula, design_matrix)
