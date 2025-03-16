@@ -11,8 +11,8 @@ data { // set up to run a single instance (1 stock) of GSI observations
   int tot_re; // total number of random intercepts
   int n_groups; // number of re groups
   matrix[N_samples, tot_re] design_Z; // design matrix of random ints
-  int re_var_indx[tot_re + 1]; // total index across acll groups
-  int n_re_by_group[n_groups + 1]; // indices by group
+  array[tot_re + 1] int re_var_indx; // total index across acll groups
+  array[n_groups + 1] int n_re_by_group; // indices by group
   int est_re; // 0 or 1 indicator
 }
 transformed data {
